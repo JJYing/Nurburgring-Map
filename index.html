@@ -17,8 +17,7 @@
 	</head>
 <body>
 <div id="app">
-  <div class="title"></div>
-  <div class="debug">{{p.toFixed(3)}}</div>
+  <div class="debug">{{p.toFixed(3)}}<br/>{{mX.toFixed(3)}}<br/>{{mY.toFixed(3)}}</div>
   <div class="track-map">
     <div class="inner">
       <svg viewBox="0 0 660 530">
@@ -39,10 +38,11 @@
           <use href="#track" class="path"></use>
         </g>
         <use href="#track" class="progress"/>
-        <g v-for="c in corners" class="corner-name" :class=" c.st < p && p < c.ed ? 'show' : 'hidden' ">
-          <text :x=" c.x * w" :y=" c.y * h" class="ch">{{c.ch}}</text>
-        </g>
       </svg>
+      <div v-for="c in corners" class="corner-name" :class="[ (c.st < p && p < c.ed) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v ]" :style=" '--x:' + c.x + ';--y:' + c.y ">
+        {{c.ch}}
+      </div>
+      <div class="miles">{{ (p * 20.832).toFixed(2)}} <em>KM</em></div>
     </div>
   </div>
   <div class="desc">
@@ -52,13 +52,14 @@
     <div class="corner-info">
       <div class="inner" v-if="currentCorner" v-cloak>
         <div class="ch" v-if="currentCorner.ch">{{currentCorner.ch}}</div>
-        <div class="nk" v-if="currentCorner.nk">“{{currentCorner.nk}}”</div>
+        <div class="nk" v-if="currentCorner.nk">{{currentCorner.nk}}</div>
         <div class="en" v-if="currentCorner.en">{{currentCorner.en}}</div>
         <div class="de" v-if="currentCorner.de">{{currentCorner.de}}</div>
+        <div class="more" v-if="currentCorner.more">{{currentCorner.more}}</div>
       </div>
     </div>
     <div class="controls">
-      显示所有弯道
+      <div @click="showAllCornerNames = !showAllCornerNames">显示所有弯道</div>
     </div>
   </div>
 </div>
