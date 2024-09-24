@@ -1,0 +1,274 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+:root{
+	scroll-behavior: smooth;
+  --main: #e60000;
+  --secondary: #5A55AA;
+  --text1: rgba(0,0,0,.85);
+  --text2: rgba(0,0,0,.5);
+  --text3: rgba(0,0,0,.3);
+  --bg1: #fff;
+  --bg2: #ddd;
+  /* --bg3: #333542; */
+  --width: min(90vw, 90rem);
+  --margin: calc(2rem + .6vmax);
+  --curve: ease-in;
+	--curve-out: ease-out;
+  /* --curve: cubic-bezier(.08,.82,.2,1);
+  --curve-out: cubic-bezier(.95,.05,.8,.04); */
+	--radius: .4rem;
+  --box-radius: .8rem;
+	--duration: .25s;
+	--duration-out: .25s;
+	--transition: all var(--duration) var(--curve);
+	--transition-out: all var(--duration-out) var(--curve-out);
+
+  background-color: var(--bg1);
+  --dot-bg: rgba(255,255,255,.07);
+  background-image:  radial-gradient(var(--dot-bg) 1px, transparent 1px), radial-gradient(var(--dot-bg) 1px, var(--bg1) 1px);
+  background-size: 20px 20px;
+  background-position: 0 0,10px 10px;
+
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, 'PingFang SC', sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  /* font-family: YouSheBiaoTiHei; */
+  /* text-spacing-trim: space-first; */
+  background-color: var(--bg1);
+  background-image:  radial-gradient(var(--text3) 0.5px, transparent 0.5px), radial-gradient(var(--text3) 0.5px, var(--bg1) 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0,10px 10px;
+  background-attachment: fixed;
+}
+em{font-style: normal;}
+img{
+  display: block;
+	max-width: 100%;
+}
+::selection{
+  background: var(--main);
+  color: var(--bg1);
+}
+a{
+	text-decoration: none;
+	transition: var(--transition);
+	color: var(--main);
+}
+.mobile-only{
+	display: none !important;
+}
+
+
+/*~Btns*/
+.btn{
+	background: #345;
+	color: #fff;
+	text-decoration: none;
+	display: inline-block;
+	padding: .4em .7em;
+	font-weight:700;
+	border: 2px solid #345;
+	border-radius: var(--radius);
+	transition: var(--transition-out);
+	cursor: pointer;
+	backface-visibility: hidden;
+	user-select: none;
+	-webkit-user-select: none;
+	font-family: inherit;
+	line-height: 1.2;
+	outline: none;
+	transform: scale(1.008);
+	transform-origin: 50% 50%;
+	touch-action: manipulation;
+}
+.primary-btn{
+	background: var(--main);
+	color: #000;
+	border-color: var(--main);
+}
+.btn:hover{
+	transition: var(--transition);
+	text-decoration: none;
+	transform: scale(1.05);
+	background: var(--main);
+	/* color: #fff; */
+	border-color: var(--main);
+	outline: none;
+	filter: brightness(1.1);
+}
+.btn:active{
+	filter: brightness(.7)contrast(1.3);
+	outline: none;
+	transition: var(--transition);
+}
+.btn.disabled{
+  opacity: .25;
+  filter: grayscale(.3);
+  pointer-events: none;
+}
+
+body{
+  height: 10000vh;
+  --pageH: 2000;
+}
+
+#app{
+  display: grid;
+	width: 100vw; height: 100vh;
+	grid-template-areas: "title desc" "map desc";
+	grid-template-rows: auto 1fr;
+  grid-template-columns: 60vw 1fr;
+  position: fixed;
+  overflow: hidden;
+}
+
+/*~Title*/
+.title{
+  grid-area: title;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  font-weight: 700;
+}
+
+/*~Track*/
+.track-map{
+  grid-area: map;
+  --full: 1905.97px;
+  display: flex;
+  justify-content: center; align-items: center;
+}
+.track-map > .inner{
+  aspect-ratio: 660 / 530;
+  max-width: 100%; max-height: 100%;
+}
+.track-map svg{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.base{
+  fill: none;
+  stroke-width: 3px;
+  stroke: var(--bg2);
+}
+.progress{
+  fill: none;
+  stroke: var(--text2);
+  stroke-width: 1px;
+  stroke-dasharray: var(--full);
+  transition: all .4s ease-out;
+  stroke-dashoffset: calc(var(--full) * (1 - var(--p)));
+}
+
+.path{
+  fill: none;
+  stroke: var(--main);
+  stroke-dasharray: calc((var(--ed) - var(--st)) * var(--full)) calc(10000);
+  stroke-dashoffset:  calc(  var(--st) * var(--full) * -1);
+  stroke-width: 4px;
+}
+.corner .path{
+  opacity: 0;
+  transition: opacity .2s var(--curve-out);
+}
+.corner.show .path{
+  opacity: 1;
+  transition: opacity .2s var(--curve);
+}
+
+.section .path{
+  opacity: 0;
+  transition: opacity .2s var(--curve-out);
+  stroke-width: 7px;
+  stroke: var(--bg2);
+}
+.section.show .path{
+  opacity: 1;
+  transition: opacity .2s var(--curve);
+}
+.debug{
+  position: fixed;
+  right: 10px; top: 10px;
+}
+
+.corner-name .ch{
+  font-size: 6px;
+}
+.corner-name{
+  opacity: 0;
+  transition: all .2s var(--curve-out);
+}
+.corner-name.show{
+  opacity: 1;
+  transition: all .2s var(--curve);
+}
+
+/* ~Desc */
+.desc{
+  grid-area: desc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  border-left: 1px solid var(--bg2);
+  background: var(--bg1);
+}
+.logo{
+  display: flex;
+  width: 100%;
+  justify-content: center; align-items: center;
+  gap: 1em;
+  border-bottom: 1px solid var(--bg2);
+  padding: var(--margin);
+}
+.logo > img{
+  height: 3rem;
+}
+.logo > span{
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text1);
+}
+.corner-info{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: var(--margin) calc(var(--margin) * 2);
+}
+.desc .ch{
+  font-weight: 700;
+  line-height: 1;
+  font-size: 4rem;
+  color: var(--text1)
+}
+.desc .nk{
+  font-weight: 700;
+  font-size: 3rem;
+  color: var(--text1)
+}
+.desc .en{
+  font-weight: 400;
+  font-size: 2rem;
+  color: var(--text3)
+}
+.desc .de{
+  font-weight: 400;
+  font-size: 2rem;
+  color: var(--text2)
+}
+
+.controls{
+  font-size: 1rem;
+  color: var(--text2);
+  border-top: 1px solid var(--bg2);
+  width: 100%;
+  padding: var(--margin) calc(var(--margin) * 2);
+}
