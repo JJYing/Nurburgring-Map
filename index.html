@@ -17,7 +17,7 @@
 	</head>
 <body>
 <div id="app">
-  <div class="debug">{{p.toFixed(3)}}<br/>{{mX.toFixed(3)}}<br/>{{mY.toFixed(3)}}</div>
+  <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div>
   <div class="track-map">
     <div class="inner">
       <svg viewBox="0 0 660 530">
@@ -26,10 +26,12 @@
         </def>
 
         </g>
-        <use href="#track" class="base"/>
+        
         <g class="section" :class=" showSection ? 'show' : 'hidden' " :style=" '--st:' + sectionStart + ';--ed:' + sectionEnd" >
           <use href="#track" class="path"></use>
         </g>
+        <use href="#track" class="base base2"/>
+        <use href="#track" class="base"/>
         
         <!-- <g class="corner" v-for="c in corners" :style=" '--st:' + c.st + ';--ed:' + c.ed"  :class=" c.st < p && p < c.ed ? 'show' : 'hidden' ">
           <use href="#track" class="path"></use>
@@ -39,10 +41,13 @@
         </g>
         <use href="#track" class="progress"/>
       </svg>
-      <div v-for="c in corners" class="corner-name" :class="[ (c.st < p && p < c.ed) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v ]" :style=" '--x:' + c.x + ';--y:' + c.y ">
+      <div v-for="c in corners" class="corner-name" :class="[ (c.st < p && p < c.ed) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v ]" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP((c.st + c.ed) / 2)">
         {{c.ch}}
       </div>
-      <div class="miles">{{ (p * 20.832).toFixed(2)}} <em>KM</em></div>
+      <div v-for="c in sections" class="corner-name section-name" :class="[ (c.st < p && p < c.ed) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v ]" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP((c.st + c.ed) / 2)">
+        {{c.ch}}
+      </div>
+      <div class="miles" v-cloak v-if="p > 0">{{ (p * 20.832).toFixed(2)}} <em>KM</em></div>
     </div>
   </div>
   <div class="desc">
@@ -51,11 +56,13 @@
     </div>
     <div class="corner-info">
       <div class="inner" v-if="currentCorner" v-cloak>
-        <div class="ch" v-if="currentCorner.ch">{{currentCorner.ch}}</div>
-        <div class="nk" v-if="currentCorner.nk">{{currentCorner.nk}}</div>
-        <div class="en" v-if="currentCorner.en">{{currentCorner.en}}</div>
-        <div class="de" v-if="currentCorner.de">{{currentCorner.de}}</div>
+        <div class="primary" v-if="currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' ">{{currentCorner.ch}}</div>
+        <div class="nickname qt" v-if="currentCorner.nk && currentCorner.ch != currentCorner.nk">{{currentCorner.nk}}</div>
+        <div class="secondary" v-if="currentCorner.de">🇩🇪 {{currentCorner.de}}<span class="en" v-if="currentCorner.en"> · 🇬🇧 {{currentCorner.en}}</span></div>
         <div class="more" v-if="currentCorner.more">{{currentCorner.more}}</div>
+        <div class="thumbs" v-if="currentCorner.imgs">
+          <img class="thumb" v-for="img in currentCorner.imgs" :src=" 'https://s.anyway.red/nurburgring/' + img.src"/>
+        </div>
       </div>
     </div>
     <div class="controls">

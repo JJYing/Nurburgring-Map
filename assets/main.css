@@ -114,8 +114,7 @@ a{
 }
 
 body{
-  height: 10000vh;
-  --pageH: 2000;
+  height: 8000vh;
 }
 
 #app{
@@ -161,6 +160,10 @@ body{
   stroke-width: 4px;
   stroke: var(--bg2);
 }
+.base2{
+  stroke-width: 6px;
+  stroke: var(--bg1);
+}
 .progress{
   fill: none;
   stroke: var(--text1);
@@ -191,8 +194,8 @@ body{
 .section .path{
   opacity: 0;
   transition: opacity .2s var(--curve-out);
-  stroke-width: 8px;
-  stroke: var(--bg3);
+  stroke-width: 10px;
+  stroke: var(--bg2);
   stroke-linecap: butt;
 }
 .section.show .path{
@@ -215,6 +218,10 @@ body{
   /* translate: calc(var(--x) * 100%) 50%; */
   translate: var(--tX) var(--tY);
 }
+.corner-name:hover{
+  color: var(--main);
+  cursor: pointer;
+}
 .corner-name.t{--tY: 0%;}
 .corner-name.m{--tY: -50%;}
 .corner-name.b{--tY: -100%;}
@@ -226,7 +233,11 @@ body{
   opacity: 1;
   transition: all .2s var(--curve);
 }
-
+.section-name{
+  color: var(--text2);
+  font-weight: 700;
+  font-size: .875rem;
+}
 .miles{
   position: absolute;
   left: 45%; top: 50%;
@@ -286,49 +297,46 @@ body{
     translate: 1em 0;
   }
 }
-.desc .ch{
+.desc .primary{
   font-weight: 700;
   line-height: 1;
   font-size: calc(1rem + 1.5vmin + 1.5vmax);
   color: var(--text1);
   color: var(--main);
+  position: relative;
 }
-.desc .nk{
+.desc .nickname{
   font-weight: 700;
   font-size: 3rem;
   color: var(--text1);
   display: inline-block;
   position: relative;
 }
-.desc .nk::before,
-.desc .nk::after{
+.desc .qt::before,
+.desc .qt::after{
   color: var(--text3);
   top: 10%;
   position: absolute;
   font-weight: 400;
 }
-.desc .nk::before{
+.desc .qt::before{
   content: "“";
   right: 100%;
 }
-.desc .nk::after{
+.desc .qt::after{
   content: "”";
   left: 100%;
 }
-.desc .en{
-  font-weight: 400;
-  font-size: 2rem;
-  color: var(--text3);
-}
-.desc .de{
+.desc .secondary{
   font-weight: 400;
   font-size: 2rem;
   color: var(--text2);
+  margin-top: .5em;
 }
 .desc .more{
   font-weight: 400;
   font-size: 1rem;
-  color: var(--text3);
+  color: var(--text2);
   margin-top: .6em;
   line-height: 1.65;
 }
