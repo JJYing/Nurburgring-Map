@@ -23,11 +23,24 @@ var d = new Vue({
       {
         "st":.019,
         "ed":.064,
-        "x":.34,
-        "y":.88,
+        "x":.297,
+        "y":.892,
+        "h": "c",
+        "v": "b",
         "ch": "Hatzenbach",
         "en": "Hunt Stream",
         "de": "Hatzenbach",
+      },
+      {
+        "st":.188,
+        "ed":.237,
+        "x":.161,
+        "y":.481,
+        "h": "l",
+        "v": "t",
+        "ch": "狐狸洞",
+        "en": "Foxhole",
+        "de": "Fuchsröhre",
       }
     ],
     corners: [
@@ -41,6 +54,12 @@ var d = new Vue({
         "ch": "萨宾娜",
         "en": "Sabine Schmitz Curve",
         "de": "Sabine Schmitz Kurve",
+        "more": "为了纪念在此开了至少 33,000 圈的纽北女王 Sabine Schmitz，她曾两次赢得纽博格林 24 小时耐力赛，也是第一位赢得这项传奇赛事的女性。",
+        "imgs": [
+          {
+            "src": "sabine-1.jpg",
+          },
+        ],
       },
       {
         "st": .019,
@@ -57,10 +76,10 @@ var d = new Vue({
       {
         "st": .038,
         "ed": .049,
-        "x": .27,
-        "y": .895,
-        "h": "l",
-        "v": "b",
+        "x": .254,
+        "y": .923,
+        "h": "r",
+        "v": "t",
         "ch": "扭扭弯",
         "nk": "扭扭弯"
       },
@@ -95,25 +114,172 @@ var d = new Vue({
         "v": "m",
         "ch": "飞机场",
         "de": "Flugplatz",
+        "en": "Airfield",
         "more": "虽然很多赛车在这个高速弯起飞，但事实上这里叫「飞机场」的原因是在这个弯道边上以前是个飞机场",
-      },      
+      },
+      {
+        "st": .129,
+        "ed": .139,
+        "x": .159,
+        "y": .670,
+        "h": "l",
+        "v": "m",
+        "ch": "Kottenborn",
+        "de": "Kottenborn",
+      },
+      {
+        "st": .145,
+        "ed": .162,
+        "x": .148,
+        "y": .605,
+        "h": "l",
+        "v": "m",
+        "ch": "草原直线",
+      },
+      {
+        "st": .163,
+        "ed": .172,
+        "x": .132,
+        "y": .554,
+        "h": "l",
+        "v": "m",
+        "ch": "瑞典十字",
+        "de": "Schwedenkreuz",
+        "en": "Swedish Cross"
+      },
       {
         "st": .179,
         "ed": .188,
-        "x": .106,
-        "y": .526,
-        "h": "l",
+        "x": .065,
+        "y": .530,
+        "h": "r",
         "v": "m",
-        "ch": "Aremberg",
+        "ch": "阿伦山",
         "de": "Aremberg",
         "en": "Arem mountain",
+      }, 
+      {
+        "st": .188,
+        "ed": .203,
+        "x": .104,
+        "y": .495,
+        "h": "r",
+        "v": "b",
+        "ch": "横滨走廊",
+        "nk": "横滨走廊",
+      }, 
+      {
+        "st": .237,
+        "ed": .256,
+        "x": .175,
+        "y": .362,
+        "h": "r",
+        "v": "m",
+        "ch": "阿德瑙森林",
+        "de": "Adenauer Forst",
+        "en": "Adenau Forest",
+      }, 
+      {
+        "st": .277,
+        "ed": .285,
+        "x": .257,
+        "y": .277,
+        "h": "l",
+        "v": "t",
+        "ch": "屠宰场 1",
+        "de": "Metzgesfeld 1",
+        "en": "Metzges field 1",
+        "nk": "羊弯 1"
+      }, 
+      {
+        "st": .292,
+        "ed": .296,
+        "x": .252,
+        "y": .224,
+        "h": "l",
+        "v": "b",
+        "ch": "屠宰场 2",
+        "de": "Metzgesfeld 2",
+        "en": "Metzges field 2",
+        "nk": "羊弯 2"
+      }, 
+      {
+        "st": .296,
+        "ed": .301,
+        "x": .230,
+        "y": .236,
+        "h": "r",
+        "v": "t",
+        "ch": "羊弯 3",
+        "nk": "羊弯 3"
+      }, 
+      {
+        "st": .305,
+        "ed": .313,
+        "x": .200,
+        "y": .206,
+        "h": "r",
+        "v": "m",
+        "ch": "Kallenhard",
+        "en": "Kallen hard",
+        "de": "Kallenhard"
+      }, 
+      {
+        "st": .319,
+        "ed": .328,
+        "x": .232,
+        "y": .170,
+        "h": "r",
+        "v": "b",
+        "ch": "镜像双子",
+        "en": "Mirror Curve",
+        "de": "Spiegelkurve"
+      }, 
+      {
+        "st": .329,
+        "ed": .343,
+        "x": .261,
+        "y": .119,
+        "h": "c",
+        "v": "t",
+        "ch": "Miss-Hit-Miss",
+        "en": "Miss-Hit-Miss",
+        "de": "Miss-Hit-Miss"
+      }, 
+      {
+        "st": .347,
+        "ed": .359,
+        "x": .301,
+        "y": .179,
+        "h": "c",
+        "v": "t",
+        "ch": "防御谷",
+        "en": "Defend Valley",
+        "de": "Wehrseifen",
+        "nk": "卫赛芬"
+      }, 
+      {
+        "st": .372,
+        "ed": .383,
+        "x": .370,
+        "y": .173,
+        "h": "l",
+        "v": "t",
+        "ch": "小镇桥",
+        "en": "Wide part",
+        "de": "Breidscheid",
       }, 
     ]
   },
   methods: {
     openSheet: function(i){
       this.showSheet = true
-    }
+    },
+    setP: function(percentage){
+      this.p = percentage
+      updateScrollDistance()
+      window.scrollTo(0, body.scrollHeight * percentage);
+    },
   }
 })
 
@@ -133,7 +299,10 @@ function updateScrollDistance(){
   d.showSection = false
   d.showCornerDesc = false
   d.currentCorner = null
-  const progress = window.scrollY / 70000
+  let progress = window.scrollY / ( body.scrollHeight - 1000)
+  if(progress > 1){
+    progress = 1
+  }
   body.style.setProperty('--p', progress)
   d.p = progress
   d.corners.forEach((corner, i)=>{
@@ -141,9 +310,7 @@ function updateScrollDistance(){
       d.showCorner = true
       d.cornerStart = corner.st
       d.cornerEnd = corner.ed
-      d.currentCorner = corner
-      console.log(d.currentCorner);
-      
+      d.currentCorner = corner      
     }
   })
   d.sections.forEach((section, i)=>{
@@ -156,8 +323,8 @@ function updateScrollDistance(){
 }
 
 function updatePageHeight(){
-  const pageHeight = body.scrollHeight
-  body.style.setProperty('--pageH', `${pageHeight}`)
+  // const pageHeight = body.scrollHeight
+  // body.style.setProperty('--pageH', `${pageHeight}`)
 }
 
 window.addEventListener('scroll', updateScrollDistance)
@@ -170,14 +337,7 @@ updateScrollDistance()
 updatePageHeight()
 
 document.querySelector('.track-map > .inner').addEventListener('mousemove', function(event) {
-  // 获取 .inner 元素的边界框
   const innerRect = this.getBoundingClientRect();
-
-  // 计算鼠标在 .inner 内的位置
-  const mouseX = event.clientX - innerRect.left;
-  const mouseY = event.clientY - innerRect.top;
-
-  // 计算鼠标位置的比例
-  d.mX = mouseX / innerRect.width;
-  d.mY = mouseY / innerRect.height;
+  d.mX = event.clientX - innerRect.left / innerRect.width
+  d.mY = event.clientY - innerRect.top / innerRect.height
 });
