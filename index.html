@@ -18,7 +18,7 @@
 	</head>
 <body>
 <div id="app">
-  <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div>
+  <!-- <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div> -->
   <div class="track-map">
     <div class="inner">
       <svg viewBox="0 0 660 530">
@@ -58,7 +58,14 @@
       </div>
     </div>
     <div class="corner-info">
-      <div class="inner" v-if="currentCorner" v-cloak>
+      <div class="inner scroll-notify skew-n title-font" v-if="p == 0" v-cloak>
+        <div>向下滚动开始查看各个弯道</div>
+        <svg viewBox="0 0 100 100" class="scroll-arrow">
+          <path d="M10 20l40 30l40 -30"/>
+          <path d="M10 60l40 30l40 -30"/>
+        </svg>
+      </div>
+      <div class="inner" v-if="currentCorner && p > 0" v-cloak>
         <div class="primary skew-n title-font" v-if="currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' " v-cloak>{{currentCorner.ch}}</div>
         <div class="nickname qt skew-n title-font" v-if="currentCorner.nk && currentCorner.ch != currentCorner.nk" v-cloak>{{currentCorner.nk}}</div>
         <div class="secondary skew-n title-font" v-if="currentCorner.de" v-cloak>
@@ -73,8 +80,8 @@
     </div>
     <div class="controls">
       <div class="inner skew-n">
-        <div @click="showAllCornerNames = !showAllCornerNames">显示所有弯道</div>
-        <div @click="toggleDarkMode()">深色模式</div>
+        <div class="toggle-group" :class=" showAllCornerNames ? 'on' : 'off' " @click="showAllCornerNames = !showAllCornerNames"><span>显示所有弯道</span><div class="toggle"></div></div>
+        <div class="toggle-group" :class=" darkMode ? 'on' : 'off' " @click="toggleDarkMode()"><span>深色模式</span><div class="toggle"></div></div>
       </div>
     </div>
   </div>

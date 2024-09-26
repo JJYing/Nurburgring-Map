@@ -10,7 +10,7 @@ var d = new Vue({
     mX: 0,
     mY: 0,
     showAllCornerNames: true,
-    nightMode: false,
+    darkMode: false,
     showCorner: false,
     showSection: false,
     currentCorner: null,
@@ -260,7 +260,7 @@ var d = new Vue({
         "en": "Defend Valley",
         "de": "Wehrseifen",
         "nk": "卫赛芬",
-        "more": "这里以前是 Adenau 和 Breidscheid 两个小镇的分阶段，所在的峡谷也是一个重要的战略防御点"
+        "more": "这里以前正好穿过了 Adenau 和 Breidscheid 两个小镇的分界线，所在的峡谷也是一个重要的战略防御点"
       }, 
       {
         "st": .372,
