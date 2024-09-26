@@ -41,32 +41,36 @@
         </g>
         <use href="#track" class="progress"/>
       </svg>
-      <div v-for="c in corners" class="corner-name" :class="[ (c.st < p && p < c.ed) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v ]" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP((c.st + c.ed) / 2)">
+      <div v-for="c in corners" class="corner-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '' ]" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP(c.st)">
         {{c.ch}}
       </div>
-      <div v-for="c in sections" class="corner-name section-name" :class="[ (c.st < p && p < c.ed) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v ]" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP((c.st + c.ed) / 2)">
+      <div v-for="c in sections" class="corner-name section-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '']" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP((c.st + c.ed) / 2)">
         {{c.ch}}
       </div>
       <div class="miles" v-cloak v-if="p > 0">{{ (p * 20.832).toFixed(2)}} <em>KM</em></div>
     </div>
   </div>
-  <div class="desc">
+  <div class="desc skew-p">
     <div class="logo">
-      <span>纽北赛道弯道名</span><img src="assets/logo.svg" alt="纽北"/>
+      <div class="inner skew-n">
+        <span>纽北赛道弯道名</span><img src="assets/logo.svg" alt="纽北"/>
+      </div>
     </div>
     <div class="corner-info">
       <div class="inner" v-if="currentCorner" v-cloak>
-        <div class="primary" v-if="currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' ">{{currentCorner.ch}}</div>
-        <div class="nickname qt" v-if="currentCorner.nk && currentCorner.ch != currentCorner.nk">{{currentCorner.nk}}</div>
-        <div class="secondary" v-if="currentCorner.de">🇩🇪 {{currentCorner.de}}<span class="en" v-if="currentCorner.en"> · 🇬🇧 {{currentCorner.en}}</span></div>
-        <div class="more" v-if="currentCorner.more">{{currentCorner.more}}</div>
-        <div class="thumbs" v-if="currentCorner.imgs">
-          <img class="thumb" v-for="img in currentCorner.imgs" :src=" 'https://s.anyway.red/nurburgring/' + img.src"/>
-        </div>
+        <div class="primary skew-n" v-if="currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' ">{{currentCorner.ch}}</div>
+        <div class="nickname qt skew-n" v-if="currentCorner.nk && currentCorner.ch != currentCorner.nk">{{currentCorner.nk}}</div>
+        <div class="secondary skew-n" v-if="currentCorner.de">🇩🇪 {{currentCorner.de}}<span class="en" v-if="currentCorner.en"> · 🇬🇧 {{currentCorner.en}}</span></div>
+        <div class="more skew-n" v-if="currentCorner.more">{{currentCorner.more}}</div>
+      </div>
+      <div class="thumbs skew-n" v-if="currentCorner && currentCorner.imgs" v-cloak>
+        <img class="thumb" v-for="img in currentCorner.imgs" :src=" 'https://s.anyway.red/nurburgring/' + img.src + '!/fw/300/quality/68/progressive/true/ignore-error/true' "/>
       </div>
     </div>
     <div class="controls">
-      <div @click="showAllCornerNames = !showAllCornerNames">显示所有弯道</div>
+      <div class="inner skew-n">
+        <div @click="showAllCornerNames = !showAllCornerNames">显示所有弯道</div>
+      </div>
     </div>
   </div>
 </div>
