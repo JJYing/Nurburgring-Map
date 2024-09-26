@@ -422,6 +422,16 @@ var d = new Vue({
     openSheet: function(i){
       this.showSheet = true
     },
+    toggleDarkMode(){
+      var root = document.querySelector(':root')
+      this.darkMode =!this.darkMode
+      if(root.classList == ""){
+        root.classList = "dark"
+      }
+      else{
+        root.classList = ""
+      }
+    },
     setP: function(percentage){
       this.p = percentage
       window.scrollTo(0, body.scrollHeight * percentage);
