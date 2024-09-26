@@ -434,9 +434,8 @@ var d = new Vue({
     },
     setP: function(percentage){
       this.p = percentage
-      window.scrollTo(0, body.scrollHeight * percentage);
+      window.scrollTo(0, (body.scrollHeight - screen.height) * percentage);
       updateScrollDistance()
-      
     },
   }
 })
@@ -457,7 +456,7 @@ function updateScrollDistance(){
   d.showSection = false
   d.showCornerDesc = false
   d.currentCorner = null
-  let progress = window.scrollY / ( body.scrollHeight - 1000)
+  let progress = window.scrollY / ( body.scrollHeight - screen.height)
   if(progress > 1){
     progress = 1
   }
