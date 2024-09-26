@@ -10,10 +10,12 @@
 :root{
 	scroll-behavior: smooth;
   --main: #e60000;
-  --secondary: #5A55AA;
-  --text1: rgba(0,0,0,.85);
-  --text2: rgba(0,0,0,.5);
-  --text3: rgba(0,0,0,.3);
+  --text1: #333;
+  --text2: #888;
+  --text3: #aaa;
+  /* --text1: rgba(0,0,0,.85);
+  --text2: rgba(0,0,0,.45);
+  --text3: rgba(0,0,0,.25); */
   --bg1: #fff;
   --bg2: #ddd;
   --bg3: #bbb;
@@ -31,22 +33,34 @@
 	--transition: all var(--duration) var(--curve);
 	--transition-out: all var(--duration-out) var(--curve-out);
 
-  background-color: var(--bg1);
-  --dot-bg: rgba(255,255,255,.07);
-  background-image:  radial-gradient(var(--dot-bg) 1px, transparent 1px), radial-gradient(var(--dot-bg) 1px, var(--bg1) 1px);
-  background-size: 20px 20px;
-  background-position: 0 0,10px 10px;
+  --bold: 700;
+  --title-font: Smiley Wide, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, 'PingFang SC', sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  --body-font: meta, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, 'PingFang SC', sans-serif, Apple Color Emoji, Segoe UI Emoji;
 
-  font-family: meta, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, 'PingFang SC', sans-serif, Apple Color Emoji, Segoe UI Emoji;
-  /* font-family: YouSheBiaoTiHei; */
-  /* text-spacing-trim: space-first; */
+  font-family: var(--body-font);
+  color: var(--text1);
+
   background-color: var(--bg1);
   background-image:  radial-gradient(var(--text3) 0.5px, transparent 0.5px), radial-gradient(var(--text3) 0.5px, var(--bg1) 0.5px);
   background-size: 20px 20px;
   background-position: 0 0,10px 10px;
   background-attachment: fixed;
 }
+:root.dark{
+  --main: #a51313;
+  --text1: rgba(255,255,255,.85);
+  --text2: rgba(255,255,255,.5);
+  --text3: rgba(255,255,255,.3);
+  --bg1: #000;
+  --bg2: #333;
+  --bg3: #777;
+}
 em{font-style: normal;}
+.title-font{
+  font-family: var(--title-font);
+  /* text-shadow: 0 .02em 0 var(--text1); */
+  font-weight: 400;
+}
 img{
   display: block;
 	max-width: 100%;
@@ -78,7 +92,7 @@ a{
 	text-decoration: none;
 	display: inline-block;
 	padding: .4em .7em;
-	font-weight:700;
+	font-weight: var(--bold);
 	border: 2px solid #345;
 	border-radius: var(--radius);
 	transition: var(--transition-out);
@@ -142,7 +156,7 @@ body{
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  font-weight: 700;
+  font-weight: var(--bold);
 }
 
 /*~Track*/
@@ -242,29 +256,37 @@ body{
   transition: all .2s var(--curve);
 }
 .corner-name.highlighted{
-  font-weight: 700;
+  font-weight: var(--bold);
   color: var(--main);
   transition: all .2s var(--curve);
 }
 .section-name{
   color: var(--text3);
-  font-weight: 700;
+  font-weight: var(--bold);
   font-size: .875rem;
+  padding: .1em .1em 0;
 }
 .section-name.highlighted{
-  font-weight: 700;
-  color: var(--main);
+  font-weight: var(--bold);
+  color: var(--bg1);
   transition: all .2s var(--curve);
+  background: var(--text1);
+  border-radius: .1em;
+  box-shadow: 0 0 0 .3em var(--text1);
 }
 .miles{
   position: absolute;
-  left: 45%; top: 50%;
+  left: 41%; top: 50%;
   translate: -50% -50%;
   font-size: 4rem;
-  font-weight: 700;
-  color: var(--bg3);
+  color: var(--bg2);
   font-feature-settings: 'tnum';
   letter-spacing: -.05em;
+  transition: all.2s var(--curve-out);
+}
+.miles.show{
+  color: var(--text1);
+  transition: all.2s var(--curve);
 }
 .miles em{
   font-weight: 400;
@@ -279,6 +301,7 @@ body{
   justify-content: center; align-items: flex-start;
   border-left: 1px solid var(--bg2);
   background: var(--bg1);
+  box-shadow: 10vw 0 0 var(--bg1);
 }
 .logo{
   width: 100%;
@@ -287,7 +310,7 @@ body{
 .logo > .inner{
   display: flex;
   justify-content: center; align-items: center;
-  padding: var(--margin);
+  padding: var(--margin) calc(var(--margin) * 3) var(--margin) var(--margin);
   gap: 1em;
 }
 .logo > img{
@@ -295,7 +318,9 @@ body{
 }
 .logo > .inner > span{
   font-size: 2rem;
-  font-weight: 700;
+  font-family: var(--title-font);
+  /* font-weight: var(--bold); */
+  /* font-weight: 700; */
   color: var(--text1);
 }
 .corner-info{
@@ -324,7 +349,7 @@ body{
   }
 }
 .desc .primary{
-  font-weight: 700;
+  /* font-weight: var(--bold); */
   line-height: 1;
   font-size: calc(1rem + 1vmin + 1vmax);
   color: var(--text1);
@@ -332,8 +357,8 @@ body{
   position: relative;
 }
 .desc .nickname{
-  font-weight: 700;
-  font-size: 3rem;
+  /* font-weight: var(--bold); */
+  font-size: calc(.8rem + .8vmin + .8vmax);
   color: var(--text1);
   display: inline-block;
   position: relative;
@@ -355,9 +380,27 @@ body{
 }
 .desc .secondary{
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  /* letter-spacing: .02em; */
   color: var(--text2);
   margin-top: .5em;
+  display: flex;
+  justify-content: flex-start; align-items: center;
+  flex-wrap: wrap;
+}
+.desc .secondary > span:first-of-type{
+  margin-right: 1em;
+}
+.desc .secondary .extra{
+  display: inline-flex;
+  justify-content: flex-start; align-items: center;
+}
+.desc .secondary img{
+  height: .7em;
+  display: inline-block;
+  filter: grayscale(1);
+  opacity: .35;
+  margin-right: .4em;
 }
 .desc .more{
   font-weight: 400;
@@ -403,19 +446,31 @@ body{
   padding: var(--margin) calc(var(--margin) * 2);
   user-select: none;
 }
+.controls > .inner{
+  display: flex;
+  justify-content: center; align-items: center;
+  gap: 2em;
+}
 
 
 @font-face{
   font-family: meta;
-  src:url(https://s.anyway.red/iconmoon/meta/meta-normal.woff) format('woff2');
+  src:url(https://s.anyway.red/iconmoon/meta/meta-normal.woff2) format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: fallback;
 }
 @font-face{
   font-family: meta;
-  src:url(https://s.anyway.red/iconmoon/meta/meta-bold.woff) format('woff2');
+  src:url(https://s.anyway.red/iconmoon/meta/meta-bold.woff2) format('woff2');
   font-weight: 700;
+  font-style: normal;
+  font-display: fallback;
+}
+@font-face{
+  font-family: sm;
+  src:url(sm.woff2) format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: fallback;
 }
