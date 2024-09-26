@@ -57,6 +57,9 @@ var d = new Vue({
         "more": "为了纪念在此开了至少 33,000 圈的纽北女王 Sabine Schmitz，她曾两次赢得纽博格林 24 小时耐力赛，也是第一位赢得这项传奇赛事的女性。",
         "imgs": [
           {
+            "src": "sabine-2.jpg",
+          },
+          {
             "src": "sabine-1.jpg",
           },
         ],
@@ -76,8 +79,8 @@ var d = new Vue({
       {
         "st": .038,
         "ed": .049,
-        "x": .254,
-        "y": .923,
+        "x": .256,
+        "y": .921,
         "h": "r",
         "v": "t",
         "ch": "扭扭弯",
@@ -86,10 +89,10 @@ var d = new Vue({
       {
         "st": .065,
         "ed": .076,
-        "x": .224,
-        "y": .852,
-        "h": "l",
-        "v": "b",
+        "x": .203,
+        "y": .867,
+        "h": "r",
+        "v": "t",
         "ch": "大橡树",
         "de": "Hoheichen",
         "en": "High Oaks",
@@ -98,9 +101,9 @@ var d = new Vue({
       {
         "st": .077,
         "ed": .089,
-        "x": .176,
-        "y": .838,
-        "h": "r",
+        "x": .192,
+        "y": .810,
+        "h": "l",
         "v": "t",
         "ch": "小桥直线",
         "nk": "小桥直线"
@@ -108,9 +111,9 @@ var d = new Vue({
       {
         "st": .1,
         "ed": .117,
-        "x": .156,
-        "y": .759,
-        "h": "l",
+        "x": .128,
+        "y": .763,
+        "h": "r",
         "v": "m",
         "ch": "飞机场",
         "de": "Flugplatz",
@@ -130,9 +133,9 @@ var d = new Vue({
       {
         "st": .145,
         "ed": .162,
-        "x": .148,
-        "y": .605,
-        "h": "l",
+        "x": .118,
+        "y": .613,
+        "h": "r",
         "v": "m",
         "ch": "草原直线",
       },
@@ -150,7 +153,7 @@ var d = new Vue({
       {
         "st": .179,
         "ed": .188,
-        "x": .065,
+        "x": .067,
         "y": .530,
         "h": "r",
         "v": "m",
@@ -250,24 +253,168 @@ var d = new Vue({
         "st": .347,
         "ed": .359,
         "x": .301,
-        "y": .179,
+        "y": .184,
         "h": "c",
         "v": "t",
         "ch": "防御谷",
         "en": "Defend Valley",
         "de": "Wehrseifen",
-        "nk": "卫赛芬"
+        "nk": "卫赛芬",
+        "more": "这里以前是 Adenau 和 Breidscheid 两个小镇的分阶段，所在的峡谷也是一个重要的战略防御点"
       }, 
       {
         "st": .372,
         "ed": .383,
         "x": .370,
-        "y": .173,
+        "y": .169,
         "h": "l",
         "v": "t",
         "ch": "小镇桥",
         "en": "Wide part",
         "de": "Breidscheid",
+      }, 
+      {
+        "st": .385,
+        "ed": .392,
+        "x": .374,
+        "y": .109,
+        "h": "r",
+        "v": "t",
+        "ch": "老磨坊",
+        "en": "Water mill",
+        "de": "Ex Mühle",
+      }, 
+      {
+        "st": .42,
+        "ed": .432,
+        "x": .491,
+        "y": .078,
+        "h": "l",
+        "v": "t",
+        "ch": "矿山",
+        "en": "Mountain Factory",
+        "de": "Bergwerk",
+      }, 
+      {
+        "st": .571,
+        "ed": .586,
+        "x": .727,
+        "y": .274,
+        "h": "c",
+        "v": "t",
+        "ch": "旋转木马",
+        "en": "Carousel",
+        "de": "Caracciola Karussell",
+        "imgs": [
+          {
+            "src": "carousel-2.jpg",
+          },
+          {
+            "src": "carousel-1.jpg",
+          },
+        ],
+      }, 
+      {
+        "st": .624,
+        "ed": .633,
+        "x": .811,
+        "y": .157,
+        "h": "r",
+        "v": "b",
+        "ch": "Hohe Acht",
+        "en": "High Attention",
+        "de": "Hohe Acht",
+        "more": "这个弯附近的高大树木很多，所以当雨天过后这里经常是整个赛道最后变干的，大家就说这里「和冰面一样滑」，因而得名"
+      }, 
+      {
+        "st": .705,
+        "ed": .715,
+        "x": .878,
+        "y": .315,
+        "h": "r",
+        "v": "b",
+        "ch": "冰弯",
+        "en": "Ice Curve",
+        "de": "Eiskurve",
+        "more": "这个弯附近的高大树木很多，所以当雨天过后这里经常是整个赛道最后变干的，大家就说这里「和冰面一样滑」，因而得名"
+      }, 
+      {
+        "st": .729,
+        "ed": .745,
+        "x": .870,
+        "y": .415,
+        "h": "l",
+        "v": "m",
+        "ch": "植物园 1",
+        "en": "Pflanzgarten 1",
+        "de": "Plant garden 1",
+      }, 
+      {
+        "st": .746,
+        "ed": .762,
+        "x": .820,
+        "y": .444,
+        "h": "r",
+        "v": "b",
+        "ch": "植物园 2",
+        "en": "Pflanzgarten 2",
+        "de": "Plant garden 2",
+      }, 
+      {
+        "st": .765,
+        "ed": .780,
+        "x": .794,
+        "y": .509,
+        "h": "l",
+        "v": "t",
+        "ch": "Stefan Bellof S",
+        "en": "Stefan Bellof S",
+        "de": "Stefan Bellof S",
+        "more": "传奇车手 Stefan Bellof 在 1976 年驾驶 C 组保时捷 956 在纽北创造了 6:11.13 的圈速记录，而后来他在这里发生了车祸，所以这个赛段以他命名"
+      },
+      {
+        "st": .793,
+        "ed": .810,
+        "x": .710,
+        "y": .505,
+        "h": "c",
+        "v": "b",
+        "ch": "Schwalbenschwanz",
+        "en": "Swallow’s Tail",
+        "de": "Schwalbenschwanz",
+      },
+      {
+        "st": .815,
+        "ed": .824,
+        "x": .667,
+        "y": .539,
+        "h": "r",
+        "v": "m",
+        "ch": "小旋转木马",
+        "en": "Mini Carousel",
+        "de": "Kleine Karussell",
+      },
+      {
+        "st": .853,
+        "ed": .945,
+        "x": .601,
+        "y": .719,
+        "h": "l",
+        "v": "t",
+        "ch": "Döttinger Höhe",
+        "en": "Dottingen Height",
+        "de": "Döttinger Höhe",
+      }, 
+      {
+        "st": .993,
+        "ed": 1,
+        "x": .379,
+        "y": .926,
+        "h": "l",
+        "v": "t",
+        "ch": "T13",
+        "en": "T13",
+        "de": "T13",
       }, 
     ]
   },
@@ -277,8 +424,9 @@ var d = new Vue({
     },
     setP: function(percentage){
       this.p = percentage
-      updateScrollDistance()
       window.scrollTo(0, body.scrollHeight * percentage);
+      updateScrollDistance()
+      
     },
   }
 })
@@ -338,6 +486,6 @@ updatePageHeight()
 
 document.querySelector('.track-map > .inner').addEventListener('mousemove', function(event) {
   const innerRect = this.getBoundingClientRect();
-  d.mX = event.clientX - innerRect.left / innerRect.width
-  d.mY = event.clientY - innerRect.top / innerRect.height
+  d.mX = (event.clientX - innerRect.left) / innerRect.width
+  d.mY = (event.clientY - innerRect.top) / innerRect.height
 });
