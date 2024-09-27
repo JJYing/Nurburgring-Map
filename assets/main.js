@@ -430,8 +430,8 @@ var d = new Vue({
     ]
   },
   methods: {
-    openSheet: function(i){
-      this.showSheet = true
+    innerModal: function(e){
+      e.stopPropagation()
     },
     toggleDarkMode(){
       var root = document.querySelector(':root')
