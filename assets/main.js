@@ -9,7 +9,8 @@ var d = new Vue({
     h: 530,
     mX: 0,
     mY: 0,
-    showAllCornerNames: true,
+    showModal: false,
+    showAllCornerNames: false,
     darkMode: false,
     showCorner: false,
     showSection: false,
@@ -74,7 +75,12 @@ var d = new Vue({
         "ch": "Hatzenbach Bogen",
         "en": "Hunt Stream Curve",
         "de": "Hatzenbach Bogen",
-        "nk": "弧形弯"
+        "nk": "弧形弯",
+        "imgs": [
+          {
+            "src": "hatzenbach-bogen-1.jpg",
+          },
+        ],
       },
       {
         "st": .038,
@@ -96,7 +102,12 @@ var d = new Vue({
         "ch": "大橡树",
         "de": "Hoheichen",
         "en": "High Oaks",
-        "nk": "龙哥不杀弯"
+        "nk": "龙哥不杀弯",
+        "imgs": [
+          {
+            "src": "hoheichen-1.jpg",
+          },
+        ],
       },
       {
         "st": .077,
@@ -434,7 +445,7 @@ var d = new Vue({
     },
     setP: function(percentage){
       this.p = percentage
-      window.scrollTo(0, (body.scrollHeight - screen.height) * percentage);
+      window.scrollTo(0, (body.scrollHeight - window.innerHeight) * percentage);
       updateScrollDistance()
     },
   }
@@ -442,11 +453,11 @@ var d = new Vue({
 
 
 document.addEventListener('scroll', function(e){
-  if(window.scrollY > 10){
-    document.body.classList = "scrolled"
+  if(window.scrollY > 2){
+    document.body.classList.add("scrolled")
   }
   else{
-    document.body.classList = ""
+    document.body.classList.remove("scrolled")
   }
 });
 
@@ -456,7 +467,7 @@ function updateScrollDistance(){
   d.showSection = false
   d.showCornerDesc = false
   d.currentCorner = null
-  let progress = window.scrollY / ( body.scrollHeight - screen.height)
+  let progress = window.scrollY / ( body.scrollHeight - window.innerHeight)
   if(progress > 1){
     progress = 1
   }
@@ -480,14 +491,20 @@ function updateScrollDistance(){
 }
 
 function updatePageHeight(){
-  // const pageHeight = body.scrollHeight
-  // body.style.setProperty('--pageH', `${pageHeight}`)
+  if(window.innerHeight < window.innerWidth){
+    body.classList.remove("vertical")
+    body.classList.add("horizontal")
+  }
+  else{
+    body.classList.remove("horizontal")
+    body.classList.add("vertical")
+  }
 }
 
 window.addEventListener('scroll', updateScrollDistance)
 window.addEventListener('resize', function(){
-  updateScrollDistance
-  updatePageHeight
+  updateScrollDistance()
+  updatePageHeight()
 })
 
 updateScrollDistance()
