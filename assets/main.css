@@ -171,6 +171,14 @@ body{
   --full: 1905.97px;
   display: flex;
   justify-content: center; align-items: center;
+  translate: 20vw 0;
+  scale: .9;
+  transition: var(--transition-out);
+}
+.scrolled .track-map{
+  transition: var(--transition);
+  scale: 1;
+  translate: none;
 }
 .track-map > .inner{
   position: relative;
@@ -235,7 +243,7 @@ body{
 }
 
 .corner-name{
-  font-size: .75rem;
+  font-size: calc(.3vmin + .4rem + .2vmax);
   opacity: 0;
   transition: all .2s var(--curve-out);
   position: absolute;
@@ -245,6 +253,8 @@ body{
   /* translate: calc(var(--x) * 100%) 50%; */
   translate: var(--tX) var(--tY);
   line-height: 1;
+  border-radius: .1em;
+  padding: .1em .1em 0;
 }
 .corner-name:hover{
   color: var(--main);
@@ -263,24 +273,19 @@ body{
 }
 .corner-name.highlighted{
   font-weight: var(--bold);
-  color: var(--main);
+  color: var(--bg1);
   transition: all .2s var(--curve);
+  background: var(--text1);
+  box-shadow: 0 0 0 .3em var(--text1);
 }
 .section-name{
   color: var(--text3);
   font-weight: var(--bold);
-  font-size: .875rem;
-  padding: .1em .1em 0;
-}
-.section-name.highlighted{
-  font-weight: var(--bold);
-  color: var(--bg1);
-  transition: all .2s var(--curve);
-  background: var(--text1);
+  font-size: calc(.3vmin + .5rem + .2vmax);
   border-radius: .1em;
-  box-shadow: 0 0 0 .3em var(--text1);
 }
-.miles{
+
+.mid{
   position: absolute;
   left: 41%; top: 50%;
   translate: -50% -50%;
@@ -290,16 +295,16 @@ body{
   letter-spacing: -.05em;
   transition: all .2s var(--curve-out);
 }
-.miles.show{
+.mid.show{
   color: var(--text1);
   transition: all .2s var(--curve);
 }
-.miles span{
+.mid span{
   text-shadow: 
-    .015em .015em 0 var(--bg1),
-    .03em .03em 0 var(--text1);
+    .02em .02em 0 var(--bg1),
+    .04em .04em 0 var(--bg2);
 }
-.miles em{
+.mid em{
   font-weight: 400;
   font-size: .5em;
   letter-spacing: 0;
@@ -313,6 +318,14 @@ body{
   border-left: 1px solid var(--bg2);
   background: var(--bg1);
   box-shadow: 10vw 0 0 var(--bg1);
+  opacity: 0;
+  translate: 10vw 0;
+  transition: var(--transition-out);
+}
+.scrolled .desc{
+  transition: var(--transition);
+  translate: none;
+  opacity: 1;
 }
 .logo{
   width: 100%;
@@ -394,7 +407,7 @@ body{
   position: relative;
 }
 .desc .nickname{
-  /* font-weight: var(--bold); */
+  margin-top: .2em;
   font-size: calc(.8rem + .8vmin + .8vmax);
   color: var(--text1);
   display: inline-block;
@@ -419,7 +432,6 @@ body{
 .desc .secondary{
   font-weight: 400;
   font-size: 1.5rem;
-  /* letter-spacing: .02em; */
   color: var(--text2);
   margin-top: .5em;
   padding-left: .2em;

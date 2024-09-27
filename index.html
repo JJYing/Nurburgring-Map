@@ -1,7 +1,7 @@
 <html lang="zh-cmn-Hans">
 	<head>
 		<meta charset="UTF-8">
-		<title>纽北赛道弯道名</title>
+		<title>纽北赛道地图</title>
 		<meta name="robots" content="noodp"/>
 		<meta name="author" content="JJ Ying" />
 		<meta name="description" content="纽北"/>
@@ -48,13 +48,13 @@
       <div v-for="c in sections" class="corner-name section-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '']" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP((c.st + c.ed) / 2)">
         {{c.ch}}
       </div>
-      <div class="miles title-font" v-cloak :class="p > 0 ? 'show' : '' "><span v-if="p > 0">{{ (p * 20.832).toFixed(2)}}</span><span v-else>0.00</span> <em>KM</em></div>
+      <div class="mid title-font" v-cloak :class="p > 0 ? 'show' : '' "><span v-if="p > 0">{{ (p * 20.832).toFixed(2)}}</span><span v-else>0.00</span> <em>KM</em></div>
     </div>
   </div>
   <div class="desc skew-p">
     <div class="logo">
       <div class="inner skew-n">
-        <span class="title-font">纽北赛道弯道名</span><img src="assets/logo.svg" alt="纽北"/>
+        <span class="title-font">纽北赛道地图</span><img src="assets/logo.svg" alt="纽北"/>
       </div>
     </div>
     <div class="corner-info">
@@ -82,6 +82,7 @@
       <div class="inner skew-n">
         <div class="toggle-group" :class=" showAllCornerNames ? 'on' : 'off' " @click="showAllCornerNames = !showAllCornerNames"><span>显示所有弯道</span><div class="toggle"></div></div>
         <div class="toggle-group" :class=" darkMode ? 'on' : 'off' " @click="toggleDarkMode()"><span>深色模式</span><div class="toggle"></div></div>
+        <div>关于本站</div>
       </div>
     </div>
   </div>
