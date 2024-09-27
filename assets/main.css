@@ -266,18 +266,26 @@ body{
   line-height: 1;
   border-radius: .1em;
   padding: .1em .1em 0;
+  background: var(--bg1);
+  --shadow: var(--bg1);
+  /* text-shadow: 
+    .1em 0 0 var(--shadow),
+    -.1em 0 0 var(--shadow),
+    0 .1em 0 var(--shadow),
+    0 -.1em 0 var(--shadow); */
 }
 .scrolled .corner-name{
   /* color: var(--text1); */
-}
-.corner-name:hover{
-  color: var(--main);
-  cursor: pointer;
 }
 .corner-name.show{
   /* opacity: 1; */
   color: var(--text1);  
   transition: all .2s var(--curve);
+}
+.corner-name:hover,
+.corner-name.show:hover{
+  color: var(--main);
+  cursor: pointer;
 }
 .corner-name.highlighted{
   font-weight: var(--bold);
@@ -285,6 +293,10 @@ body{
   transition: all .2s var(--curve);
   background: var(--text1);
   box-shadow: 0 0 0 .3em var(--text1);
+  
+  &:hover{
+    color: var(--bg1);
+  }
 }
 .corner-name.t{--tY: 0%;}
 .corner-name.m{--tY: -50%;}

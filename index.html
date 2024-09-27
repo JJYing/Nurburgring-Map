@@ -30,7 +30,7 @@
 	</head>
 <body>
 <div id="app">
-  <!-- <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div> -->
+  <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div>
   <div class="track-map">
     <div class="inner">
       <svg viewBox="0 0 660 530" class="main-svg">
@@ -103,7 +103,7 @@
           <span class="extra" title="德文"><img src="assets/de.svg" class="skew-p"/> {{currentCorner.de}}</span>
           <span class="extra"  title="英文" v-if="currentCorner.en"><img src="assets/uk.svg" class="skew-p"/> {{currentCorner.en}}</span>
         </div>
-        <div class="more skew-n" v-if="currentCorner.more">{{currentCorner.more}}</div>
+        <div class="more skew-n" v-if="currentCorner.more" v-html="currentCorner.more"></div>
       </div>
       <div class="thumbs" v-if="currentCorner && currentCorner.imgs" v-cloak>
         <div class="thumb" v-for="img in currentCorner.imgs">
@@ -123,7 +123,7 @@
   <div class="modal" :class=" showModal ? 'show' : '' " @click="showModal = false">
     <div class="inner" @click="innerModal(event)">
       <div class="modal-content">
-        网页设计 & 开发：JJ Ying<br/><br/><strong>参考信息:</strong><br/>· <a target="_blank" href="https://oversteer48.com/nurburgring-corner-names/">Corner Names, Numbers and circuit map</a><br/>· 键盘车神教教主视频：<a target="_blank" href="https://www.bilibili.com/video/BV1NntCe4ETM/">纽北每一个弯的名字？</a>
+        网页设计 & 开发：<a href="https://jjying.com/" target="_blank">JJ Ying</a><br/><br/><strong>参考信息:</strong><br/>· <a target="_blank" href="https://oversteer48.com/nurburgring-corner-names/">Corner Names, Numbers and circuit map</a><br/>· 键盘车神教教主视频：<a target="_blank" href="https://www.bilibili.com/video/BV1NntCe4ETM/">纽北每一个弯的名字？</a>
       </div>          
       <div class="modal-close" @click="showModal = false">
         <svg viewBox="0 0 30 30">
