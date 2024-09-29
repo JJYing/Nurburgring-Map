@@ -99,13 +99,6 @@
       </div>
     </div>
     <div class="corner-info">
-      <div class="inner scroll-notify skew-n title-font" v-if="p == 0" v-cloak>
-        <div>向下滚动开始查看各个弯道</div>
-        <svg viewBox="0 0 100 100" class="scroll-arrow">
-          <path d="M10 20l40 30l40 -30"/>
-          <path d="M10 60l40 30l40 -30"/>
-        </svg>
-      </div>
       <div class="inner" v-if="currentCorner && p > 0" v-cloak>
         <div class="primary skew-n title-font" v-if="currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' " v-cloak>{{currentCorner.ch}}</div>
         <div class="nickname qt skew-n title-font" v-if="currentCorner.nk && currentCorner.ch != currentCorner.nk" v-cloak>{{currentCorner.nk}}</div>
@@ -132,10 +125,10 @@
 
   <div class="modal" :class=" showModal ? 'show' : '' " @click="showModal = false">
     <div class="inner" @click="innerModal(event)">
-      <div class="modal-content">
+      <div class="modal-content skew-n">
         网页设计 & 开发：<a href="https://jjying.com/" target="_blank">JJ Ying</a><br/><br/><strong>参考信息:</strong><br/>· <a target="_blank" href="https://oversteer48.com/nurburgring-corner-names/">Corner Names, Numbers and circuit map</a><br/>· 键盘车神教教主视频：<a target="_blank" href="https://www.bilibili.com/video/BV1NntCe4ETM/">纽北每一个弯的名字？</a>
       </div>          
-      <div class="modal-close" @click="showModal = false">
+      <div class="modal-close skew-n" @click="showModal = false">
         <svg viewBox="0 0 30 30">
           <circle cx="15" cy="15" r="12"/>
           <path d="M10 10L20 20M20 10L10 20"/>

@@ -25,22 +25,23 @@
 
   --width: min(90vw, 90rem);
   --margin: calc(2rem + .6vmax);
-  --curve: ease-in;
-	--curve-out: ease-out;
-  /* --curve: cubic-bezier(.08,.82,.2,1);
-  --curve-out: cubic-bezier(.95,.05,.8,.04); */
+
 	--radius: .4rem;
   --box-radius: .8rem;
 	--duration: .2s;
-	--duration-out: .2s;
+	--duration-out: .35s;
   --curve: ease-in;
-  --curve-out: ease-out;
+	--curve-out: ease-out;
+  --curve: cubic-bezier(.07,.58,.56,.49);
+  --curve-out: cubic-bezier(.73,.02,.48,.56);
 	--transition: all var(--duration) var(--curve);
 	--transition-out: all var(--duration-out) var(--curve-out);
 
   --bold: 700;
   --title-font: Smiley Wide, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, 'PingFang SC', sans-serif, Apple Color Emoji, Segoe UI Emoji;
   --body-font: meta, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, 'PingFang SC', sans-serif, Apple Color Emoji, Segoe UI Emoji;
+
+  --full: 1905.97px;
 
   font-family: var(--body-font);
   color: var(--text1);
@@ -181,7 +182,6 @@ body{
 /*~Track*/
 .track-map{
   grid-area: map;
-  --full: 1905.97px;
   display: flex;
   justify-content: center; align-items: center;
   translate: 20vw 0;
@@ -271,13 +271,13 @@ body{
   line-height: 1;
   border-radius: .1em;
   padding: .1em .1em 0;
-  background: var(--bg1);
+  /* background: var(--bg1); */
   --shadow: var(--bg1);
-  /* text-shadow: 
+  text-shadow: 
     .1em 0 0 var(--shadow),
     -.1em 0 0 var(--shadow),
     0 .1em 0 var(--shadow),
-    0 -.1em 0 var(--shadow); */
+    0 -.1em 0 var(--shadow);
 }
 
 .corner-name.show{
@@ -297,6 +297,7 @@ body{
   background: var(--text1);
   box-shadow: 0 0 0 .3em var(--text1);
   z-index: 2;
+  text-shadow: none;
   
   &:hover{
     color: var(--bg1);
@@ -382,7 +383,7 @@ body{
 }
 .miles{
   color: var(--text1);
-  transition: all .2s var(--curve);
+  transition: var(--transition);
   font-feature-settings: 'tnum';
   letter-spacing: -.05em;
   font-size: 4rem;
@@ -472,6 +473,14 @@ body{
     translate: 1em 0;
   }
 }
+.corner-info > .inner > *{
+  animation: infoShow var(--duration) var(--curve) both;
+  transform-origin: 0% 50%;
+}
+@keyframes infoShow{
+  0%{translate: 3rem 0;opacity: .6;scale: .9}
+  100%{translate: none;opacity: 1;scale: 1}
+}
 
 .desc .primary{
   line-height: 1;
@@ -487,6 +496,7 @@ body{
   color: var(--text1);
   position: relative;
   align-self: flex-start;
+  animation-delay: calc(var(--duration) / 7);
 }
 .desc .qt::before,
 .desc .qt::after{
@@ -511,6 +521,7 @@ body{
   display: flex;
   justify-content: flex-start; align-items: center;
   flex-wrap: wrap;
+  animation-delay: calc(var(--duration) / 7 * 2);
 }
 .desc .secondary > span:first-of-type{
   margin-right: 1em;
@@ -533,6 +544,7 @@ body{
   margin-top: 2.6em;
   line-height: 1.65;
   padding-left: .3em;
+  animation-delay: calc(var(--duration) / 7 * 4);
 }
 
 .thumbs{
@@ -629,7 +641,7 @@ body{
   position: absolute;
   top: .2em;
   border-radius: .1em;
-  transition: all .2s var(--curve);
+  transition: var(--transition);
 }
 .on .toggle::after{
   left: 1.4em;
@@ -643,11 +655,9 @@ body{
   content: "OFF";
   display: block;
   color: var(--bg1);
-  border-radius:.2em;
   position: absolute;
-  transition: all .2s var(--curve);
   border-radius: .1em;
-  transition: all .2s var(--curve);
+  transition: var(--transition);
   z-index: 2;
   font-size: .6em;
   top: .7em;
@@ -686,9 +696,9 @@ body{
 .modal > .inner{
   background: rgba(0, 0, 0, .8);
   border: .2rem solid var(--bg1);
-  border-radius: 1em;
+  border-radius: 1em .5em 1em .5em;
   transition: var(--transition-out);
-  transform: translateY(3vh) scale(.95);
+  transform: translateX(-3vw) scale(.9) skewX(calc( -1 * var(--angle)));
   box-shadow: 0 2rem 3rem rgba(0, 0, 0, .45);
   color: #ddd;
   backdrop-filter: blur(15px);
@@ -698,7 +708,7 @@ body{
   justify-content: center;
 }
 .modal.show > .inner{
-  transform: none;
+  transform: skewX(calc( -1 * var(--angle)));
 }
 .dark .modal > .inner{
   border-color: var(--text2);
@@ -712,13 +722,22 @@ body{
   position: absolute;
   right: -.8rem; top: -.8rem;
 	width: 2rem; height: 2rem;
-	transition: var(--transition);
+	transition: var(--transition-out);
   cursor: pointer;
   background:rgba(0, 0, 0, 1);
   border-radius: 50%;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  transform: skewX(var(--angle)) scale(.5) rotate(45deg);
 }
 .modal-close:hover{
   background: var(--main)
+}
+.modal.show .modal-close{
+  transform: skewX(var(--angle));
+  transition: var(--transition);
+  opacity: 1;
+  transition-delay: .15s;
 }
 .modal-close svg{
 	width: 100%; height: 100%;
@@ -778,7 +797,6 @@ body{
   }
   .track-map{
     grid-area: map;
-    --full: 1905.97px;
     display: flex;
     justify-content: center; align-items: center;
     translate: none;
@@ -788,13 +806,16 @@ body{
   &.scrolled .track-map{
     padding-top: 5rem;
     transition: var(--transition);
+    scale: 1;
   }
-  .track-map >.inner{
-    width: 92vw;
+  .track-map > .inner{
+    /* width: 100vw; */
+    max-width: 92vw; max-height: 60vh;
   }
   .msg{
     translate: 0 40vh;
    }
+
   .desc{
     border-top: 1px solid var(--bg2);
   }
@@ -822,5 +843,8 @@ body{
 
   .modal{
     position: fixed;
+  }
+  .modal > .inner{
+    border-radius: 1em;
   }
 }
