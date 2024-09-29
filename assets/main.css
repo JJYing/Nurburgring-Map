@@ -274,9 +274,7 @@ body{
     0 .1em 0 var(--shadow),
     0 -.1em 0 var(--shadow); */
 }
-.scrolled .corner-name{
-  /* color: var(--text1); */
-}
+
 .corner-name.show{
   /* opacity: 1; */
   color: var(--text1);  
@@ -293,6 +291,7 @@ body{
   transition: all .2s var(--curve);
   background: var(--text1);
   box-shadow: 0 0 0 .3em var(--text1);
+  z-index: 2;
   
   &:hover{
     color: var(--bg1);
@@ -312,19 +311,26 @@ body{
   font-size: calc(.3vmin + .5rem + .2vmax);
   border-radius: .1em;
 }
+.bridge{
+  stroke: var(--text3);
+  stroke-width: 1px;
+}
 
+/* ~Mid */
 .mid{
   position: absolute;
-  left: 43%; top: 50%;
+  left: 50%; top: 50%;
   translate: -50% -50%;
 }
 .msg{
   color: var(--text1);
   font-size: 1rem;
   width: min(23em, 80vw);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(.5rem);
   padding: 1em;
   border-radius: 1em;
+  border: 2px solid var(--bg1);
+  translate: -4vw 0;
 }
 .msg-title{
   font-size: 1.5em;
@@ -373,6 +379,15 @@ body{
   font-feature-settings: 'tnum';
   letter-spacing: -.05em;
   font-size: 4rem;
+  translate: calc(1rem - 45%) 0;
+  transition-behavior: allow-discrete;
+  opacity: 1;
+
+
+  @starting-style{
+    opacity: 0;
+    translate: calc(1rem - 45%) -.4em;
+  }
 }
 .mid span{
   text-shadow: 
@@ -405,6 +420,7 @@ body{
 .logo{
   width: 100%;
   border-bottom: 1px solid var(--bg2);
+  transition: var(--transition);
 }
 .logo > .inner{
   display: flex;
@@ -433,6 +449,7 @@ body{
 }
 .corner-info > .inner{
   transition: var(--transition);
+  transition-delay: .1s;
   transition-behavior: allow-discrete;
   opacity: 1;
   translate: none;
@@ -480,8 +497,7 @@ body{
   left: 100%;
 }
 .desc .secondary{
-  font-weight: 400;
-  font-size: 1.5rem;
+  font-size: calc(.5rem + .5vmin + .4vmax);
   color: var(--text2);
   margin-top: .5em;
   padding-left: .2em;
@@ -518,6 +534,15 @@ body{
   width: 100%;
   display: flex;
   gap: .4em;
+  transition: var(--transition);
+  transition-delay: .2s;
+  transition-behavior: allow-discrete;
+  translate: none;
+
+  @starting-style{
+    opacity: 0;
+    translate: 1em 0;
+  }
 }
 .thumb{
   opacity: .6;
@@ -727,9 +752,15 @@ body{
   #app{
     grid-template-areas: "map" "desc";
     --angle: 0deg;
-    grid-template-rows: 1fr 50vh;
+    grid-template-rows: 60vh 40vh;
     grid-template-columns: 1fr;
     --margin: 1.5rem;
+  }
+  .logo{
+    position: absolute;
+    height: 5rem;
+    top: -60vh; left: 0;
+    background: var(--bg1);
   }
   .track-map{
     grid-area: map;
@@ -740,17 +771,21 @@ body{
     scale: .9;
     transition: var(--transition-out);
   }
-  .mid{
-    translate: -50% calc(-50% + 40vh);
+  &.scrolled .track-map{
+    padding-top: 5rem;
+    transition: var(--transition);
   }
-  &.scrolled .mid{
-    translate: -50% -50%;
+  .track-map >.inner{
+    width: 92vw;
   }
+  .msg{
+    translate: 0 40vh;
+   }
   .desc{
     border-top: 1px solid var(--bg2);
   }
   .miles{
-    font-size: 1.5rem;
+    font-size: calc(1rem + 2vw);
   }
   .desc .primary{
     font-size: 1.5rem;
