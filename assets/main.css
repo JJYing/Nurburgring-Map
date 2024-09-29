@@ -19,6 +19,7 @@
   --bg1: #fff;
   --bg2: #ddd;
   --bg3: #bbb;
+  --bgt: rgba(255,255,255,.4);
 
   --angle: 9deg;
 
@@ -55,6 +56,7 @@
   --bg1: #000;
   --bg2: #333;
   --bg3: #777;
+  --bgt: rgba(0,0,0,.4);
 }
 em{font-style: normal;}
 .title-font{
@@ -194,12 +196,15 @@ body{
 .track-map > .inner{
   position: relative;
   aspect-ratio: 660 / 530;
-  max-width: 100%; max-height: 100%;
+
+  max-width: 60vw; max-height: 100vh;
+  /* width: 100%; height: 100%; */
+  /* object-fit: contain; */
 }
 .main-svg{
-  width: 100%;
-  height: 100%;
   object-fit: contain;
+  width: 100%; height: 100%;
+  /* width: 60vw; */
 }
 .base{
   fill: none;
@@ -256,7 +261,7 @@ body{
 .corner-name{
   font-size: calc(.3vmin + .4rem + .2vmax);
   color: var(--bg2);
-  transition: all .2s var(--curve-out);
+  transition: var(--transition-out);
   position: absolute;
   left: calc(var(--x) * 100%);
   top: calc(var(--y) * 100%);
@@ -278,7 +283,7 @@ body{
 .corner-name.show{
   /* opacity: 1; */
   color: var(--text1);  
-  transition: all .2s var(--curve);
+  transition: var(--transition);
 }
 .corner-name:hover,
 .corner-name.show:hover{
@@ -288,7 +293,7 @@ body{
 .corner-name.highlighted{
   font-weight: var(--bold);
   color: var(--bg1);
-  transition: all .2s var(--curve);
+  transition: var(--transition);
   background: var(--text1);
   box-shadow: 0 0 0 .3em var(--text1);
   z-index: 2;
@@ -326,6 +331,8 @@ body{
   color: var(--text1);
   font-size: 1rem;
   width: min(23em, 80vw);
+  background: var(--bgt);
+  -webkit-backdrop-filter: blur(.5rem);
   backdrop-filter: blur(.5rem);
   padding: 1em;
   border-radius: 1em;
@@ -472,12 +479,12 @@ body{
   color: var(--text1);
   /* color: var(--main); */
   position: relative;
+  align-self: flex-start;  
 }
 .desc .nickname{
   margin-top: .2em;
   font-size: calc(.8rem + .8vmin + .8vmax);
   color: var(--text1);
-  display: inline-block;
   position: relative;
   align-self: flex-start;
 }
@@ -725,6 +732,13 @@ body{
   stroke: #fff;
 }
 
+
+.all-names{
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 @font-face{
   font-family: meta;
   src:url(https://s.anyway.red/iconmoon/meta/meta-normal.woff2) format('woff2');
