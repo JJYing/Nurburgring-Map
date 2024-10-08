@@ -386,7 +386,6 @@ body{
   color: var(--text1);
   transition: var(--transition);
   font-feature-settings: 'tnum';
-  letter-spacing: -.02em;
   font-size: 4rem;
   translate: calc(1rem - 45%) 0;
   transition-behavior: allow-discrete;
@@ -401,14 +400,15 @@ body{
   }
 }
 .mid span{
+  letter-spacing: -.02em;
   text-shadow: 
     .02em .02em 0 var(--bg1),
     .04em .04em 0 var(--bg2);
 }
 .mid em{
-  font-weight: 400;
-  font-size: .5em;
-  letter-spacing: 0;
+  font-weight: 700;
+  font-size: .4em;
+  font-style: italic;
 }
 /* ~Desc */
 .desc{
@@ -534,12 +534,14 @@ body{
   display: inline-flex;
   justify-content: flex-start; align-items: center;
 }
-.desc .secondary img{
+.desc .secondary svg{
   height: .7em;
   display: inline-block;
   filter: grayscale(1);
   opacity: .35;
   margin-right: .4em;
+  border: 1px solid var(--bg3);
+  border-radius: .1em .05em .1em .05em;
 }
 .desc .more{
   font-weight: 400;
@@ -576,7 +578,9 @@ body{
   z-index: 0;
   display: flex;
   overflow: hidden;
+  border: 1px solid var(--text3);
   border-radius: .5em .1em .5em .1em;
+  background: var(--bg3);
 }
 .corner-info:hover .thumb{
   transition: var(--transition);
@@ -664,8 +668,8 @@ body{
   transition: var(--transition);
   z-index: 2;
   font-size: .6em;
-  top: .7em;
-  left: .66em;
+  top: .6em;
+  left: .7em;
   font-weight: 700;
 }
 .on .toggle::before{

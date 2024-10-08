@@ -1,4 +1,4 @@
-<html lang="zh-cmn-Hans">
+<html lang="zh-Hans">
 	<head>
 		<meta charset="UTF-8">
 		<title>纽北赛道地图</title>
@@ -32,8 +32,8 @@
 
 	</head>
 <body>
-<div id="app">
-  <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div>
+<div id="app" :class="showAllCornerNames ? 'show-all-corners' : '' ">
+  <!-- <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div> -->
   <div class="track-map">
     <div class="inner">
       <svg viewBox="0 0 660 530" class="main-svg" width="6600px" height="5300px">
@@ -98,7 +98,7 @@
   <div class="desc skew-p">
     <div class="logo">
       <div class="inner skew-n">
-        <span class="title-font">纽北赛道地图</span><img src="assets/logo.svg" alt="纽北"/>
+        <span class="title-font">纽北赛道地图</span><img src="assets/logo.svg" alt="纽北赛道地图"/>
       </div>
     </div>
     <div class="corner-info">
@@ -106,14 +106,36 @@
         <div class="primary skew-n title-font" v-if="currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' " v-cloak>{{currentCorner.ch}}</div>
         <div class="nickname qt skew-n title-font" v-if="currentCorner.nk && currentCorner.ch != currentCorner.nk" v-cloak>{{currentCorner.nk}}</div>
         <div class="secondary skew-n" v-if="currentCorner.de" v-cloak>
-          <span class="extra" title="德文"><img src="assets/de.svg" class="skew-p"/> {{currentCorner.de}}</span>
-          <span class="extra"  title="英文" v-if="currentCorner.en"><img src="assets/uk.svg" class="skew-p"/> {{currentCorner.en}}</span>
+          <span class="extra" title="德文">
+            <svg viewBox="0 0 5 3" class="skew-p">
+              <rect id="black_stripe" width="5" height="3" y="0" x="0" fill="#000"/>
+              <rect id="red_stripe" width="5" height="2" y="1" x="0" fill="#D00"/>
+              <rect id="gold_stripe" width="5" height="1" y="2" x="0" fill="#FFCE00"/>
+            </svg> {{currentCorner.de}}
+          </span>
+          <span class="extra"  title="英文" v-if="currentCorner.en">
+            <svg viewBox="0 0 60 30" class="skew-p">
+              <clipPath id="s">
+                <path d="M0,0 v30 h60 v-30 z"/>
+              </clipPath>
+              <clipPath id="t">
+                <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
+              </clipPath>
+              <g clip-path="url(#s)">
+                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+              </g>
+              </svg> {{currentCorner.en}}
+            </span>
         </div>
         <div class="more skew-n" v-if="currentCorner.more" v-html="currentCorner.more"></div>
       </div>
       <div class="thumbs" v-if="currentCorner && currentCorner.imgs" v-cloak>
         <div class="thumb" v-for="img in currentCorner.imgs">
-          <img class="skew-n" :src=" 'https://s.anyway.red/nurburgring/' + img.src + '!/fw/300/quality/68/progressive/true/ignore-error/true' "/>
+          <img class="skew-n" :src=" 'https://s.anyway.red/nurburgring/' + img.src + '!/fh/300/quality/68/progressive/true/ignore-error/true' " loading="lazy"/>
         </div>
       </div>
     </div>
