@@ -13,6 +13,9 @@
 
 		<style>[v-cloak],.hidden-area{display: none;}</style>
 		<meta name="format-detection" content="telephone=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <script>
       var _paq = window._paq = window._paq || [];
@@ -30,7 +33,7 @@
 	</head>
 <body>
 <div id="app">
-  <!-- <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div> -->
+  <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div>
   <div class="track-map">
     <div class="inner">
       <svg viewBox="0 0 660 530" class="main-svg" width="6600px" height="5300px">
@@ -102,7 +105,7 @@
       <div class="inner" v-if="currentCorner && p > 0" v-cloak>
         <div class="primary skew-n title-font" v-if="currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' " v-cloak>{{currentCorner.ch}}</div>
         <div class="nickname qt skew-n title-font" v-if="currentCorner.nk && currentCorner.ch != currentCorner.nk" v-cloak>{{currentCorner.nk}}</div>
-        <div class="secondary skew-n title-font" v-if="currentCorner.de" v-cloak>
+        <div class="secondary skew-n" v-if="currentCorner.de" v-cloak>
           <span class="extra" title="德文"><img src="assets/de.svg" class="skew-p"/> {{currentCorner.de}}</span>
           <span class="extra"  title="英文" v-if="currentCorner.en"><img src="assets/uk.svg" class="skew-p"/> {{currentCorner.en}}</span>
         </div>

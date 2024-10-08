@@ -48,28 +48,28 @@ var d = new Vue({
       },
     ],
     sections: [
-      {
-        "st":.019,
-        "ed":.064,
-        "x":.297,
-        "y":.892,
-        "h": "c",
-        "v": "b",
-        "ch": "Hatzenbach",
-        "en": "Hunt Stream",
-        "de": "Hatzenbach",
-      },
-      {
-        "st":.188,
-        "ed":.237,
-        "x":.155,
-        "y":.440,
-        "h": "r",
-        "v": "b",
-        "ch": "狐狸洞",
-        "en": "Foxhole",
-        "de": "Fuchsröhre",
-      }
+      // {
+      //   "st":.019,
+      //   "ed":.064,
+      //   "x":.297,
+      //   "y":.892,
+      //   "h": "c",
+      //   "v": "b",
+      //   "ch": "Hatzenbach",
+      //   "en": "Hunt Stream",
+      //   "de": "Hatzenbach",
+      // },
+      // {
+      //   "st":.188,
+      //   "ed":.237,
+      //   "x":.155,
+      //   "y":.440,
+      //   "h": "r",
+      //   "v": "b",
+      //   "ch": "狐狸洞",
+      //   "en": "Foxhole",
+      //   "de": "Fuchsröhre",
+      // }
     ],
     corners: [
       {
@@ -96,13 +96,13 @@ var d = new Vue({
         "st": .019,
         "ed": .032,
         "x": .32,
-        "y": .935,
+        "y": .933,
         "h": "c",
         "v": "t",
         "ch": "Hatzenbach Bogen",
         "en": "Hunt Stream Curve",
         "de": "Hatzenbach Bogen",
-        "nk": "弧形弯",
+        // "nk": "弧形弯",
         "imgs": [
           {
             "src": "hatzenbach-bogen-1.jpg",
@@ -110,15 +110,26 @@ var d = new Vue({
         ],
       },
       {
-        "st": .038,
-        "ed": .049,
-        "x": .256,
-        "y": .921,
-        "h": "r",
-        "v": "t",
-        "ch": "扭扭弯",
-        "nk": "扭扭弯"
+        "st":.033,
+        "ed":.063,
+        "x":.259,
+        "y":.892,
+        "h": "l",
+        "v": "b",
+        "ch": "Hatzenbach",
+        "en": "Hunt Stream",
+        "de": "Hatzenbach",
       },
+      // {
+      //   "st": .038,
+      //   "ed": .049,
+      //   "x": .256,
+      //   "y": .921,
+      //   "h": "r",
+      //   "v": "t",
+      //   "ch": "扭扭弯",
+      //   "nk": "扭扭弯"
+      // },
       {
         "st": .065,
         "ed": .076,
@@ -129,25 +140,25 @@ var d = new Vue({
         "ch": "大橡树",
         "de": "Hoheichen",
         "en": "High Oaks",
-        "nk": "龙哥不杀弯",
+        // "nk": "龙哥不杀弯",
         "imgs": [
           {
             "src": "hoheichen-1.jpg",
           },
         ],
       },
+      // {
+      //   "st": .077,
+      //   "ed": .089,
+      //   "x": .192,
+      //   "y": .810,
+      //   "h": "l",
+      //   "v": "t",
+      //   "ch": "小桥直线",
+      //   "nk": "小桥直线"
+      // },
       {
-        "st": .077,
-        "ed": .089,
-        "x": .192,
-        "y": .810,
-        "h": "l",
-        "v": "t",
-        "ch": "小桥直线",
-        "nk": "小桥直线"
-      },
-      {
-        "st": .1,
+        "st": .085,
         "ed": .117,
         "x": .128,
         "y": .763,
@@ -167,16 +178,17 @@ var d = new Vue({
         "v": "m",
         "ch": "Kottenborn",
         "de": "Kottenborn",
+        "more": "以附近的小镇命名，但最近也没人这么叫了，都直呼「飞机场和瑞典十字之间那个左弯」"
       },
-      {
-        "st": .145,
-        "ed": .162,
-        "x": .118,
-        "y": .613,
-        "h": "r",
-        "v": "m",
-        "ch": "草原直线",
-      },
+      // {
+      //   "st": .145,
+      //   "ed": .162,
+      //   "x": .118,
+      //   "y": .613,
+      //   "h": "r",
+      //   "v": "m",
+      //   "ch": "草原直线",
+      // },
       {
         "st": .163,
         "ed": .172,
@@ -186,7 +198,8 @@ var d = new Vue({
         "v": "m",
         "ch": "瑞典十字",
         "de": "Schwedenkreuz",
-        "en": "Swedish Cross"
+        "en": "Swedish Cross",
+        "more": "在这里的护栏右侧有一个石制十字纪念碑，用来纪念在 17 世纪被瑞典军队杀死的阿德瑙当地市长"
       },
       {
         "st": .179,
@@ -197,18 +210,31 @@ var d = new Vue({
         "v": "m",
         "ch": "阿伦山",
         "de": "Aremberg",
-        "en": "Arem mountain",
+        "en": "Arem Mountain",
+        "more": "附近有座山就叫 Aremberg，但我查了一下地图，西北偏西的这座山离本弯直线距离也有十公里……"
       }, 
+      // {
+      //   "st": .188,
+      //   "ed": .203,
+      //   "x": .131,
+      //   "y": .506,
+      //   "h": "l",
+      //   "v": "t",
+      //   "ch": "横滨走廊",
+      //   "nk": "横滨走廊",
+      // }, 
       {
-        "st": .188,
-        "ed": .203,
-        "x": .131,
-        "y": .506,
-        "h": "l",
-        "v": "t",
-        "ch": "横滨走廊",
-        "nk": "横滨走廊",
-      }, 
+        "st":.205,
+        "ed":.237,
+        "x":.155,
+        "y":.440,
+        "h": "r",
+        "v": "b",
+        "ch": "狐狸洞",
+        "en": "Foxhole",
+        "de": "Fuchsröhre",
+        "more": "这是纽北众多著名弯道里少数的英文名更出名的，传闻在赛道初建时,有只受惊的狐狸躲进了附近的下水道，一直到大家从它躲藏的洞里把它拉出来之后工程才得以继续，所以有了这个名字"
+      },
       {
         "st": .237,
         "ed": .256,
@@ -233,7 +259,7 @@ var d = new Vue({
         "nk": "羊弯 1"
       }, 
       {
-        "st": .292,
+        "st": .291,
         "ed": .296,
         "x": .252,
         "y": .224,
@@ -244,23 +270,23 @@ var d = new Vue({
         "en": "Metzges field 2",
         "nk": "羊弯 2"
       }, 
-      {
-        "st": .296,
-        "ed": .301,
-        "x": .230,
-        "y": .236,
-        "h": "r",
-        "v": "t",
-        "ch": "羊弯 3",
-        "nk": "羊弯 3"
-      }, 
+      // {
+      //   "st": .296,
+      //   "ed": .301,
+      //   "x": .230,
+      //   "y": .236,
+      //   "h": "r",
+      //   "v": "t",
+      //   "ch": "羊弯 3",
+      //   "nk": "羊弯 3"
+      // }, 
       {
         "st": .305,
         "ed": .313,
-        "x": .200,
-        "y": .206,
+        "x": .202,
+        "y": .210,
         "h": "r",
-        "v": "m",
+        "v": "t",
         "ch": "Kallenhard",
         "en": "Kallen hard",
         "de": "Kallenhard"
@@ -274,7 +300,8 @@ var d = new Vue({
         "v": "b",
         "ch": "镜像双子",
         "en": "Mirror Curve",
-        "de": "Spiegelkurve"
+        "de": "Spiegelkurve",
+        "more": "这是一个很有意思的名字"
       }, 
       {
         "st": .329,
@@ -297,7 +324,7 @@ var d = new Vue({
         "ch": "防御谷",
         "en": "Defend Valley",
         "de": "Wehrseifen",
-        "nk": "卫赛芬",
+        // "nk": "卫赛芬",
         "more": "这里以前正好穿过了 Adenau 和 Breidscheid 两个小镇的分界线，所在的峡谷也是一个重要的战略防御点"
       }, 
       {
@@ -325,11 +352,11 @@ var d = new Vue({
       {
         "st": .408,
         "ed": .417,
-        "x": .471,
-        "y": .120,
+        "x": .463,
+        "y": .115,
         "h": "r",
         "v": "t",
-        "ch": "Lauda Links",
+        "ch": "劳达",
         "en": "Lauda Links",
         "de": " Lauda Links",
         "more": "又是一个名场面诞生地了，著名车手 <a href='https://en.wikipedia.org/wiki/Niki_Lauda' target='_blank'>Niki Lauda</a> 参加 1976 年的 F1 大奖赛过程中在此处发生车祸并燃起大火，虽然烧伤了头部但 6 周后即复出并拿下隔年的年度冠军",
@@ -363,17 +390,6 @@ var d = new Vue({
         "de": "Kesselchen",
       }, 
       {
-        "st": .496,
-        "ed": .506,
-        "x": .604,
-        "y": .2,
-        "h": "l",
-        "v": "b",
-        "ch": "Klostertal",
-        "en": "Monastery Valley",
-        "de": "Klostertal",
-      }, 
-      {
         "st": .513,
         "ed": .526,
         "x": .665,
@@ -386,15 +402,28 @@ var d = new Vue({
         "more": "这个著名的弯角的恐怖之处在乎很高的速度和极小的容错空间，只有当你拥有足够的勇气才能全速通过"
       }, 
       {
+        "st": .531,
+        "ed": .544,
+        "x": .706,
+        "y": .208,
+        "h": "r",
+        "v": "b",
+        "ch": "修道谷",
+        "en": "Monastery Valley",
+        "de": "Klostertal",
+      }, 
+      {
         "st": .552,
         "ed": .560,
         "x": .779,
         "y": .195,
         "h": "r",
         "v": "b",
-        "ch": "Steilstrecke",
+        "ch": "陡坡",
+        "nk": "陡坡",
         "en": "Steep Section",
         "de": "Steilstrecke",
+        "more": "名字直译过来的话会觉得很奇怪，因为这里一点儿都不陡，其实是因为这里已经改建过了，赛道刚建成的时候这里就是个为了测试汽车爬坡用的陡坡"
       }, 
       {
         "st": .571,
@@ -406,6 +435,7 @@ var d = new Vue({
         "ch": "旋转木马",
         "en": "Carousel",
         "de": "Caracciola Karussell",
+        "more": "这也许是纽北最著名的弯道了，而它的德文原名里的 Caracciola 是为了纪念著名车手 <a href='https://en.wikipedia.org/wiki/Rudolf_Caracciola'>Rudolf Caracciola</a>，他在上世纪 30 年代的比赛中，在这里发明了「水渠」过弯法",
         "imgs": [
           {
             "src": "carousel-2.jpg",
@@ -422,7 +452,7 @@ var d = new Vue({
         "y": .157,
         "h": "r",
         "v": "b",
-        "ch": "Hohe Acht",
+        "ch": "瞭望塔",
         "en": "High Attention",
         "de": "Hohe Acht",
         "more": "这个弯附近的高大树木很多，所以当雨天过后这里经常是整个赛道最后变干的，大家就说这里「和冰面一样滑」，因而得名"

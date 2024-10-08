@@ -24,22 +24,22 @@
   --angle: 9deg;
 
   --width: min(90vw, 90rem);
-  --margin: calc(2rem + .6vmax);
+  --margin: calc(1rem + .3vmax + .2vmin);
 
 	--radius: .4rem;
   --box-radius: .8rem;
-	--duration: .2s;
-	--duration-out: .35s;
-  --curve: ease-in;
-	--curve-out: ease-out;
-  --curve: cubic-bezier(.07,.58,.56,.49);
-  --curve-out: cubic-bezier(.73,.02,.48,.56);
+	--duration: .17s;
+	--duration-out: .25s;
+  --curve: ease-out;
+	--curve-out: ease-in;
+  /* --curve: cubic-bezier(.07,.58,.56,.49);
+  --curve-out: cubic-bezier(.73,.02,.48,.56); */
 	--transition: all var(--duration) var(--curve);
 	--transition-out: all var(--duration-out) var(--curve-out);
 
   --bold: 700;
   --title-font: Smiley Wide, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, 'PingFang SC', sans-serif, Apple Color Emoji, Segoe UI Emoji;
-  --body-font: meta, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, 'PingFang SC', sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  --body-font: fira, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, 'PingFang SC', sans-serif, Apple Color Emoji, Segoe UI Emoji;
 
   --full: 1905.97px;
 
@@ -63,7 +63,8 @@ em{font-style: normal;}
 .title-font{
   font-family: var(--title-font);
   /* text-shadow: 0 .02em 0 var(--text1); */
-  font-weight: 400;
+  font-style: italic;
+  font-weight: 700;
 }
 [role="button"]:hover{
   cursor: pointer;
@@ -385,12 +386,14 @@ body{
   color: var(--text1);
   transition: var(--transition);
   font-feature-settings: 'tnum';
-  letter-spacing: -.05em;
+  letter-spacing: -.02em;
   font-size: 4rem;
   translate: calc(1rem - 45%) 0;
   transition-behavior: allow-discrete;
   opacity: 1;
-
+  font-weight: 700;
+  font-style: italic;
+  font-family: var(--body-font);
 
   @starting-style{
     opacity: 0;
@@ -440,7 +443,7 @@ body{
   height: calc(1rem + 1vmax + 1.5vmin);
 }
 .logo > .inner > span{
-  font-size: calc(1rem + .5vmax + .2vmin);
+  font-size: calc(.75rem + .6vmax + .2vmin);
   font-family: var(--title-font);
   /* font-weight: var(--bold); */
   /* font-weight: 700; */
@@ -522,6 +525,7 @@ body{
   justify-content: flex-start; align-items: center;
   flex-wrap: wrap;
   animation-delay: calc(var(--duration) / 7 * 2);
+  font-style: italic;
 }
 .desc .secondary > span:first-of-type{
   margin-right: 1em;
@@ -539,7 +543,7 @@ body{
 }
 .desc .more{
   font-weight: 400;
-  font-size: 1rem;
+  font-size: calc(.6rem + .3vmin + .2vmax);
   color: var(--text2);
   margin-top: 2.6em;
   line-height: 1.65;
@@ -592,7 +596,7 @@ body{
 
 /* ~Controls */
 .controls{
-  font-size: 1rem;
+  font-size: calc(.75rem + .1vmax + .2vmin);
   border-top: 1px solid var(--bg2);
   width: 100%;
   padding: var(--margin) calc(var(--margin) * 2);
@@ -759,26 +763,48 @@ body{
   pointer-events: none;
 }
 @font-face{
-  font-family: meta;
-  src:url(https://s.anyway.red/iconmoon/meta/meta-normal.woff2) format('woff2');
+  font-family: fira;
+  src:url(https://s.anyway.red/font/fira-regular.woff2) format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: fallback;
 }
 @font-face{
-  font-family: meta;
-  src:url(https://s.anyway.red/iconmoon/meta/meta-bold.woff2) format('woff2');
+  font-family: fira;
+  src:url(https://s.anyway.red/font/fira-italic.woff2) format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: fallback;
+}
+@font-face{
+  font-family: fira;
+  src:url(https://s.anyway.red/font/fira-bold.woff2) format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: fallback;
 }
 @font-face{
-  font-family: sm;
-  src:url(sm.woff2) format('woff2');
-  font-weight: 400;
+  font-family: fira;
+  src:url(https://s.anyway.red/font/fira-bold-italic.woff2) format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: fallback;
+}
+@font-face{
+  font-family: fira;
+  src:url(https://s.anyway.red/font/fira-black.woff2) format('woff2');
+  font-weight: 900;
   font-style: normal;
   font-display: fallback;
 }
+@font-face{
+  font-family: fira;
+  src:url(https://s.anyway.red/font/fira-black-italic.woff2) format('woff2');
+  font-weight: 900;
+  font-style: italic;
+  font-display: fallback;
+}
+
 
 .vertical{
   
@@ -815,12 +841,14 @@ body{
   .msg{
     translate: 0 40vh;
    }
-
+   .miles{
+    font-size: calc(1rem + 2vw);
+  }
   .desc{
     border-top: 1px solid var(--bg2);
   }
-  .miles{
-    font-size: calc(1rem + 2vw);
+  .logo > .inner{
+    padding: var(--margin);
   }
   .desc .primary{
     font-size: 1.5rem;
