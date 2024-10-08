@@ -82,10 +82,10 @@ var d = new Vue({
         "ch": "萨宾娜",
         "en": "Sabine Schmitz Curve",
         "de": "Sabine Schmitz Kurve",
-        "more": "为了纪念在此开了至少 33,000 圈的纽北女王 Sabine Schmitz，她曾两次赢得纽博格林 24 小时耐力赛，也是第一位赢得这项传奇赛事的女性。",
+        "more": "为了纪念在此开了至少 33,000 圈的纽北女王 <a href='https://zh.wikipedia.org/zh-cn/%E8%96%A9%E8%B3%93%C2%B7%E6%96%BD%E5%AF%86%E8%8C%A8' target='blank'>Sabine Schmitz</a>，她曾两次赢得纽博格林 24 小时耐力赛，也是第一位赢得这项传奇赛事的女性。",
         "imgs": [
           {
-            "src": "sabine-2.jpg",
+            "src": "sabine-3.jpg",
           },
           {
             "src": "sabine-1.jpg",
@@ -119,6 +119,15 @@ var d = new Vue({
         "ch": "Hatzenbach",
         "en": "Hunt Stream",
         "de": "Hatzenbach",
+        "more": "其实是一个挺长的组合弯，包含了两快五慢总共七个弯道",
+        "imgs": [
+          {
+            "src": "hatzenbach-1.jpg",
+          },
+          {
+            "src": "hatzenbach-2.jpg",
+          },
+        ],
       },
       // {
       //   "st": .038,
@@ -168,6 +177,14 @@ var d = new Vue({
         "de": "Flugplatz",
         "en": "Airfield",
         "more": "虽然很多赛车在这个高速弯起飞，但事实上这里叫「飞机场」的原因是在这个弯道边上以前是个飞机场",
+        "imgs": [
+          {
+            "src": "flugplatz-1.jpg",
+          },
+          {
+            "src": "flugplatz-2.jpg",
+          },
+        ],
       },
       {
         "st": .129,
@@ -178,7 +195,12 @@ var d = new Vue({
         "v": "m",
         "ch": "Kottenborn",
         "de": "Kottenborn",
-        "more": "以附近的小镇命名，但最近也没人这么叫了，都直呼「飞机场和瑞典十字之间那个左弯」"
+        "more": "以附近的小镇命名，但最近也没人这么叫了，都直呼「飞机场和瑞典十字之间那个左弯」",
+        "imgs": [
+          {
+            "src": "kottenborn-1.jpg",
+          },
+        ],
       },
       // {
       //   "st": .145,
