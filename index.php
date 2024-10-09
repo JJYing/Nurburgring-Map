@@ -39,7 +39,7 @@ echo
 	</head>
 <body>
 <div id="app" :class="showAllCornerNames ? 'show-all-corners' : '' ">
-  <!-- <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div> -->
+  <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div>
   <div class="track-map">
     <div class="inner">
       <svg viewBox="0 0 660 530" class="main-svg" width="6600px" height="5300px">
@@ -111,8 +111,8 @@ echo
       <div class="inner" v-if="currentCorner && p > 0" v-cloak>
         <div class="primary skew-n title-font" v-if="currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' " v-cloak>{{currentCorner.ch}}</div>
         <div class="nickname qt skew-n title-font" v-if="currentCorner.nk && currentCorner.ch != currentCorner.nk" v-cloak>{{currentCorner.nk}}</div>
-        <div class="secondary skew-n" v-if="currentCorner.de" v-cloak>
-          <span class="extra" title="德文">
+        <div class="secondary skew-n" v-if="currentCorner.en" v-cloak>
+          <span class="extra" title="德文" v-if="currentCorner.de">
             <svg viewBox="0 0 5 3" class="skew-p">
               <rect id="black_stripe" width="5" height="3" y="0" x="0" fill="#000"/>
               <rect id="red_stripe" width="5" height="2" y="1" x="0" fill="#D00"/>
@@ -140,8 +140,9 @@ echo
         <div class="more skew-n" v-if="currentCorner.more" v-html="currentCorner.more"></div>
       </div>
       <div class="thumbs" v-if="currentCorner && currentCorner.imgs" v-cloak>
-        <div class="thumb" v-for="img in currentCorner.imgs">
-          <img class="skew-n" :src=" 'https://s.anyway.red/nurburgring/' + img.src + '!/fh/300/quality/68/progressive/true/ignore-error/true' " loading="lazy" @click="openModal('image', img.src)"/>
+        <div class="thumb" v-for="img in currentCorner.imgs" :class="img.url ? 'has-author' : '' ">
+          <img class="skew-n" :src=" 'https://s.anyway.red/nurburgring/' + img.src + '!/fh/300/quality/68/progressive/true/ignore-error/true' " loading="lazy" @click="openModal('image', img)"/>
+          <a class="thumb-source" v-if="img.url" :href="img.url" target="_blank" title="查看照片来源"><span class="skew-n">{{img.author}}<span></a>
         </div>
       </div>
     </div>
