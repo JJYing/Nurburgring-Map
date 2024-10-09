@@ -70,6 +70,17 @@ var d = new Vue({
       //   "en": "Foxhole",
       //   "de": "Fuchsröhre",
       // }
+      {
+        "st":.681,
+        "ed":.701,
+        "x":.932,
+        "y":.287,
+        "h": "l",
+        "v": "b",
+        "ch": "小水井",
+        "en": "Small Water",
+        "de": "Brünnchen",
+      }
     ],
     corners: [
       {
@@ -86,9 +97,13 @@ var d = new Vue({
         "imgs": [
           {
             "src": "sabine-3.jpg",
+            "url": "https://themotorsporthubni.com/2024/03/16/sabine-schmitz-queen-of-the-nurburgring/",
+            "author": "Miguel Bosch"
           },
           {
             "src": "sabine-1.jpg",
+            "url": "https://www.motorbox.com/auto/sport/news/motorsport-piange-sabine-schmitz-regina-nurburgring-nordschleife",
+            "author": "motorbox"
           },
         ],
       },
@@ -103,11 +118,6 @@ var d = new Vue({
         "en": "Hunt Stream Curve",
         "de": "Hatzenbach Bogen",
         // "nk": "弧形弯",
-        "imgs": [
-          {
-            "src": "hatzenbach-bogen-1.jpg",
-          },
-        ],
       },
       {
         "st":.033,
@@ -123,9 +133,13 @@ var d = new Vue({
         "imgs": [
           {
             "src": "hatzenbach-1.jpg",
+            "author": "Gruppe C GmbH",
+            "url": "https://www.24h-rennen.de/camping-hatzenbach/"
           },
           {
-            "src": "hatzenbach-2.jpg",
+            "src": "hatzenbach-3.jpg",
+            "url": "https://racetours.co.uk/",
+            "author": "RaceTours"
           },
         ],
       },
@@ -153,6 +167,8 @@ var d = new Vue({
         "imgs": [
           {
             "src": "hoheichen-1.jpg",
+            "url": "https://www.studio-397.com/",
+            "author": "rFactor 2"
           },
         ],
       },
@@ -180,9 +196,13 @@ var d = new Vue({
         "imgs": [
           {
             "src": "flugplatz-1.jpg",
+            "url": "https://smallblogv8.blogspot.com/2015/08/the-nurburgring-nordschleife-is-finally.html",
+            "author": "Small Blog V8"
           },
           {
             "src": "flugplatz-2.jpg",
+            "author": "The Mirror",
+            "url": "https://www.mirror.co.uk/sport/gallery/nissan-gt-r-nismo-horror-5417893"
           },
         ],
       },
@@ -199,6 +219,8 @@ var d = new Vue({
         "imgs": [
           {
             "src": "kottenborn-1.jpg",
+            "url": "https://www.flickr.com/photos/jimculp/30905906765",
+            "author": "Jim Culp"
           },
         ],
       },
@@ -225,9 +247,13 @@ var d = new Vue({
         "imgs": [
           {
             "src": "swedish-1.jpg",
+            "author": "Porsche",
+            "url": "https://press.cn.porsche.com/prod/presse_pag/PressResources.nsf/Content?ReadForm&languageversionid=1211252"
           },
           {
             "src": "swedish-2.jpg",
+            "url": "https://zh.wikipedia.org/zh-cn/File:Schwedenkreuz.jpg",
+            "author": "Walter Koch"
           },
         ],
       },
@@ -245,6 +271,8 @@ var d = new Vue({
         "imgs": [
           {
             "src": "aremberg-1.jpg",
+            "url": "https://www.petrolart.de/51-schwedenkreuz.html",
+            "author": "PetrolArt"
           },
         ],
       }, 
@@ -272,6 +300,8 @@ var d = new Vue({
         "imgs": [
           {
             "src": "fox-1.jpg",
+            "url": "https://zh.wikipedia.org/zh-cn/File:Nordschleife_Fuchsroehre_800x453.jpg",
+            "author": "BUICK REGAL"
           },
         ],
       },
@@ -289,6 +319,8 @@ var d = new Vue({
         "imgs": [
           {
             "src": "adenau-f-2.jpg",
+            "url": "https://www.24h-rennen.de/en/2016/05/27/fire-on-the-adenauer-forst-camping-ground/",
+            "author": "24h-rennen.de"
           },
           {
             "src": "adenau-f-1.jpg",
@@ -320,19 +352,11 @@ var d = new Vue({
         "imgs": [
           {
             "src": "metzges-2.jpg",
+            "url": "https://alavigne.net/Miscellaneous/CommonUtils/Presentation/show_image.jsp?id=49342-63839",
+            "author": "alavigne.net"
           },
         ],
       }, 
-      // {
-      //   "st": .296,
-      //   "ed": .301,
-      //   "x": .230,
-      //   "y": .236,
-      //   "h": "r",
-      //   "v": "t",
-      //   "ch": "羊弯 3",
-      //   "nk": "羊弯 3"
-      // }, 
       {
         "st": .305,
         "ed": .313,
@@ -372,7 +396,15 @@ var d = new Vue({
         "v": "t",
         "ch": "Miss-Hit-Miss",
         "en": "Miss-Hit-Miss",
-        "de": "Miss-Hit-Miss"
+        "de": "Miss-Hit-Miss",
+        "more": "比起前面这些地点或者相关特征的取名方式，这里直接把过弯的方式写了出来，因为这个连续弯道有三个非常醒目的路肩，一般认为的通过方式是 1、3 走中线或者外线，第 2 个压路肩",
+        "imgs": [
+          {
+            "src": "miss-1.jpg",
+            "url": "https://www.youtube.com/watch?app=desktop&v=SLFQ-53Ca_I",
+            "author": "Misha Charoudin"
+          },
+        ],
       }, 
       {
         "st": .347,
@@ -384,8 +416,19 @@ var d = new Vue({
         "ch": "防御谷",
         "en": "Defend Valley",
         "de": "Wehrseifen",
-        // "nk": "卫赛芬",
-        "more": "这里以前正好穿过了 Adenau 和 Breidscheid 两个小镇的分界线，所在的峡谷也是一个重要的战略防御点"
+        "more": "这里以前正好穿过了 Adenau 和 Breidscheid 两个小镇的分界线，所在的峡谷也是一个重要的战略防御点。此处也基本上是纽北全程弯速最慢的地方了",
+        "imgs": [
+          {
+            "src": "defend-1.jpg",
+            "url": "https://www.motorsportimages.com/photo/1018429004-24-hours-of-nurburgring/1018429004/",
+            "author": "Motorsport Images"
+          },
+          {
+            "src": "defend-2.jpg",
+            "url": "https://www.petrolart.de/98-Wehrseifen.html",
+            "author": "PetrolArt"
+          },
+        ],
       }, 
       {
         "st": .372,
@@ -397,6 +440,18 @@ var d = new Vue({
         "ch": "小镇桥",
         "en": "Wide Part",
         "de": "Breidscheid",
+        "imgs": [
+          {
+            "src": "breidscheid-1.jpg",
+            "url": "https://www.flickr.com/photos/dench26/6506224181",
+            "author": "Neil Densham"
+          },
+          {
+            "src": "breidscheid-2.jpg",
+            "url": "https://www.nordschleife1927.de/news/nuerburgring/zufahrt-breidscheid-bleibt-einsatzkraeften-vorbehalten",
+            "author": "Nordschleife 1927"
+          },
+        ],
       }, 
       {
         "st": .385,
@@ -405,9 +460,17 @@ var d = new Vue({
         "y": .109,
         "h": "r",
         "v": "t",
-        "ch": "老磨坊",
+        "ch": "水磨坊",
         "en": "Water mill",
         "de": "Ex Mühle",
+        "more": "又是一个顾名思义的弯道，相传以前这里就有一个磨坊，而赛道本来也打算把起点设置在这里，但磨坊主人拒绝把他的这块地用来建造赛道主看台所以作罢",
+        "imgs": [
+          {
+            "src": "mill-1.jpg",
+            "url": "https://www.pro-steilstrecke.de/streckenabschnitte/nuerburgring_exmuehle.php",
+            "author": "Burkhard Köhr"
+          },
+        ],
       }, 
       {
         "st": .408,
@@ -419,10 +482,22 @@ var d = new Vue({
         "ch": "劳达",
         "en": "Lauda Links",
         "de": " Lauda Links",
-        "more": "又是一个名场面诞生地了，著名车手 <a href='https://en.wikipedia.org/wiki/Niki_Lauda' target='_blank'>Niki Lauda</a> 参加 1976 年的 F1 大奖赛过程中在此处发生车祸并燃起大火，虽然烧伤了头部但 6 周后即复出并拿下隔年的年度冠军",
+        "more": "一个名场面诞生地，著名车手<a href='https://zh.wikipedia.org/wiki/%E5%B0%BC%E5%9F%BA%C2%B7%E5%8A%B3%E8%BE%BE' target='_blank'>尼基·劳达</a> (Niki Lauda) 参加 1976 年的 F1 大奖赛过程中在此处发生车祸并燃起大火，虽然烧伤了头部但 6 周后即复出并拿下隔年的年度冠军。后来这个弯道就以他的名字来命名了",
         "imgs": [
           {
-            "src": "lauda-1.jpg",
+            "src": "lauda-2.jpg",
+            "url": "https://www.gq-magazine.co.uk/sport/article/niki-lauda-to-hell-and-back",
+            "author": "DPA"
+          },
+          {
+            "src": "lauda-4.jpg",
+            "url": "https://www.youtube.com/watch?v=v59-1RXpqPs",
+            "author": "Ginola's Videos"
+          },
+          {
+            "src": "lauda-3.jpg",
+            "url": "https://zh.wikipedia.org/wiki/File:Lauda_at_1982_Dutch_Grand_Prix.jpg",
+            "author": "Anefo"
           },
         ],
       }, 
@@ -436,7 +511,19 @@ var d = new Vue({
         "ch": "矿山",
         "en": "Mountain Factory",
         "de": "Bergwerk",
-        "more": "又是顾名思义的一个命名，其实从这些名字里也能感受到纽北赛道的巨大规模，周围从机场到矿场，啥都有……"
+        "more": "其实从这些直白的地标名字里也能感受到纽北赛道的巨大规模，周围从机场到矿场，啥都有……",
+        "imgs": [
+          {
+            "src": "bergwerk-1.jpg",
+            "url": "https://oversteer48.com/nurburgring-nordschleife-bergwerk/",
+            "author": "oversteer48"
+          },
+          {
+            "src": "bergwerk-2.jpg",
+            "url": "https://www.kuladig.de/Objektansicht/SWB-325156",
+            "author": "Knöchel"
+          },
+        ],
       }, 
       {
         "st": .466,
@@ -448,6 +535,14 @@ var d = new Vue({
         "ch": "Kesselchen",
         "en": "Little Valley",
         "de": "Kesselchen",
+        "more": "出了矿山弯之后是一段长长的上坡路，所以这里很多弯道的名字都跟「谷」有关",
+        "imgs": [
+          {
+            "src": "kesselchen-1.jpg",
+            "url": "https://www.youtube.com/watch?v=d1v4CZ4q7K4",
+            "author": "PROBEICH"
+          },
+        ],
       }, 
       {
         "st": .513,
@@ -459,7 +554,7 @@ var d = new Vue({
         "ch": "勇气弯",
         "en": "Courage Curve",
         "de": "Mutkurve",
-        "more": "这个著名的弯角的恐怖之处在乎很高的速度和极小的容错空间，只有当你拥有足够的勇气才能全速通过"
+        "more": "这个著名弯角的恐怖之处在于很高的速度和极小的容错空间，只有当你拥有足够的勇气才能全速通过"
       }, 
       {
         "st": .531,
@@ -515,7 +610,31 @@ var d = new Vue({
         "ch": "瞭望塔",
         "en": "High Attention",
         "de": "Hohe Acht",
-        "more": "这个弯附近的高大树木很多，所以当雨天过后这里经常是整个赛道最后变干的，大家就说这里「和冰面一样滑」，因而得名"
+        "more": "终于来到了整个纽北高度最高的地方"
+      }, 
+      {
+        "st": .634,
+        "ed": .645,
+        "x": .851,
+        "y": .154,
+        "h": "l",
+        "v": "b",
+        "ch": "海德薇高地",
+        "en": "Hedgwig Height",
+        "de": "Hedgwigshöhe",
+        "more": "纽博格林赛道能建成多亏了当时 Eifel 地区的议员 Otto Creuz 博士，而他也用自己妻子的名字 Hedgwig 命名了这个弯道"
+      }, 
+      {
+        "st": .647,
+        "ed": .66,
+        "x": .898,
+        "y": .188,
+        "h": "l",
+        "v": "b",
+        "ch": "弹跳人",
+        "en": "Seesaw Man",
+        "de": "Wippermann",
+        "more": "纽博格林赛道能建成多亏了当时 Eifel 地区的议员 Otto Creuz 博士，而他也用自己妻子的名字 Hedgwig 命名了这个弯道"
       }, 
       {
         "st": .662,
@@ -535,9 +654,10 @@ var d = new Vue({
         "y": .324,
         "h": "l",
         "v": "t",
-        "ch": "烤肉弯",
-        "nk": "烤肉弯",
+        "ch": "网红弯",
+        "de": "",
         "en": "YouTube Corner",
+        "more": "这一段两个连续的右弯一般被叫做小水井（Brünnchen），但更被世人熟知的是其中第二个弯道，因为边上有非常多的人拍照录像，而各类车辆在这里出丑的视频在 YouTube 上实在太火"
       }, 
       {
         "st": .705,
@@ -552,7 +672,7 @@ var d = new Vue({
         "more": "这个弯附近的高大树木很多，所以当雨天过后这里经常是整个赛道最后变干的，大家就说这里「和冰面一样滑」，因而得名"
       }, 
       {
-        "st": .729,
+        "st": .721,
         "ed": .745,
         "x": .870,
         "y": .415,
@@ -574,8 +694,8 @@ var d = new Vue({
         "de": "Plant garden 2",
       }, 
       {
-        "st": .765,
-        "ed": .780,
+        "st": .763,
+        "ed": .783,
         "x": .794,
         "y": .509,
         "h": "l",
@@ -588,11 +708,11 @@ var d = new Vue({
       {
         "st": .793,
         "ed": .810,
-        "x": .710,
-        "y": .505,
+        "x": .715,
+        "y": .503,
         "h": "c",
         "v": "b",
-        "ch": "Schwalbenschwanz",
+        "ch": "燕尾",
         "en": "Swallow’s Tail",
         "de": "Schwalbenschwanz",
       },
@@ -699,11 +819,12 @@ var d = new Vue({
       window.scrollTo(0, (body.scrollHeight - window.innerHeight) * percentage);
       updateScrollDistance()
     },
-    openModal: function(type, url=''){
+    openModal: function(type, img=null){
       this.modalType = type
       if(type == 'text') this.modalContent = this.aboutContent
       if(type == 'image'){
-        this.modalContent = "<img src='" + 'https://s.anyway.red/nurburgring/' + url + '!/quality/80/progressive/true/ignore-error/true' + "'/>"
+        this.modalContent = "<img src='" + 'https://s.anyway.red/nurburgring/' + img.src + '!/quality/80/progressive/true/ignore-error/true' + "'/>"
+        if(img.url) this.modalContent += "<div class='source-in-modal'>@<a href='" + img.url + "' target='_blank'>" + img.author + "</a></div>"
       }
       this.showModal = true
     }
@@ -769,6 +890,16 @@ window.addEventListener('resize', function(){
 
 updateScrollDistance()
 updatePageHeight()
+
+window.addEventListener("keyup",function(e){
+  if(e.key === "Escape") {
+      d.showModal = false
+  }
+})
+
+if(document.hasFocus() && focusedEle != "TEXTAREA" && focusedEle != "INPUT" && focusedEle != "SELECT" && e.key == key){
+  call()
+}
 
 document.querySelector('.track-map > .inner').addEventListener('mousemove', function(event) {
   const innerRect = this.getBoundingClientRect();
