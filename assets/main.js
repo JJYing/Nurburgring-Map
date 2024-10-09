@@ -637,7 +637,10 @@ var d = new Vue({
         "en": "T13",
         "de": "T13",
       }, 
-    ]
+    ],
+    aboutContent: "网页设计 & 开发：<a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>参考信息:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· 键盘车神教教主视频：<a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>纽北每一个弯的名字？</a><br/><br/><strong>页面源码:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
+    modalContent: "",
+    modalType: "text"
   },
   methods: {
     innerModal: function(e){
@@ -658,6 +661,15 @@ var d = new Vue({
       window.scrollTo(0, (body.scrollHeight - window.innerHeight) * percentage);
       updateScrollDistance()
     },
+    openModal: function(type, url=''){
+      this.modalType = type
+      if(type == 'text') this.modalContent = this.aboutContent
+      if(type == 'image'){
+        this.modalContent = "<img src='" + 'https://s.anyway.red/nurburgring/' + url + '!/quality/80/progressive/true/ignore-error/true' + "'/>"
+      }
+      this.showModal = true
+    }
+
   }
 })
 

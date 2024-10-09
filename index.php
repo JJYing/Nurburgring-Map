@@ -140,7 +140,7 @@ echo
       </div>
       <div class="thumbs" v-if="currentCorner && currentCorner.imgs" v-cloak>
         <div class="thumb" v-for="img in currentCorner.imgs">
-          <img class="skew-n" :src=" 'https://s.anyway.red/nurburgring/' + img.src + '!/fh/300/quality/68/progressive/true/ignore-error/true' " loading="lazy"/>
+          <img class="skew-n" :src=" 'https://s.anyway.red/nurburgring/' + img.src + '!/fh/300/quality/68/progressive/true/ignore-error/true' " loading="lazy" @click="openModal('image', img.src)"/>
         </div>
       </div>
     </div>
@@ -148,16 +148,26 @@ echo
       <div class="inner skew-n">
         <div class="toggle-group" :class=" showAllCornerNames ? 'on' : 'off' " @click="showAllCornerNames = !showAllCornerNames"><span>显示所有弯道</span><div class="toggle"></div></div>
         <div class="toggle-group" :class=" darkMode ? 'on' : 'off' " @click="toggleDarkMode()"><span>深色模式</span><div class="toggle"></div></div>
-        <div @click="showModal = true" role="button" class="link">关于本站</div>
+        <div @click="openModal('text')" role="button" class="link">关于本站</div>
       </div>
     </div>
   </div>
 
-  <div class="modal" :class=" showModal ? 'show' : '' " @click="showModal = false">
+  <div class="modal text" :class="[showModal && modalType == 'text' ? 'show' : '']" @click="showModal = false">
     <div class="inner" @click="innerModal(event)">
-      <div class="modal-content skew-n">
-        网页设计 & 开发：<a href="https://jjying.com/" target="_blank">JJ Ying</a><br/><br/><strong>参考信息:</strong><br/>· <a target="_blank" href="https://oversteer48.com/nurburgring-corner-names/">Corner Names, Numbers and circuit map</a><br/>· 键盘车神教教主视频：<a target="_blank" href="https://www.bilibili.com/video/BV1NntCe4ETM/">纽北每一个弯的名字？</a>
-      </div>          
+      <div class="modal-content skew-n" v-html="modalContent"></div>
+      <div class="modal-close skew-n" @click="showModal = false">
+        <svg viewBox="0 0 30 30">
+          <circle cx="15" cy="15" r="12"/>
+          <path d="M10 10L20 20M20 10L10 20"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal image" :class="[showModal && modalType == 'image' ? 'show' : '']" @click="showModal = false">
+    <div class="inner" @click="innerModal(event)">
+      <div class="modal-content skew-n" v-html="modalContent"></div>
       <div class="modal-close skew-n" @click="showModal = false">
         <svg viewBox="0 0 30 30">
           <circle cx="15" cy="15" r="12"/>
