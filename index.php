@@ -1,21 +1,26 @@
+<?PHP
+header("Cache-Control: no-cache");
+require_once ("env.php");
+
+echo
+<<<HTML
 <html lang="zh-Hans">
 	<head>
 		<meta charset="UTF-8">
 		<title>纽北赛道地图</title>
 		<meta name="robots" content="noodp"/>
 		<meta name="author" content="JJ Ying" />
-		<meta name="description" content="纽北"/>
-		<link rel="stylesheet" href="assets/main.css?v=2"/>
-    <link rel="stylesheet" href="assets/sm/result.css"/>
+		<meta name="description" content="一个可交互的纽博格林北环赛道地图，展示了其中弯道的介绍"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="format-detection" content="telephone=no">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-		<link rel="icon" href="assets/fav.png">
+    <link rel="preconnect" href="https://s.anyway.red">
+    <link rel="preconnect" href="https://anyway.fm">
+		<link rel="stylesheet" href="{$assetsDir}/main.css?v=2"/>
+    <link rel="stylesheet" href="{$assetsDir}/sm/result.css"/>
+		<link rel="icon" href="{$assetsDir}/fav.png">
 
 		<style>[v-cloak],.hidden-area{display: none;}</style>
-		<meta name="format-detection" content="telephone=no">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <script>
       var _paq = window._paq = window._paq || [];
@@ -98,7 +103,7 @@
   <div class="desc skew-p">
     <div class="logo">
       <div class="inner skew-n">
-        <span class="title-font">纽北赛道地图</span><img src="assets/logo.svg" alt="纽北赛道地图"/>
+        <span class="title-font">纽北赛道地图</span><img src="{$assetsDir}/logo.svg" alt="纽北赛道地图"/>
       </div>
     </div>
     <div class="corner-info">
@@ -165,7 +170,10 @@
   <div class="all-names title-font"><template v-for="c in corners" >{{c.ch}} <template v-if="c.nk && c.ch != c.nk">{{c.nk}} </template></template> </div>
 </div>
 
-<script src='assets/vue-2.6.11.min.js'></script>
-<script src="assets/main.js?v=2"></script>
+<script src='{$assetsDir}/vue-2.6.11.min.js'></script>
+<script src="{$assetsDir}/main.js?v=2"></script>
 </body>
 </html>
+
+HTML;
+?>
