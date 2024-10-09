@@ -221,7 +221,15 @@ var d = new Vue({
         "ch": "瑞典十字",
         "de": "Schwedenkreuz",
         "en": "Swedish Cross",
-        "more": "在这里的护栏右侧有一个石制十字纪念碑，用来纪念在 17 世纪被瑞典军队杀死的阿德瑙当地市长"
+        "more": "在这里的护栏右侧有一个石制十字纪念碑，用来纪念在 17 世纪被瑞典军队杀死的阿德瑙当地市长",
+        "imgs": [
+          {
+            "src": "swedish-1.jpg",
+          },
+          {
+            "src": "swedish-2.jpg",
+          },
+        ],
       },
       {
         "st": .179,
@@ -233,7 +241,12 @@ var d = new Vue({
         "ch": "阿伦山",
         "de": "Aremberg",
         "en": "Arem Mountain",
-        "more": "附近有座山就叫 Aremberg，但我查了一下地图，西北偏西的这座山离本弯直线距离也有十公里……"
+        "more": "附近有座山就叫 Aremberg，但我查了一下地图，西北偏西的这座山离本弯直线距离也有十公里……",
+        "imgs": [
+          {
+            "src": "aremberg-1.jpg",
+          },
+        ],
       }, 
       // {
       //   "st": .188,
@@ -255,7 +268,12 @@ var d = new Vue({
         "ch": "狐狸洞",
         "en": "Foxhole",
         "de": "Fuchsröhre",
-        "more": "这是纽北众多著名弯道里少数的英文名更出名的，传闻在赛道初建时,有只受惊的狐狸躲进了附近的下水道，一直到大家从它躲藏的洞里把它拉出来之后工程才得以继续，所以有了这个名字"
+        "more": "这是纽北众多著名弯道里少数的英文名传颂更广的，传闻在赛道初建时,有只受惊的狐狸躲进了附近的下水道，一直到大家从它躲藏的洞里把它拉出来之后工程才得以继续，所以有了这个名字",
+        "imgs": [
+          {
+            "src": "fox-1.jpg",
+          },
+        ],
       },
       {
         "st": .237,
@@ -267,6 +285,15 @@ var d = new Vue({
         "ch": "阿德瑙森林",
         "de": "Adenauer Forst",
         "en": "Adenau Forest",
+        "more": "阿德瑙小镇其实横穿了整个赛道，所以跟阿德瑙相关的名字其实很多",
+        "imgs": [
+          {
+            "src": "adenau-f-2.jpg",
+          },
+          {
+            "src": "adenau-f-1.jpg",
+          },
+        ],
       }, 
       {
         "st": .277,
@@ -277,20 +304,24 @@ var d = new Vue({
         "v": "t",
         "ch": "屠宰场 1",
         "de": "Metzgesfeld 1",
-        "en": "Metzges field 1",
-        "nk": "羊弯 1"
+        "en": "Metzges Field 1",
+        // "nk": "羊弯 1"
       }, 
       {
         "st": .291,
         "ed": .296,
-        "x": .252,
-        "y": .224,
+        "x": .259,
+        "y": .230,
         "h": "l",
-        "v": "b",
+        "v": "m",
         "ch": "屠宰场 2",
         "de": "Metzgesfeld 2",
-        "en": "Metzges field 2",
-        "nk": "羊弯 2"
+        "en": "Metzges Field 2",
+        "imgs": [
+          {
+            "src": "metzges-2.jpg",
+          },
+        ],
       }, 
       // {
       //   "st": .296,
@@ -310,7 +341,7 @@ var d = new Vue({
         "h": "r",
         "v": "t",
         "ch": "Kallenhard",
-        "en": "Kallen hard",
+        "en": "Kallen Hard",
         "de": "Kallenhard"
       }, 
       {
@@ -320,10 +351,17 @@ var d = new Vue({
         "y": .170,
         "h": "r",
         "v": "b",
-        "ch": "镜像双子",
+        "ch": "Spiegelkurve",
         "en": "Mirror Curve",
         "de": "Spiegelkurve",
-        "more": "这是一个很有意思的名字"
+        "more": "这是一个很有意思的名字，虽然根据单词的意思以及这个 Chicane 的布局有时候被叫做「镜像」，但其实这是纽北众多民间名字之一，它被大家叫「Mirror Curve」的时候赛道布局和现如今很不一样，当时此处左侧的树丛离赛道非常贴近，以至于很多赛车都会在这次蹭坏左侧反光镜，所以得名",
+        "imgs": [
+          {
+            "src": "spiegelkurve-1.jpg",
+            "url": "https://www.flickr.com/photos/84415982@N07/52136132311",
+            "author": "Nic2209"
+          },
+        ],
       }, 
       {
         "st": .329,
