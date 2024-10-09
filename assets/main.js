@@ -92,7 +92,7 @@ var d = new Vue({
         "v": "b",
         "ch": "萨宾娜",
         "en": "Sabine Schmitz Curve",
-        "de": "Sabine Schmitz Kurve",
+        "de": "Sabine-Schmitz-Kurve",
         "more": "为了纪念在此开了至少 33,000 圈的纽北女王 <a href='https://zh.wikipedia.org/zh-cn/%E8%96%A9%E8%B3%93%C2%B7%E6%96%BD%E5%AF%86%E8%8C%A8' target='blank'>Sabine Schmitz</a>，她曾两次赢得纽博格林 24 小时耐力赛，也是第一位赢得这项传奇赛事的女性。",
         "imgs": [
           {
@@ -396,7 +396,7 @@ var d = new Vue({
         "v": "t",
         "ch": "Miss-Hit-Miss",
         "en": "Miss-Hit-Miss",
-        "de": "Miss-Hit-Miss",
+        "de": "Dreifach-Rechts",
         "more": "比起前面这些地点或者相关特征的取名方式，这里直接把过弯的方式写了出来，因为这个连续弯道有三个非常醒目的路肩，一般认为的通过方式是 1、3 走中线或者外线，第 2 个压路肩",
         "imgs": [
           {
@@ -437,7 +437,8 @@ var d = new Vue({
         "y": .169,
         "h": "l",
         "v": "t",
-        "ch": "小镇桥",
+        "ch": "Breidscheid",
+        "nk": "小镇桥",
         "en": "Wide Part",
         "de": "Breidscheid",
         "imgs": [
@@ -481,7 +482,7 @@ var d = new Vue({
         "v": "t",
         "ch": "劳达",
         "en": "Lauda Links",
-        "de": " Lauda Links",
+        "de": " Lauda-Links",
         "more": "一个名场面诞生地，著名车手<a href='https://zh.wikipedia.org/wiki/%E5%B0%BC%E5%9F%BA%C2%B7%E5%8A%B3%E8%BE%BE' target='_blank'>尼基·劳达</a> (Niki Lauda) 参加 1976 年的 F1 大奖赛过程中在此处发生车祸并燃起大火，虽然烧伤了头部但 6 周后即复出并拿下隔年的年度冠军。后来这个弯道就以他的名字来命名了",
         "imgs": [
           {
@@ -566,6 +567,13 @@ var d = new Vue({
         "ch": "修道谷",
         "en": "Monastery Valley",
         "de": "Klostertal",
+        "imgs": [
+          {
+            "src": "klostertal-1.jpg",
+            "author": "sfcriga.com",
+            "url": "https://sfcriga.com/nurburgring-the-most-challenging-race-track-in-the-world"
+          },
+        ],
       }, 
       {
         "st": .552,
@@ -575,10 +583,21 @@ var d = new Vue({
         "h": "r",
         "v": "b",
         "ch": "陡坡",
-        "nk": "陡坡",
         "en": "Steep Section",
         "de": "Steilstrecke",
-        "more": "名字直译过来的话会觉得很奇怪，因为这里一点儿都不陡，其实是因为这里已经改建过了，赛道刚建成的时候这里就是个为了测试汽车爬坡用的陡坡"
+        "more": "这个弯道是一个半径很大的回头弯，一点儿都不陡，「陡坡」这个直译名字会觉得很奇怪，其实是因为这里已经改建过了，早期这里就是个为了测试汽车爬坡性能的陡坡",
+        "imgs": [
+          {
+            "src": "steilstrecke-1.jpg",
+            "url": "https://de.wikipedia.org/wiki/Datei:Steilstreckenkurve_auf_der_N%C3%BCrburgring_Nordschleife.jpg",
+            "author": "Eigenes Werk"
+          },
+          {
+            "src": "steilstrecke-2.jpg",
+            "url": "https://www.pro-steilstrecke.de/steilstrecke/nuerburgring_steilstrecke.php",
+            "author": "Pro Steilstrecke"
+          },
+        ],
       }, 
       {
         "st": .571,
@@ -589,14 +608,18 @@ var d = new Vue({
         "v": "t",
         "ch": "旋转木马",
         "en": "Carousel",
-        "de": "Caracciola Karussell",
-        "more": "这也许是纽北最著名的弯道了，而它的德文原名里的 Caracciola 是为了纪念著名车手 <a href='https://en.wikipedia.org/wiki/Rudolf_Caracciola'>Rudolf Caracciola</a>，他在上世纪 30 年代的比赛中，在这里发明了「水渠」过弯法",
+        "de": "Caracciola-Karussell",
+        "more": "这也许是纽北最著名的弯道了，而它的德文原名里的 Caracciola 是为了纪念著名车手 <a href='https://en.wikipedia.org/wiki/Rudolf_Caracciola'>Rudolf Caracciola</a>，他在上世纪 30 年代的比赛中，在这里发明了「水渠过弯法」",
         "imgs": [
           {
             "src": "carousel-2.jpg",
+            "url": "https://autos.yahoo.com/mastering-n-rbugring-apos-most-193000555.html",
+            "author": "Porsche"
           },
           {
-            "src": "carousel-1.jpg",
+            "src": "carousel-3.jpg",
+            "url": "https://www.bridgetogantry.com/the-truth-behind-the-nurburgrings-karussell/",
+            "author": "BridgeToGantry"
           },
         ],
       }, 
@@ -607,10 +630,11 @@ var d = new Vue({
         "y": .157,
         "h": "r",
         "v": "b",
-        "ch": "瞭望塔",
-        "en": "High Attention",
+        "ch": "高八",
+        "nk": "瞭望塔",
+        "en": "High Eight",
         "de": "Hohe Acht",
-        "more": "终于来到了整个纽北高度最高的地方"
+        "more": "终于来到了整个赛道海拔最高的地方了，「高八」也是个直译，就是这里这座山的名字，海拔高度超过 700 米。事实上，纽北海拔最高点到最低点的落差超过 300 米"
       }, 
       {
         "st": .634,
@@ -634,7 +658,7 @@ var d = new Vue({
         "ch": "弹跳人",
         "en": "Seesaw Man",
         "de": "Wippermann",
-        "more": "纽博格林赛道能建成多亏了当时 Eifel 地区的议员 Otto Creuz 博士，而他也用自己妻子的名字 Hedgwig 命名了这个弯道"
+        "more": "这一段曾经非常颠簸，而且水平方向上也有剧烈的运动"
       }, 
       {
         "st": .662,
@@ -700,9 +724,9 @@ var d = new Vue({
         "y": .509,
         "h": "l",
         "v": "t",
-        "ch": "Stefan Bellof S",
+        "ch": "Stefan-Bellof-S",
         "en": "Stefan Bellof S",
-        "de": "Stefan Bellof S",
+        "de": "Stefan-Bellof-S",
         "more": "传奇车手 Stefan Bellof 在 1976 年驾驶 C 组保时捷 956 在纽北创造了 6:11.13 的圈速记录，而后来他在这里发生了车祸，所以这个赛段以他命名"
       },
       {
@@ -796,7 +820,7 @@ var d = new Vue({
         "de": "T13",
       }, 
     ],
-    aboutContent: "网页设计 & 开发：<a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>参考信息:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· 键盘车神教教主视频：<a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>纽北每一个弯的名字？</a><br/><br/><strong>页面源码:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
+    aboutContent: "网页设计 & 开发：<a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>参考信息:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· <a target='_blank' href='https://nring.info/nurburgring-nordschleife-corners/'>NRing.info</a><br/>· 键盘车神教教主视频：<a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>纽北每一个弯的名字？</a><br/><br/><strong>页面源码:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
     modalContent: "",
     modalType: "text"
   },
