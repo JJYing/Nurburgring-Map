@@ -1,6 +1,7 @@
 <?PHP
 header("Cache-Control: no-cache");
 require_once ("env.php");
+$lastEditTime = date ("jhi", filemtime(__FILE__));
 
 echo
 <<<HTML
@@ -16,7 +17,7 @@ echo
 
     <link rel="preconnect" href="https://s.anyway.red">
     <link rel="preconnect" href="https://anyway.fm">
-		<link rel="stylesheet" href="{$assetsDir}/main.css?v=2"/>
+		<link rel="stylesheet" href="{$assetsDir}/main.css?v={$lastEditTime}"/>
     <link rel="stylesheet" href="{$assetsDir}/sm/result.css"/>
 		<link rel="icon" href="{$assetsDir}/fav.png">
 
@@ -103,7 +104,7 @@ echo
   <div class="desc skew-p">
     <div class="logo">
       <div class="inner skew-n">
-        <span class="title-font">纽北赛道地图</span><img src="{$assetsDir}/logo.svg" alt="纽北赛道地图"/>
+        <span class="title-font">纽<em>博格林</em>北<em>环</em>赛道地图</span><img src="{$assetsDir}/logo.svg" alt="纽北赛道地图"/>
       </div>
     </div>
     <div class="corner-info">
@@ -155,7 +156,7 @@ echo
 
   <div class="modal text" :class="[showModal && modalType == 'text' ? 'show' : '']" @click="showModal = false">
     <div class="inner" @click="innerModal(event)">
-      <div class="modal-content skew-n" v-html="modalContent"></div>
+      <div class="modal-content skew-n" v-html="modalContent" @click="showModal = false"></div>
       <div class="modal-close skew-n" @click="showModal = false">
         <svg viewBox="0 0 30 30">
           <circle cx="15" cy="15" r="12"/>
@@ -181,7 +182,7 @@ echo
 </div>
 
 <script src='{$assetsDir}/vue-2.6.11.min.js'></script>
-<script src="{$assetsDir}/main.js?v=2"></script>
+<script src="{$assetsDir}/main.js?v={$lastEditTime}"></script>
 </body>
 </html>
 

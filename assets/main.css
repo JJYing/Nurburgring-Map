@@ -24,7 +24,7 @@
   --angle: 9deg;
 
   --width: min(90vw, 90rem);
-  --margin: calc(1rem + .3vmax + .2vmin);
+  --margin: calc(1rem + .4vmax + .06vmin);
 
 	--radius: .4rem;
   --box-radius: .8rem;
@@ -747,10 +747,12 @@ body{
 .modal.image .modal-content img{
   max-width: 70vw;
   max-height: 70vh;
+  background: var(--text1);
   box-shadow: 
     0 .8rem 2rem rgba(0, 0, 0, .4),
     0 1rem 2.5rem rgba(0, 0, 0, .2),
     0 1.2rem 3.5rem rgba(0, 0, 0, .1);
+  user-select: none;
 }
 
 .modal-close{
@@ -834,6 +836,12 @@ body{
   font-weight: 900;
   font-style: italic;
   font-display: fallback;
+}
+
+@media (max-width: 1400px){
+  .logo em{
+    display: none;
+  }
 }
 
 
