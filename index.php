@@ -7,21 +7,33 @@ echo
 <<<HTML
 <html lang="zh-Hans">
 	<head>
-		<meta charset="UTF-8">
-		<title>纽北赛道地图</title>
-		<meta name="robots" content="noodp"/>
-		<meta name="author" content="JJ Ying" />
-		<meta name="description" content="一个可交互的纽博格林北环赛道地图，展示了其中弯道的介绍"/>
+    <meta charset="UTF-8">
+    <title>纽北赛道地图</title>
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="JJ Ying" />
+    <meta name="description" content="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="format-detection" content="telephone=no">
 
+    <meta property="og:url" content="https://jjying.com/nurburgring">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="纽北赛道地图">
+    <meta property="og:description" content="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片">
+    <meta property="og:image" content="https://s.anyway.red/nurburgring/og.png">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="纽北赛道地图" />
+    <meta name="twitter:description" content="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片" />
+    <meta name="twitter:site" content="@JJYing" />
+    <meta name="twitter:image" content="https://s.anyway.red/nurburgring/og.png" />
+
     <link rel="preconnect" href="https://s.anyway.red">
     <link rel="preconnect" href="https://anyway.fm">
-		<link rel="stylesheet" href="{$assetsDir}/main.css?v={$lastEditTime}"/>
+    <link rel="stylesheet" href="{$assetsDir}/main.css?v={$lastEditTime}"/>
     <link rel="stylesheet" href="{$assetsDir}/sm/result.css"/>
-		<link rel="icon" href="{$assetsDir}/fav.png">
+    <link rel="icon" href="{$assetsDir}/fav.png">
 
-		<style>[v-cloak],.hidden-area{display: none;}</style>
+    <style>[v-cloak],.hidden-area{display: none;}</style>
 
     <script>
       var _paq = window._paq = window._paq || [];
@@ -39,7 +51,7 @@ echo
 	</head>
 <body>
 <div id="app" :class="showAllCornerNames ? 'show-all-corners' : '' ">
-  <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div>
+  <!-- <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div> -->
   <div class="track-map">
     <div class="inner">
       <svg viewBox="0 0 660 530" class="main-svg" width="6600px" height="5300px">
