@@ -44,7 +44,7 @@ var d = new Vue({
         "y": .634,
         "h": "r",
         "v": "m",
-        "ch": "The Gantry",
+        "ch": "BTG 终点桁架",
       },
       {
         "stx":.47,
@@ -56,7 +56,7 @@ var d = new Vue({
         "y": .818,
         "h": "l",
         "v": "t",
-        "ch": "The Bridge",
+        "ch": "BTG 起点桥",
       },
     ],
     sections: [
@@ -874,7 +874,14 @@ var d = new Vue({
         "ch": "断头台",
         "en": "Gallows Head",
         "de": "Galgenkopf",
-        "more": "曾经是公开处决的绞刑架旧址"
+        "more": "曾经是公开处决的绞刑架旧址",
+        "imgs": [
+          {
+            "src": "galgenkopf-1.jpg",
+            "url": "https://www.petrolart.de/92-Galgenkopf.html",
+            "author": "PetrolArt"
+          },
+        ],
       },
       {
         "st": .853,
@@ -886,7 +893,19 @@ var d = new Vue({
         "ch": "Döttinger Höhe",
         "en": "Dottingen Height",
         "de": "Döttinger Höhe",
-        "more": "名字来自附近的多庭格小镇，严格来说完全没有弯道，是一个整整两公里长的直线。当然，在游客日里大部分普通人能开的赛道布局「BTG」里并不包含这段，BTG 全称「Bridge to Gantry」，Bridge 指的是 Döttinger Höhe 尽头的桥，Gantry 就是出了断头台的一个桁架"
+        "more": "名字来自附近的多庭哥小镇，严格来说不是弯道，是一段整整两公里长的直线。当然，大部分普通业余驾驶员能开的赛道布局「BTG」里并不包含这段，BTG 全称「Bridge to Gantry」，Bridge 指的是 Döttinger Höhe 尽头的桥，Gantry 就是出了断头台的一个桁架",
+        "imgs": [
+          {
+            "src": "dottinger-1.jpg",
+            "url": "https://www.24h-rennen.de/2019/06/22/news-und-stimmen-nach-7h/",
+            "author": "24h-rennen.de"
+          },
+          {
+            "src": "dottinger-2.jpg",
+            "url": "https://www.petrolart.de/70-doettingerhoehe.html",
+            "author": "PetrolArt"
+          },
+        ],
       }, 
       {
         "st": .947,
@@ -898,7 +917,14 @@ var d = new Vue({
         "ch": "安东尼榉木",
         "en": "Anthony’s Beech",
         "de": "Antoniusbuche",
-        "more": "这里曾经有一颗高大的榉树，很有可能是属于 Anthony 这个人了，当然，为了建造赛道，这棵树被砍了"
+        "more": "这里曾经有一颗高大的榉树，很有可能是属于 Anthony 这个人了，当然，为了建造赛道，这棵树被砍了",
+        "imgs": [
+          {
+            "src": "antoniusbuche-1.jpg",
+            "url": "https://www.raceroom.com/en/nordschleife-released/",
+            "author": "RaceRoom"
+          },
+        ],
       }, 
       {
         "st": .966,
@@ -910,12 +936,20 @@ var d = new Vue({
         "ch": "动物园",
         "en": "Animal Garden",
         "de": "Tiergarten",
+        "more": "对于跑 BTG 布局的大部分人来说，这里是赛道开始的第一个开始有挑战性的弯道，其实并不难，但如果是走整个北环布局经历了大直道加速之后来到这里的话就非常考验走线了",
+        "imgs": [
+          {
+            "src": "tiergarten-1.jpg",
+            "url": "https://nring.info/nurburgring-nordschleife-corners/tiergarten/",
+            "author": "nring.info"
+          },
+        ],
       }, 
       {
         "st": .981,
         "ed": .994,
         "x": .419,
-        "y": .899,
+        "y": .91,
         "h": "l",
         "v": "t",
         "ch": "高雨组合弯",
@@ -932,9 +966,22 @@ var d = new Vue({
         "ch": "T13",
         "en": "T13",
         "de": "T13",
+        "more": "这里作为整个赛道的起点，有个 Pit 区和大看台，看台的名字就叫 T13",
+        "imgs": [
+          {
+            "src": "t13-1.jpg",
+            "url": "https://pitlaneitalia.com/2023/07/31/nurburgring-rifornimento-e-zona-riposo-lungo-il-circuito-per-i-guidatori-turisti/",
+            "author": "Pitlaneitalia"
+          },
+          {
+            "src": "t13-2.jpg",
+            "url": "https://www.petrolart.de/24-t13.html",
+            "author": "PetrolArt"
+          },
+        ],
       }, 
     ],
-    aboutContent: "网页设计 & 开发：<a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>参考信息:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· <a target='_blank' href='https://nring.info/nurburgring-nordschleife-corners/'>NRing.info</a><br/>· 键盘车神教教主视频：<a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>纽北每一个弯的名字？</a><br/><br/><strong>页面源码:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
+    aboutContent: "网页设计 & 开发：<a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>参考信息:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· <a target='_blank' href='https://nring.info/nurburgring-nordschleife-corners/'>NRing.info</a><br/>· <a target='_blank' href='https://www.youtube.com/watch?v=-lCR1_cDqTg'>Nürburgring Corner Names Explained</a><br/>· 键盘车神教教主视频：<a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>纽北每一个弯的名字？</a><br/><br/><strong>页面源码:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
     modalContent: "",
     modalType: "text"
   },
