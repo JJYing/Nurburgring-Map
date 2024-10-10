@@ -40,11 +40,23 @@ var d = new Vue({
         "edx":.675,
         "edy":.662,
         "pt": .869,
-        "x": .682,
-        "y": .664,
+        "x": .663,
+        "y": .634,
+        "h": "r",
+        "v": "m",
+        "ch": "The Gantry",
+      },
+      {
+        "stx":.47,
+        "sty":.796,
+        "edx":.479,
+        "edy":.813,
+        "pt": .949,
+        "x": .484,
+        "y": .818,
         "h": "l",
         "v": "t",
-        "ch": "The Gantry",
+        "ch": "The Bridge",
       },
     ],
     sections: [
@@ -73,10 +85,10 @@ var d = new Vue({
       {
         "st":.681,
         "ed":.701,
-        "x":.932,
-        "y":.287,
-        "h": "l",
-        "v": "b",
+        "x":.901,
+        "y":.290,
+        "h": "r",
+        "v": "m",
         "ch": "小水井",
         "en": "Small Water",
         "de": "Brünnchen",
@@ -634,11 +646,23 @@ var d = new Vue({
         "nk": "瞭望塔",
         "en": "High Eight",
         "de": "Hohe Acht",
-        "more": "终于来到了整个赛道海拔最高的地方了，「高八」也是个直译，就是这里这座山的名字，海拔高度超过 700 米。事实上，纽北海拔最高点到最低点的落差超过 300 米"
+        "more": "终于来到了整个赛道海拔最高的地方了，「高八」也是个直译，就是这里这座山的名字，海拔高度超过 700 米。事实上，纽北海拔最高点到最低点的落差超过 300 米",
+        "imgs": [
+          {
+            "src": "hohe-acht-1.jpg",
+            "url": "https://www.petrolart.de/04-hohe8.html",
+            "author": "PetrolArt"
+          },
+          {
+            "src": "hohe-acht-2.jpg",
+            "url": "https://www.eifel.info/a-hohe-acht-mit-dem-kaiser-wilhelm-turm",
+            "author": "eifel.info"
+          },
+        ],
       }, 
       {
-        "st": .634,
-        "ed": .645,
+        "st": .636,
+        "ed": .65,
         "x": .851,
         "y": .154,
         "h": "l",
@@ -649,7 +673,7 @@ var d = new Vue({
         "more": "纽博格林赛道能建成多亏了当时 Eifel 地区的议员 Otto Creuz 博士，而他也用自己妻子的名字 Hedgwig 命名了这个弯道"
       }, 
       {
-        "st": .647,
+        "st": .65,
         "ed": .66,
         "x": .898,
         "y": .188,
@@ -658,7 +682,14 @@ var d = new Vue({
         "ch": "弹跳人",
         "en": "Seesaw Man",
         "de": "Wippermann",
-        "more": "这一段曾经非常颠簸，而且水平方向上也有剧烈的运动"
+        "more": "这一段曾经非常颠簸，而且水平方向上也有剧烈的运动",
+        "imgs": [
+          {
+            "src": "wippermann-1.jpg",
+            "url": "https://press.au.porsche.com/prod/presse_pag/PressResources.nsf/WebResources?OpenView&catF=Wippermann",
+            "author": "Porsche"
+          },
+        ],
       }, 
       {
         "st": .662,
@@ -670,30 +701,56 @@ var d = new Vue({
         "ch": "Eschbach",
         "de": "Eschbach",
         "en": "Ash Brook",
+        "imgs": [
+          {
+            "src": "eschbach-1.jpg",
+            "url": "https://www.locationscout.net/germany/22886-eschbach-nuerburgring-nordschleife",
+            "author": "Marco"
+          },
+        ],        
       }, 
       {
         "st": .692,
         "ed": .701,
-        "x": .917,
-        "y": .324,
+        "x": .919,
+        "y": .325,
         "h": "l",
         "v": "t",
         "ch": "网红弯",
         "de": "",
         "en": "YouTube Corner",
-        "more": "这一段两个连续的右弯一般被叫做小水井（Brünnchen），但更被世人熟知的是其中第二个弯道，因为边上有非常多的人拍照录像，而各类车辆在这里出丑的视频在 YouTube 上实在太火"
+        "more": "这一段两个连续的右弯一般被叫做小水井（Brünnchen），但更被世人熟知的是其中第二个弯道，因为这里经常聚集着很多观众拍照录像，而各类车辆在这里出丑的视频在 YouTube 上已经成了一种赛博咸菜",
+        "imgs": [
+          {
+            "src": "youtube-1.jpg",
+            "url": "https://en.m.wikipedia.org/wiki/File:Nordschleife_Br%C3%BCnnchen_201204061.JPG",
+            "author": "BedaNo1"
+          },
+          {
+            "src": "youtube-2.jpg",
+            "url": "https://www.flickr.com/photos/23405782@N02/3160341491",
+            "author": "japanpower22"
+          },
+        ],
       }, 
       {
         "st": .705,
         "ed": .715,
-        "x": .878,
-        "y": .315,
+        "x": .867,
+        "y": .323,
         "h": "r",
-        "v": "b",
+        "v": "m",
         "ch": "冰弯",
         "en": "Ice Curve",
         "de": "Eiskurve",
-        "more": "这个弯附近的高大树木很多，所以当雨天过后这里经常是整个赛道最后变干的，大家就说这里「和冰面一样滑」，因而得名"
+        "more": "这个弯附近的高大树木很多，所以有一种说法是当雨天过后这里经常是整个赛道最后变干的，大家就说这里「和冰面一样滑」，而另一种说法是这些树木遮蔽了阳光，当冬天结冰的时候这里是最后解冻的",
+        "imgs": [
+          {
+            "src": "eiskurve-1.jpg",
+            "url": "https://press.au.porsche.com/prod/presse_pag/PressResources.nsf/Content?ReadForm&languageversionid=1211264",
+            "author": "Porsche"
+          },
+        ],
       }, 
       {
         "st": .721,
@@ -705,6 +762,18 @@ var d = new Vue({
         "ch": "植物园 1",
         "en": "Pflanzgarten 1",
         "de": "Plant garden 1",
+        "imgs": [
+          {
+            "src": "pflanzgarten-1-2.jpg",
+            "url": "https://press.au.porsche.com/prod/presse_pag/PressResources.nsf/Content?ReadForm&languageversionid=1211266",
+            "author": "Porsche"
+          },
+          {
+            "src": "pflanzgarten-1-1.jpg",
+            "url": "https://en.m.wikipedia.org/wiki/File:Nordschleife_Pflanzgarten.JPG",
+            "author": "BedaNo1"
+          },
+        ],
       }, 
       {
         "st": .746,
@@ -716,6 +785,13 @@ var d = new Vue({
         "ch": "植物园 2",
         "en": "Pflanzgarten 2",
         "de": "Plant garden 2",
+        "imgs": [
+          {
+            "src": "pflanzgarten-2-1.jpg",
+            "url": "https://en.m.wikipedia.org/wiki/File:Nordschleife_Pflanzgarten_II.JPG",
+            "author": "BedaNo1"
+          },
+        ],
       }, 
       {
         "st": .763,
@@ -727,7 +803,24 @@ var d = new Vue({
         "ch": "Stefan-Bellof-S",
         "en": "Stefan Bellof S",
         "de": "Stefan-Bellof-S",
-        "more": "传奇车手 Stefan Bellof 在 1976 年驾驶 C 组保时捷 956 在纽北创造了 6:11.13 的圈速记录，而后来他在这里发生了车祸，所以这个赛段以他命名"
+        "more": "传奇车手 <a href='https://en.wikipedia.org/wiki/Stefan_Bellof' target='_blank'>Stefan Bellof</a> 在 1983 年驾驶 C 组保时捷 956 在纽北创造了 6:11.13 的圈速记录（保持了整整 35 年才被保时捷 919 打破），后来他在这里发生了车祸，所以这个赛段以他命名",
+        "imgs": [
+          {
+            "src": "bellof-1.jpg",
+            "url": "https://www.alamy.com/stock-photo/stefan-bellof-s.html?sortBy=relevant",
+            "author": "alamy"
+          },
+          {
+            "src": "bellof-2.jpg",
+            "url": "https://www.motorsportimages.com/photos/?driver_id=6830&race_type_id=139&location_id=223",
+            "author": "LAT Photographic"
+          },
+          {
+            "src": "bellof-3.jpg",
+            "url": "https://www.elferspot.com/en/magazin/stefan-bellof-the-biggest-talent-that-i-have-ever-seen/",
+            "author": "Porsche"
+          },
+        ],
       },
       {
         "st": .793,
@@ -739,6 +832,18 @@ var d = new Vue({
         "ch": "燕尾",
         "en": "Swallow’s Tail",
         "de": "Schwalbenschwanz",
+        "imgs": [
+          {
+            "src": "schwalbenschwanz-1.jpg",
+            "url": "https://www.petrolart.de/74-schwalbenschwanz.html",
+            "author": "PetrolArt"
+          },
+          {
+            "src": "schwalbenschwanz-2.jpg",
+            "url": "https://www.24h-rennen.de/camping-schwalbenschwanz/",
+            "author": "24h-rennen.de"
+          },
+        ],
       },
       {
         "st": .815,
@@ -750,6 +855,14 @@ var d = new Vue({
         "ch": "小旋转木马",
         "en": "Mini Carousel",
         "de": "Kleine Karussell",
+        "more": "虽然看名字就知道是一个小号的旋转木马弯，但因为转弯角度更小，斜坡形式不一样，进弯速度也不一样，所以其实是两种完全不同的开法",
+        "imgs": [
+          {
+            "src": "kleines-1.jpg",
+            "url": "https://www.flickr.com/photos/wilson_wong/33695169874/",
+            "author": "Wilson Wong"
+          },
+        ],
       },
       {
         "st": .834,
@@ -773,6 +886,7 @@ var d = new Vue({
         "ch": "Döttinger Höhe",
         "en": "Dottingen Height",
         "de": "Döttinger Höhe",
+        "more": "名字来自附近的多庭格小镇，严格来说完全没有弯道，是一个整整两公里长的直线。当然，在游客日里大部分普通人能开的赛道布局「BTG」里并不包含这段，BTG 全称「Bridge to Gantry」，Bridge 指的是 Döttinger Höhe 尽头的桥，Gantry 就是出了断头台的一个桁架"
       }, 
       {
         "st": .947,
