@@ -175,7 +175,6 @@ var d = new Vue({
         "ch": "大橡树",
         "de": "Hoheichen",
         "en": "High Oaks",
-        // "nk": "龙哥不杀弯",
         "imgs": [
           {
             "src": "hoheichen-1.jpg",
@@ -184,37 +183,46 @@ var d = new Vue({
           },
         ],
       },
-      // {
-      //   "st": .077,
-      //   "ed": .089,
-      //   "x": .192,
-      //   "y": .810,
-      //   "h": "l",
-      //   "v": "t",
-      //   "ch": "小桥直线",
-      //   "nk": "小桥直线"
-      // },
       {
-        "st": .085,
-        "ed": .117,
-        "x": .128,
-        "y": .763,
-        "h": "r",
-        "v": "m",
-        "ch": "飞机场",
-        "de": "Flugplatz",
-        "en": "Airfield",
-        "more": "虽然很多赛车在这个高速弯起飞，但事实上这里叫「飞机场」的原因是在这个弯道边上以前是个飞机场",
+        "st": .08,
+        "ed": .116,
+        "x": .172,
+        "y": .78,
+        "h": "l",
+        "v": "t",
+        "ch": "Quiddelbacher Höhe",
+        "de": "Quiddelbacher Höhe",
+        "en": "Quiddelbach Height",
+        "more": "很多人会把这一段和接下来的飞机场搞混，但事实上当年 GTR 起飞所在的这个右弯和之前的大直道都是以边上村庄 Quiddelbacher 命名的",
         "imgs": [
           {
-            "src": "flugplatz-1.jpg",
-            "url": "https://smallblogv8.blogspot.com/2015/08/the-nurburgring-nordschleife-is-finally.html",
-            "author": "Small Blog V8"
+            "src": "quiddelbacher-2.jpg",
+            "author": "dh-ontour.de",
+            "url": "https://www.dh-ontour.de/nuerburgring/runde/eine_runde04.htm"
           },
           {
             "src": "flugplatz-2.jpg",
             "author": "The Mirror",
             "url": "https://www.mirror.co.uk/sport/gallery/nissan-gt-r-nismo-horror-5417893"
+          },
+        ],
+      },
+      {
+        "st": .117,
+        "ed": .127,
+        "x": .133,
+        "y": .714,
+        "h": "r",
+        "v": "m",
+        "ch": "飞机场",
+        "de": "Flugplatz",
+        "en": "Airfield",
+        "more": "2015 年改造之前这里有个坡，的确容易让车腾空，但事实上这里叫「飞机场」的原因是在这个弯道边上以前有个飞机场",
+        "imgs": [
+          {
+            "src": "flugplatz-1.jpg",
+            "url": "https://smallblogv8.blogspot.com/2015/08/the-nurburgring-nordschleife-is-finally.html",
+            "author": "Small Blog V8"
           },
         ],
       },
@@ -387,10 +395,11 @@ var d = new Vue({
         "y": .170,
         "h": "r",
         "v": "b",
-        "ch": "Spiegelkurve",
+        "ch": "镜像双子",
+        "nk": "镜像双子",
         "en": "Mirror Curve",
         "de": "Spiegelkurve",
-        "more": "这是一个很有意思的名字，虽然根据单词的意思以及这个 Chicane 的布局有时候被叫做「镜像」，但其实这是纽北众多民间名字之一，它被大家叫「Mirror Curve」的时候赛道布局和现如今很不一样，当时此处左侧的树丛离赛道非常贴近，以至于很多赛车都会在这次蹭坏左侧反光镜，所以得名",
+        "more": "这是一个很有意思的名字，虽然根据单词的意思以及这个 Chicane 的布局，Mirror 被翻译成了「镜像」，但其实这是纽北众多民间名字之一，它被大家叫「Mirror Curve」的时候赛道布局和现如今很不一样，当时此处左侧的树丛离赛道非常贴近，以至于很多赛车都会在这次蹭坏左侧反光镜，所以得名",
         "imgs": [
           {
             "src": "spiegelkurve-1.jpg",
@@ -453,6 +462,7 @@ var d = new Vue({
         "nk": "小镇桥",
         "en": "Wide Part",
         "de": "Breidscheid",
+        "more": "整个赛道海拔最低的地方差不多就在这里，大概 320 米左右，事实上，纽北海拔最高点到最低点的落差超过 300 米",
         "imgs": [
           {
             "src": "breidscheid-1.jpg",
@@ -597,7 +607,7 @@ var d = new Vue({
         "ch": "陡坡",
         "en": "Steep Section",
         "de": "Steilstrecke",
-        "more": "这个弯道是一个半径很大的回头弯，一点儿都不陡，「陡坡」这个直译名字会觉得很奇怪，其实是因为这里已经改建过了，早期这里就是个为了测试汽车爬坡性能的陡坡",
+        "more": "这个弯道是一个半径很大的回头弯，一点儿都不陡，「陡坡」这个直译名字会觉得很奇怪，其实是因为以前这里有个测试用的陡坡可以作为岔路跳过旋转木马直接去到高八那段，后来因为太陡很多车溜坡产生安全问题就封闭了",
         "imgs": [
           {
             "src": "steilstrecke-1.jpg",
@@ -644,9 +654,9 @@ var d = new Vue({
         "v": "b",
         "ch": "高八",
         "nk": "瞭望塔",
-        "en": "High Eight",
+        "en": "High Attention",
         "de": "Hohe Acht",
-        "more": "终于来到了整个赛道海拔最高的地方了，「高八」也是个直译，就是这里这座山的名字，海拔高度超过 700 米。事实上，纽北海拔最高点到最低点的落差超过 300 米",
+        "more": "「高八」是这里附近的一座山，本身高 700 多米但其实离这个弯道有点儿距离，这里也并不是赛道最高的地方，「高八」这名字是个直译，但其实并不准确，虽然 Acht 在德语里是「8」的意思，但其实更准确的翻译是 Attention",
         "imgs": [
           {
             "src": "hohe-acht-1.jpg",
@@ -874,7 +884,7 @@ var d = new Vue({
         "ch": "断头台",
         "en": "Gallows Head",
         "de": "Galgenkopf",
-        "more": "曾经是公开处决的绞刑架旧址",
+        "more": "中世纪时，这里是执行公开处决的绞刑架旧址",
         "imgs": [
           {
             "src": "galgenkopf-1.jpg",
@@ -966,7 +976,7 @@ var d = new Vue({
         "ch": "T13",
         "en": "T13",
         "de": "T13",
-        "more": "这里作为整个赛道的起点，有个 Pit 区和大看台，看台的名字就叫 T13",
+        "more": "这里作为整个赛道的起点，有个 Pit 区和大看台，看台的名字就叫 T13，同时这里也差不多是整个赛道海拔最高的地方",
         "imgs": [
           {
             "src": "t13-1.jpg",
@@ -1081,10 +1091,6 @@ window.addEventListener("keyup",function(e){
       d.showModal = false
   }
 })
-
-if(document.hasFocus() && focusedEle != "TEXTAREA" && focusedEle != "INPUT" && focusedEle != "SELECT" && e.key == key){
-  call()
-}
 
 document.querySelector('.track-map > .inner').addEventListener('mousemove', function(event) {
   const innerRect = this.getBoundingClientRect();
