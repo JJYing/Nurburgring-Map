@@ -921,6 +921,7 @@ body{
   }
   .desc{
     border-top: 1px solid var(--bg2);
+    border-left: none;
   }
   .logo > .inner{
     padding: var(--margin);
@@ -943,6 +944,7 @@ body{
   .controls{
     font-size: .75rem;
     flex: 0 0 auto;
+    padding-bottom: calc(var(--margin) * 2);
   }
 
   .modal{
