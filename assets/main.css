@@ -531,13 +531,13 @@ body{
   margin-right: 1em;
 }
 .desc .secondary .extra{
-  display: inline-flex;
+  /* display: inline-flex; */
   justify-content: flex-start; align-items: center;
 }
 .desc .secondary svg{
   height: .7em;
   display: inline-block;
-  filter: grayscale(1);
+  /* filter: grayscale(1); */
   opacity: .35;
   margin-right: .4em;
   border: 1px solid var(--bg3);
@@ -929,7 +929,7 @@ body{
     font-size: 1.5rem;
   }
   .desc .secondary{
-    font-size: 1rem;
+    font-size: .8rem;
   }
   .desc .more{
     font-size: .75rem;
@@ -942,6 +942,7 @@ body{
 
   .controls{
     font-size: .75rem;
+    flex: 0 0 auto;
   }
 
   .modal{
