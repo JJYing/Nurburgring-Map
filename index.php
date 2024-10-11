@@ -2,6 +2,9 @@
 header("Cache-Control: no-cache");
 require_once ("env.php");
 $lastEditTime = date ("jhi", filemtime(__FILE__));
+$locale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+// error_log(print_r($locale, TRUE));
+
 
 echo
 <<<HTML
@@ -146,10 +149,13 @@ echo
                 <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
                 <path d="M30,0 v30 M0,15 h60" stroke="#646464" stroke-width="6"/>
               </g>
-              </svg> {{currentCorner.en}}
-            </span>
+            </svg> {{currentCorner.en}}
+          </span>
         </div>
         <div class="more skew-n" v-if="currentCorner.more" v-html="currentCorner.more"></div>
+      </div>
+      <div class="inner desc-msg" v-if="p == 1" v-cloak>
+        <div class="ending skew-n" v-if="p > 0.999">The End<div class='btn skew-p' @click="setP(0.001)"><div class='skew-n title-font'>回到起点</div></div></div>
       </div>
       <div class="thumbs" v-if="currentCorner && currentCorner.imgs" v-cloak>
         <div class="thumb" v-for="img in currentCorner.imgs" :class="img.url ? 'has-author' : '' ">

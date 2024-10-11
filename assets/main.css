@@ -104,14 +104,14 @@ a:hover{
 
 /*~Btns*/
 .btn{
-	background: #345;
-	color: #fff;
+	background: var(--bg1);
+	color: var(--text1);
 	text-decoration: none;
 	display: inline-block;
 	padding: .4em .7em;
-	font-weight: var(--bold);
-	border: 2px solid #345;
-	border-radius: var(--radius);
+	font-weight: 700;
+	border: 2px solid var(--text1);
+	border-radius: .3em;
 	transition: var(--transition-out);
 	cursor: pointer;
 	backface-visibility: hidden;
@@ -120,24 +120,22 @@ a:hover{
 	font-family: inherit;
 	line-height: 1.2;
 	outline: none;
-	transform: scale(1.008);
 	transform-origin: 50% 50%;
 	touch-action: manipulation;
 }
+.btn.skew-p{
+  border-radius: .4em .2em .4em .2em;
+}
 .primary-btn{
-	background: var(--main);
-	color: #000;
-	border-color: var(--main);
 }
 .btn:hover{
 	transition: var(--transition);
 	text-decoration: none;
-	transform: scale(1.05);
+	/* transform: scale(1.05); */
 	background: var(--main);
-	/* color: #fff; */
+	color: var(--bg1);
 	border-color: var(--main);
 	outline: none;
-	filter: brightness(1.1);
 }
 .btn:active{
 	filter: brightness(.7)contrast(1.3);
@@ -153,7 +151,6 @@ a:hover{
 body{
   height: 8000vh;
 }
-
 #app{
   display: grid;
 	width: 100vw; height: 100vh;
@@ -551,6 +548,24 @@ body{
   line-height: 1.65;
   padding-left: .3em;
   animation-delay: calc(var(--duration) / 7 * 4);
+}
+.desc-msg{
+  align-self: stretch;
+}
+.ending{
+  font-size: calc(2rem + .4vmin + .3vmax);
+  font-weight: 700;
+  color: var(--text1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center; align-items: center;
+  flex-wrap: wrap;
+  animation-delay: calc(var(--duration) / 7 * 2);
+  font-style: italic;
+}
+.ending .btn{
+  font-size: .5em;
+  margin-top: .3em;
 }
 
 .thumbs{
