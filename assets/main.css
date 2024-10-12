@@ -890,7 +890,7 @@ body{
 }
 
 @media (max-width: 1400px){
-  .logo em{
+  .logo span{
     display: none;
   }
 }
@@ -901,15 +901,17 @@ body{
   #app{
     grid-template-areas: "map" "desc";
     --angle: 0deg;
-    grid-template-rows: 60vh 40vh;
+    grid-template-rows: 55vh 45vh;
     grid-template-columns: 1fr;
     --margin: 1.5rem;
   }
   .logo{
     position: absolute;
-    height: 5rem;
-    top: -60vh; left: 0;
+    height: 3.5rem;
+    top: -55vh; left: 0;
     background: var(--bg1);
+    display: flex;
+    justify-content: center; align-items: center;
   }
   .track-map{
     grid-area: map;
@@ -920,13 +922,13 @@ body{
     transition: var(--transition-out);
   }
   &.scrolled .track-map{
-    padding-top: 5rem;
+    padding-top: 3.5rem;
     transition: var(--transition);
     scale: 1;
   }
   .track-map > .inner{
     /* width: 100vw; */
-    max-width: 92vw; max-height: 60vh;
+    max-width: 92vw; max-height: 55vh;
   }
   .msg{
     translate: 0 40vh;
@@ -939,7 +941,13 @@ body{
     border-left: none;
   }
   .logo > .inner{
+    padding: 0 var(--margin);
+  }
+  .corner-info{
     padding: var(--margin);
+  }
+  .corner-info > .inner{
+    padding-top: 0;
   }
   .desc .primary{
     font-size: 1.5rem;
@@ -959,7 +967,7 @@ body{
   .controls{
     font-size: .75rem;
     flex: 0 0 auto;
-    padding-bottom: calc(var(--margin) * 2);
+    padding: var(--margin) var(--margin) calc(var(--margin) * 2);
   }
 
   .modal{
