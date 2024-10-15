@@ -2,12 +2,33 @@
 header("Cache-Control: no-cache");
 require_once ("env.php");
 $lastEditTime = date ("jhi", filemtime(__FILE__));
-$locale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-// error_log(print_r($locale, TRUE));
+
+$acceptLanguage = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+$languages = explode(',', $acceptLanguage);
+$zhLanguages = [];
+$lang = "en";
+foreach($languages as $lang){
+  if(strpos(trim($lang), 'zh-') === 0){
+    $zhLanguages[] = $lang;
+  }
+}
+if(!empty($zhLanguages)) $lang = "cn";
+if(isset($_GET['lang']) && $_GET['lang'] == "cn") $lang = "cn";
+if(isset($_GET['lang']) && $_GET['lang'] == "en") $lang = "en";
+
+if($lang == "cn"){
+  $extraHead = "";
+  $jsLang = "cn";
+}
+else{
+  $extraHead = "";
+  $jsLang = "en";
+}
 
 
 echo
 <<<HTML
+<!DOCTYPE HTML>
 <html lang="zh-Hans">
 	<head>
     <meta charset="UTF-8">
@@ -33,6 +54,7 @@ echo
     <link rel="preconnect" href="https://s.anyway.red">
     <link rel="preconnect" href="https://anyway.fm">
     <link rel="stylesheet" href="{$assetsDir}/main.css?v={$lastEditTime}"/>
+    {$extraHead}
     <link rel="stylesheet" href="{$assetsDir}/sm/result.css"/>
     <link rel="icon" href="{$assetsDir}/fav.png">
 
@@ -53,7 +75,7 @@ echo
 
 	</head>
 <body>
-<div id="app" :class="showAllCornerNames ? 'show-all-corners' : '' ">
+<div id="app" :class="[showAllCornerNames ? 'show-all-corners' : '', lang ]">
   <!-- <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div> -->
   <div class="track-map">
     <div class="inner">
@@ -91,17 +113,21 @@ echo
         {{c.ch}}
       </div>
       <div v-for="c in corners" class="corner-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '' ]" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP( (c.st + c.ed) / 2)">
-        {{c.ch}}
+        <template v-if="lang == 'cn'">{{c.ch}}</template>
+        <template v-if="lang == 'en'">{{c.en}}</template>
       </div>
 
       <div class="mid " v-cloak>
 
         <div class="msg" v-if="p == 0">
           <div class="inner" v-if="p == 0" v-cloak>
-            <p class="title-font msg-title">纽北赛道地图</p>
-            <p><a href="https://zh.wikipedia.org/zh-hans/%E7%BA%BD%E5%8D%9A%E6%A0%BC%E6%9E%97%E8%B5%9B%E9%81%93" target="_blank">纽博格林赛道</a>（德语：Nürburgring）修筑于 1920 年代，由于跑道长度非常长、地形复杂充满挑战性，被认为是世界上最严苛的竞速赛道，其中的北环也被俗称为“纽北”，又叫“绿色地狱”。这里很多弯道都有独特的名字和故事，通过本地图可以方便爱好者学习。</p>
+            <p class="title-font msg-title" v-if="lang == 'cn'">纽北赛道地图</p>
+            <p class="title-font msg-title" v-if="lang == 'en'">Nürburgring Map</p>
+
+            <p v-if="lang == 'cn'"><a href="https://zh.wikipedia.org/zh-hans/%E7%BA%BD%E5%8D%9A%E6%A0%BC%E6%9E%97%E8%B5%9B%E9%81%93" target="_blank">纽博格林赛道</a>（德语：Nürburgring）修筑于 1920 年代，由于跑道非常长、地形复杂充满挑战性，被认为是世界上最严苛的竞速赛道，其中的北环俗称为“纽北”，又叫“绿色地狱”。这里很多弯道都有独特的名字和故事，通过本地图可以方便爱好者学习。</p>
+            <p v-if="lang == 'en'"><a href="https://en.wikipedia.org/wiki/N%C3%BCrburgring" target="_blank">Nürburgring</a> is a German race track built in 1920s, and the North Loop of it</p>
             <div class="indicator">
-              <div>向下滚动或点击弯道名查看地图</div>
+              <div>Scroll or click the corner to start</div>
               <svg viewBox="0 0 100 100" class="scroll-arrow">
                 <path d="M10 20l40 30l40 -30"/>
                 <path d="M10 60l40 30l40 -30"/>
@@ -119,12 +145,17 @@ echo
   <div class="desc skew-p">
     <div class="logo">
       <div class="inner skew-n">
-        <span class="title-font">纽<em>博格林</em>北<em>环</em>赛道地图</span><img src="{$assetsDir}/logo.svg" alt="纽北赛道地图"/>
+        <span class="title-font" v-if="lang == 'cn'">纽<span>博格林</span>北<span>环</span>赛道地图</span>
+        <span class="title-font" v-else>Nurburgring Map</span>
+        <img src="{$assetsDir}/logo.svg" alt="纽北赛道地图"/>
       </div>
     </div>
     <div class="corner-info">
       <div class="inner" v-if="currentCorner && p > 0" v-cloak>
-        <div class="primary skew-n title-font" v-if="currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' " v-cloak>{{currentCorner.ch}}</div>
+
+        <div class="primary skew-n title-font" v-if="lang == 'cn' && currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' " v-cloak>{{currentCorner.ch}}</div>
+        <div class="primary skew-n" v-if="lang == 'en' && currentCorner.en" v-cloak>{{currentCorner.en}}</div>
+
         <div class="nickname qt skew-n title-font" v-if="currentCorner.nk && currentCorner.ch != currentCorner.nk" v-cloak>{{currentCorner.nk}}</div>
         <div class="secondary skew-n" v-if="currentCorner.en" v-cloak>
           <span class="extra" title="德文" v-if="currentCorner.de">
@@ -152,10 +183,16 @@ echo
             </svg> {{currentCorner.en}}
           </span>
         </div>
-        <div class="more skew-n" v-if="currentCorner.more" v-html="currentCorner.more"></div>
+        <div class="more skew-n" v-if="lang == 'cn' && currentCorner.more" v-html="currentCorner.more"></div>
       </div>
       <div class="inner desc-msg" v-if="p == 1" v-cloak>
-        <div class="ending skew-n" v-if="p > 0.999">The End<div class='btn skew-p' @click="setP(0.001)"><div class='skew-n title-font'>回到起点</div></div></div>
+        <div class="ending skew-n" v-if="p > 0.999">
+          The End
+          <div class='btn skew-p' @click="setP(0.001)">
+            <div class='skew-n title-font' v-if="lang == 'cn'">回到起点</div>
+            <div class='skew-n' v-else>Start Again</div>
+          </div>
+        </div>
       </div>
       <div class="thumbs" v-if="currentCorner && currentCorner.imgs" v-cloak>
         <div class="thumb" v-for="img in currentCorner.imgs" :class="img.url ? 'has-author' : '' ">
@@ -166,9 +203,14 @@ echo
     </div>
     <div class="controls">
       <div class="inner skew-n">
+      <div class="toggle-group" :class=" lang=='cn' ? 'on' : 'off' " @click="toggleLang()"><span>中文</span><div class="toggle"></div></div>
         <div class="toggle-group" :class=" showAllCornerNames ? 'on' : 'off' " @click="showAllCornerNames = !showAllCornerNames"><span>显示所有弯道</span><div class="toggle"></div></div>
         <div class="toggle-group" :class=" darkMode ? 'on' : 'off' " @click="toggleDarkMode()"><span>深色模式</span><div class="toggle"></div></div>
-        <div @click="openModal('text')" role="button" class="link">关于本站</div>
+        
+        <div @click="openModal('text')" role="button" class="link">
+          <template v-if="lang = 'cn' ">关于本站</template>
+          <template v-if="lang = 'en' ">About</template>
+        </div>
       </div>
     </div>
   </div>
@@ -200,10 +242,12 @@ echo
   <div class="all-names title-font"><template v-for="c in corners" >{{c.ch}} <template v-if="c.nk && c.ch != c.nk">{{c.nk}} </template></template> </div>
 </div>
 
+<script>
+  var lang = '{$jsLang}'
+</script>
 <script src='{$assetsDir}/vue-2.6.11.min.js'></script>
 <script src="{$assetsDir}/main.js?v={$lastEditTime}"></script>
 </body>
 </html>
-
 HTML;
 ?>

@@ -9,6 +9,7 @@ var d = new Vue({
     h: 530,
     mX: 0,
     mY: 0,
+    lang: lang,
     showModal: false,
     showAllCornerNames: false,
     darkMode: false,
@@ -234,6 +235,7 @@ var d = new Vue({
         "h": "l",
         "v": "m",
         "ch": "Kottenborn",
+        "en": "Kottenborn",
         "de": "Kottenborn",
         "more": "以附近的小镇命名，但最近也没人这么叫了，都直呼「飞机场和瑞典十字之间那个左弯」",
         "imgs": [
@@ -484,7 +486,7 @@ var d = new Vue({
         "h": "r",
         "v": "t",
         "ch": "水磨坊",
-        "en": "Water mill",
+        "en": "Water Mill",
         "de": "Ex Mühle",
         "more": "又是一个顾名思义的弯道，相传以前这里就有一个磨坊，而赛道本来也打算把起点设置在这里，但磨坊主人拒绝把他的这块地用来建造赛道主看台所以作罢",
         "imgs": [
@@ -498,10 +500,10 @@ var d = new Vue({
       {
         "st": .408,
         "ed": .417,
-        "x": .463,
-        "y": .115,
+        "x": .443,
+        "y": .09,
         "h": "r",
-        "v": "t",
+        "v": "b",
         "ch": "劳达",
         "en": "Lauda Links",
         "de": " Lauda-Links",
@@ -998,6 +1000,14 @@ var d = new Vue({
   methods: {
     innerModal: function(e){
       e.stopPropagation()
+    },
+    toggleLang(){
+      if(this.lang == "en"){
+        this.lang = "cn"
+      }
+      else{
+        this.lang = "en"
+      }
     },
     toggleDarkMode(){
       var root = document.querySelector(':root')
