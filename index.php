@@ -25,10 +25,9 @@ else{
   $jsLang = "en";
 }
 
-
 echo
 <<<HTML
-<!DOCTYPE HTML>
+<!-- <!DOCTYPE HTML> -->
 <html lang="zh-Hans">
 	<head>
     <meta charset="UTF-8">
@@ -107,10 +106,12 @@ echo
         <use href="#track" class="progress"/>
       </svg>
       <div v-for="c in bridges" class="corner-name bridge-name" :class="[ (c.pt < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.pt - 0.001 < p && p < c.pt + 0.001 ? 'highlighted' : '']" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP(c.pt)">
-        {{c.ch}}
+        <template v-if="lang == 'cn'">{{c.ch}}</template>
+        <template v-if="lang == 'en'">{{c.en}}</template>
       </div>
       <div v-for="c in sections" class="corner-name section-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '']" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP((c.st + c.ed) / 2)">
-        {{c.ch}}
+        <template v-if="lang == 'cn'">{{c.ch}}</template>
+        <template v-if="lang == 'en'">{{c.en}}</template>
       </div>
       <div v-for="c in corners" class="corner-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '' ]" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP( (c.st + c.ed) / 2)">
         <template v-if="lang == 'cn'">{{c.ch}}</template>
@@ -127,7 +128,8 @@ echo
             <p v-if="lang == 'cn'"><a href="https://zh.wikipedia.org/zh-hans/%E7%BA%BD%E5%8D%9A%E6%A0%BC%E6%9E%97%E8%B5%9B%E9%81%93" target="_blank">纽博格林赛道</a>（德语：Nürburgring）修筑于 1920 年代，由于跑道非常长、地形复杂充满挑战性，被认为是世界上最严苛的竞速赛道，其中的北环俗称为“纽北”，又叫“绿色地狱”。这里很多弯道都有独特的名字和故事，通过本地图可以方便爱好者学习。</p>
             <p v-if="lang == 'en'"><a href="https://en.wikipedia.org/wiki/N%C3%BCrburgring" target="_blank">Nürburgring</a> is a German race track built in 1920s, and the North Loop of it</p>
             <div class="indicator">
-              <div>Scroll or click the corner to start</div>
+              <div v-if="lang == 'cn'">向下滚动或点击弯道名查看地图</div>
+              <div v-if="lang == 'en'">Scroll or click the corner to start</div>
               <svg viewBox="0 0 100 100" class="scroll-arrow">
                 <path d="M10 20l40 30l40 -30"/>
                 <path d="M10 60l40 30l40 -30"/>
@@ -146,7 +148,7 @@ echo
     <div class="logo">
       <div class="inner skew-n">
         <span class="title-font" v-if="lang == 'cn'">纽<span>博格林</span>北<span>环</span>赛道地图</span>
-        <span class="title-font" v-else>Nurburgring Map</span>
+        <span class="title-font" v-if="lang == 'en'">Nurburgring Map</span>
         <img src="{$assetsDir}/logo.svg" alt="纽北赛道地图"/>
       </div>
     </div>
@@ -154,7 +156,7 @@ echo
       <div class="inner" v-if="currentCorner && p > 0" v-cloak>
 
         <div class="primary skew-n title-font" v-if="lang == 'cn' && currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' " v-cloak>{{currentCorner.ch}}</div>
-        <div class="primary skew-n" v-if="lang == 'en' && currentCorner.en" v-cloak>{{currentCorner.en}}</div>
+        <!-- <div class="primary skew-n" v-if="lang == 'en' && currentCorner.en" v-cloak>{{currentCorner.en}}</div> -->
 
         <div class="nickname qt skew-n title-font" v-if="currentCorner.nk && currentCorner.ch != currentCorner.nk" v-cloak>{{currentCorner.nk}}</div>
         <div class="secondary skew-n" v-if="currentCorner.en" v-cloak>
@@ -190,20 +192,20 @@ echo
           The End
           <div class='btn skew-p' @click="setP(0.001)">
             <div class='skew-n title-font' v-if="lang == 'cn'">回到起点</div>
-            <div class='skew-n' v-else>Start Again</div>
+            <div class='skew-n' v-if="lang == 'en'">Start Again</div>
           </div>
         </div>
       </div>
       <div class="thumbs" v-if="currentCorner && currentCorner.imgs" v-cloak>
         <div class="thumb" v-for="img in currentCorner.imgs" :class="img.url ? 'has-author' : '' ">
           <img class="skew-n" :src=" 'https://s.anyway.red/nurburgring/' + img.src + '!/fh/300/quality/68/progressive/true/ignore-error/true' " loading="lazy" @click="openModal('image', img)"/>
-          <a class="thumb-source" v-if="img.url" :href="img.url" target="_blank" title="查看照片来源"><span class="skew-n">{{img.author}}<span></a>
+          <a class="thumb-source" v-if="img.url" :href="img.url" target="_blank" title="查看照片来源"><span class="skew-n">{{img.author}}</span></a>
         </div>
       </div>
     </div>
     <div class="controls">
       <div class="inner skew-n">
-      <div class="toggle-group" :class=" lang=='cn' ? 'on' : 'off' " @click="toggleLang()"><span>中文</span><div class="toggle"></div></div>
+      <!-- <div class="toggle-group" :class=" lang=='cn' ? 'on' : 'off' " @click="toggleLang()"><span>中文</span><div class="toggle"></div></div> -->
         <div class="toggle-group" :class=" showAllCornerNames ? 'on' : 'off' " @click="showAllCornerNames = !showAllCornerNames"><span>显示所有弯道</span><div class="toggle"></div></div>
         <div class="toggle-group" :class=" darkMode ? 'on' : 'off' " @click="toggleDarkMode()"><span>深色模式</span><div class="toggle"></div></div>
         

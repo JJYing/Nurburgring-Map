@@ -1098,7 +1098,7 @@ updatePageHeight()
 
 window.addEventListener("keyup",function(e){
   if(e.key === "Escape") {
-      d.showModal = false
+    d.showModal = false
   }
 })
 
