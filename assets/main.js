@@ -1001,14 +1001,14 @@ var d = new Vue({
     innerModal: function(e){
       e.stopPropagation()
     },
-    toggleLang(){
-      if(this.lang == "en"){
-        this.lang = "cn"
-      }
-      else{
-        this.lang = "en"
-      }
-    },
+    // toggleLang(){
+    //   if(this.lang == "en"){
+    //     this.lang = "cn"
+    //   }
+    //   else{
+    //     this.lang = "en"
+    //   }
+    // },
     toggleDarkMode(){
       var root = document.querySelector(':root')
       this.darkMode =!this.darkMode
