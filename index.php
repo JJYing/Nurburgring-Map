@@ -105,16 +105,28 @@ echo
         <use href="#track" class="progress"/>
       </svg>
       <div v-for="c in bridges" class="corner-name bridge-name" :class="[ (c.pt < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.pt - 0.001 < p && p < c.pt + 0.001 ? 'highlighted' : '']" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP(c.pt)">
-        <template v-if="lang == 'cn'">{{c.ch}}</template>
-        <template v-if="lang == 'en'">{{c.en}}</template>
+        <div>
+            <div>
+              <template v-if="lang == 'cn'">{{c.ch}}</template>
+              <template v-if="lang == 'en'">{{c.en}}</template>
+            </div>
+        </div>
       </div>
       <div v-for="c in sections" class="corner-name section-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '']" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP((c.st + c.ed) / 2)">
-        <template v-if="lang == 'cn'">{{c.ch}}</template>
-        <template v-if="lang == 'en'">{{c.en}}</template>
+        <div>
+            <div>
+              <template v-if="lang == 'cn'">{{c.ch}}</template>
+              <template v-if="lang == 'en'">{{c.en}}</template>
+            </div>
+        </div>
       </div>
       <div v-for="c in corners" class="corner-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '' ]" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP( (c.st + c.ed) / 2)">
-        <template v-if="lang == 'cn'">{{c.ch}}</template>
-        <template v-if="lang == 'en'">{{c.en}}</template>
+        <div>
+            <div>
+              <template v-if="lang == 'cn'">{{c.ch}}</template>
+              <template v-if="lang == 'en'">{{c.en}}</template>
+            </div>
+        </div>
       </div>
 
       <div class="mid " v-cloak>
@@ -124,7 +136,7 @@ echo
             <p class="title-font msg-title" v-if="lang == 'cn'">纽北赛道地图</p>
             <p class="title-font msg-title" v-if="lang == 'en'">Nürburgring Map</p>
             <p v-if="lang == 'cn'"><a href="https://zh.wikipedia.org/zh-hans/%E7%BA%BD%E5%8D%9A%E6%A0%BC%E6%9E%97%E8%B5%9B%E9%81%93" target="_blank">纽博格林赛道</a>（德语：Nürburgring）修筑于 1920 年代，由于跑道非常长、地形复杂充满挑战性，被认为是世界上最严苛的竞速赛道，其中的北环俗称为“纽北”，又叫“绿色地狱”。这里很多弯道都有独特的名字和故事，通过本地图可以方便爱好者学习。</p>
-            <p v-if="lang == 'en'"><a href="https://en.wikipedia.org/wiki/N%C3%BCrburgring" target="_blank">Nürburgring</a> is a German race track built in 1920s, and the North Loop of it</p>
+            <p v-if="lang == 'en'"><a href="https://en.wikipedia.org/wiki/N%C3%BCrburgring" target="_blank">Nürburgring</a> is a German race track built in 1920s, and the North Loop(Nordschleife) of it is very famouse and challenging for racers around the world, through this interactive map you can learn the names of the corners in Nürburgring</p>
             <div class="indicator">
               <div v-if="lang == 'cn'">向下滚动或点击弯道名查看地图</div>
               <div v-if="lang == 'en'">Scroll or click the corner to start</div>
@@ -146,7 +158,7 @@ echo
     <div class="logo">
       <div class="inner skew-n">
         <span class="title-font" v-if="lang == 'cn'">纽<span>博格林</span>北<span>环</span>赛道地图</span>
-        <span class="title-font" v-if="lang == 'en'">Nurburgring Map</span>
+        <span class="title-font" v-if="lang == 'en'">Nürburgring Map</span>
         <img src="{$assetsDir}/logo.svg" alt="纽北赛道地图"/>
       </div>
     </div>
@@ -156,14 +168,14 @@ echo
         <div class="primary skew-n" v-if="lang == 'en' && currentCorner.en" v-cloak>{{currentCorner.en}}</div>
         <div class="nickname qt skew-n title-font" v-if="lang == 'cn' && currentCorner.nk && currentCorner.ch != currentCorner.nk" v-cloak>{{currentCorner.nk}}</div>
         <div class="secondary skew-n" v-if="currentCorner.en" v-cloak>
-          <span class="extra" title="德文" v-if="currentCorner.de">
+          <span class="extra" v-if="currentCorner.de">
             <svg viewBox="0 0 5 3" class="skew-p">
               <rect id="black_stripe" width="5" height="3" y="0" x="0" fill="#000"/>
               <rect id="red_stripe" width="5" height="2" y="1" x="0" fill="#6C6C6C"/>
               <rect id="gold_stripe" width="5" height="1" y="2" x="0" fill="#DADADA"/>
             </svg> {{currentCorner.de}}
           </span>
-          <span class="extra"  title="英文" v-if="currentCorner.en">
+          <span class="extra" v-if="lang == 'cn' && currentCorner.en">
             <svg viewBox="0 0 60 30" class="skew-p">
               <clipPath id="s">
                 <path d="M0,0 v30 h60 v-30 z"/>
@@ -181,10 +193,16 @@ echo
             </svg> {{currentCorner.en}}
           </span>
         </div>
-        <div class="more skew-n" v-if="currentCorner.more" v-html="currentCorner.more"></div>
+        <div class="more skew-n" v-if="lang == 'cn' && currentCorner.more" v-html="currentCorner.more"></div>
       </div>
       <div class="inner desc-msg" v-if="p == 1" v-cloak>
-        <div class="ending skew-n" v-if="p > 0.999">The End<div class='btn skew-p' @click="setP(0.001)"><div class='skew-n title-font'>回到起点</div></div></div>
+        <div class="ending skew-n" v-if="p > 0.999">
+          The End
+          <div class='btn skew-p' @click="setP(0.001)">
+            <div class='skew-n title-font' v-if="lang == 'cn'">回到起点</div>
+            <div class='skew-n' v-if="lang == 'en'">Start Over</div>
+          </div>
+        </div>
       </div>
       <div class="thumbs" v-if="currentCorner && currentCorner.imgs" v-cloak>
         <div class="thumb" v-for="img in currentCorner.imgs" :class="img.url ? 'has-author' : '' ">
@@ -194,10 +212,31 @@ echo
       </div>
     </div>
     <div class="controls">
+
       <div class="inner skew-n">
-        <div class="toggle-group" :class=" showAllCornerNames ? 'on' : 'off' " @click="showAllCornerNames = !showAllCornerNames"><span>显示所有弯道</span><div class="toggle"></div></div>
-        <div class="toggle-group" :class=" darkMode ? 'on' : 'off' " @click="toggleDarkMode()"><span>深色模式</span><div class="toggle"></div></div>
-        <div @click="openModal('text')" role="button" class="link">关于本站</div>
+        <div class="toggle-group" :class=" showAllCornerNames ? 'on' : 'off' " @click="showAllCornerNames = !showAllCornerNames">
+          <span v-if="lang == 'cn'">显示所有弯道</span>
+          <span v-if="lang == 'en'">All Corners</span>
+          <div class="toggle"></div>
+        </div>
+
+        <div class="toggle-group" :class=" darkMode ? 'on' : 'off' " @click="toggleDarkMode()">
+          <span v-if="lang == 'cn'">深色模式</span>
+          <span v-if="lang == 'en'">Dark Mode</span>
+          <div class="toggle"></div>
+        </div>
+
+        <div class="toggle-group" :class=" lang == 'cn' ? 'on' : 'off' " @click="toggleLang()">
+          <span v-if="lang == 'cn'">中文</span>
+          <span v-if="lang == 'en'">Chinese</span>
+          <div class="toggle"></div>
+        </div>
+
+        <div @click="openModal('text')" role="button" class="link">
+          <template v-if="lang == 'cn'">关于本站</template>
+          <template v-if="lang == 'en'">About</template>
+        </div>
+
       </div>
     </div>
   </div>

@@ -500,10 +500,10 @@ var d = new Vue({
       {
         "st": .408,
         "ed": .417,
-        "x": .463,
-        "y": .115,
+        "x": .443,
+        "y": .09,
         "h": "r",
-        "v": "t",
+        "v": "b",
         "ch": "劳达",
         "en": "Lauda Links",
         "de": " Lauda-Links",
@@ -1000,6 +1000,14 @@ var d = new Vue({
   methods: {
     innerModal: function(e){
       e.stopPropagation()
+    },
+    toggleLang(){
+      if(this.lang == "en"){
+        this.lang = "cn"
+      }
+      else{
+        this.lang = "en"
+      }
     },
     toggleDarkMode(){
       var root = document.querySelector(':root')
