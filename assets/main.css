@@ -59,16 +59,17 @@
   --bg3: #777;
   --bgt: rgba(0,0,0,.4);
 }
+#app.en{
+  font-style: italic;
+}
 em{font-style: normal;}
 .title-font{
   font-family: var(--title-font);
-  /* text-shadow: 0 .02em 0 var(--text1); */
   font-style: italic;
   font-weight: 700;
 
   #app.en &{
     font-family: var(--body-font);
-    font-style: italic;
     font-weight: 900;
   }
 }
@@ -266,31 +267,37 @@ body{
 .corner-name{
   font-size: calc(.3vmin + .4rem + .2vmax);
   color: var(--bg2);
-  transition: var(--transition-out);
   position: absolute;
   left: calc(var(--x) * 100%);
   top: calc(var(--y) * 100%);
-  /* background: var(--bg3); */
-  /* translate: calc(var(--x) * 100%) 50%; */
+  transition: var(--transition-out);  
   translate: var(--tX) var(--tY);
-  line-height: 1;
-  border-radius: .1em;
-  padding: .1em .1em 0;
-  /* background: var(--bg1); */
-  --shadow: var(--bg1);
-  text-shadow: 
-    .1em 0 0 var(--shadow),
-    -.1em 0 0 var(--shadow),
-    0 .1em 0 var(--shadow),
-    0 -.1em 0 var(--shadow);
 
-  #app.en &{
-    font-style: italic;
+  & > div{
+    line-height: 1;
+    border-radius: .1em;
+    padding: .1em .1em 0;
+    /* background: var(--bg1); */
+    --shadow: var(--bg1);
+    transition: var(--transition-out);
+    text-shadow: 
+      .1em 0 0 var(--shadow),
+      -.1em 0 0 var(--shadow),
+      0 .1em 0 var(--shadow),
+      0 -.1em 0 var(--shadow);
+  }
+
+  #app.en & > div{
+    transform: skewX(calc(-1 * var(--angle)));
+    transition: var(--transition);
+  }
+  #app.en & > div > div{
+    transform: skewX(var(--angle));
+    transition: var(--transition);
   }
 }
 
 .corner-name.show{
-  /* opacity: 1; */
   color: var(--text1);  
   transition: var(--transition);
 }
@@ -298,8 +305,9 @@ body{
 .corner-name.show:hover{
   color: var(--main);
   cursor: pointer;
+  transition: var(--transition);  
 }
-.corner-name.highlighted{
+.corner-name.highlighted > div{
   font-weight: var(--bold);
   color: var(--bg1);
   transition: var(--transition);
@@ -348,6 +356,10 @@ body{
   border-radius: 1em;
   border: 2px solid var(--bg1);
   translate: -4vw 0;
+
+  #app.en &{
+    line-height: 1.52;
+  }
 }
 .msg-title{
   font-size: 1.5em;
@@ -499,7 +511,6 @@ body{
   align-self: flex-start;
 
   #app.en &{
-    font-style: italic;
     font-weight: 700;
   }
 }
@@ -582,8 +593,7 @@ body{
 
   #app.en &{
     font-weight: 400;
-    font-style: italic;
-  }
+  }  
 }
 
 .thumbs{
@@ -596,6 +606,11 @@ body{
   transition-delay: .2s;
   transition-behavior: allow-discrete;
   translate: none;
+
+  #app.en &{
+    height: calc(4vmin + 8vmax);
+    flex: 0 1 calc(4vmin + 8vmax);
+  }
 
   @starting-style{
     opacity: 0;

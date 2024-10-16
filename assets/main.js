@@ -237,6 +237,7 @@ var d = new Vue({
         "ch": "Kottenborn",
         "en": "Kottenborn",
         "de": "Kottenborn",
+        "en": "Kottenborn",
         "more": "以附近的小镇命名，但最近也没人这么叫了，都直呼「飞机场和瑞典十字之间那个左弯」",
         "imgs": [
           {
@@ -1001,14 +1002,14 @@ var d = new Vue({
     innerModal: function(e){
       e.stopPropagation()
     },
-    // toggleLang(){
-    //   if(this.lang == "en"){
-    //     this.lang = "cn"
-    //   }
-    //   else{
-    //     this.lang = "en"
-    //   }
-    // },
+    toggleLang(){
+      if(this.lang == "en"){
+        this.lang = "cn"
+      }
+      else{
+        this.lang = "en"
+      }
+    },
     toggleDarkMode(){
       var root = document.querySelector(':root')
       this.darkMode =!this.darkMode
