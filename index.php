@@ -58,7 +58,7 @@ echo
 
     <style>[v-cloak],.hidden-area{display: none;}</style>
 
-    <!-- <script>
+    <script>
       var _paq = window._paq = window._paq || [];
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
@@ -69,7 +69,7 @@ echo
         var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
         g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
       })();
-    </script> -->
+    </script>
 
 	</head>
 <body>
