@@ -9,6 +9,7 @@ var d = new Vue({
     h: 530,
     mX: 0,
     mY: 0,
+    lang: lang,
     showModal: false,
     showAllCornerNames: false,
     darkMode: false,
@@ -235,6 +236,7 @@ var d = new Vue({
         "v": "m",
         "ch": "Kottenborn",
         "de": "Kottenborn",
+        "en": "Kottenborn",
         "more": "以附近的小镇命名，但最近也没人这么叫了，都直呼「飞机场和瑞典十字之间那个左弯」",
         "imgs": [
           {

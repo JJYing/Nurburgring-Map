@@ -62,9 +62,14 @@
 em{font-style: normal;}
 .title-font{
   font-family: var(--title-font);
-  /* text-shadow: 0 .02em 0 var(--text1); */
   font-style: italic;
   font-weight: 700;
+
+  #app.en &{
+    font-family: var(--body-font);
+    font-style: italic;
+    font-weight: 900;
+  }
 }
 [role="button"]:hover{
   cursor: pointer;
@@ -276,6 +281,10 @@ body{
     -.1em 0 0 var(--shadow),
     0 .1em 0 var(--shadow),
     0 -.1em 0 var(--shadow);
+
+    #app.en &{
+      font-style: italic;
+    }    
 }
 
 .corner-name.show{
@@ -488,7 +497,12 @@ body{
   color: var(--text1);
   /* color: var(--main); */
   position: relative;
-  align-self: flex-start;  
+  align-self: flex-start;
+
+  #app.en &{
+    font-style: italic;
+    font-weight: 700;
+  }
 }
 .desc .nickname{
   margin-top: .2em;
@@ -566,6 +580,11 @@ body{
 .ending .btn{
   font-size: .5em;
   margin-top: .3em;
+
+  #app.en &{
+    font-weight: 400;
+    font-style: italic;
+  }  
 }
 
 .thumbs{
