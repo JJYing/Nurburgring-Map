@@ -173,6 +173,7 @@ body{
   /* gap: 5vw; */
 }
 
+
 /*~Title*/
 .title{
   grid-area: title;
@@ -463,9 +464,6 @@ body{
 }
 .logo > .inner > span{
   font-size: calc(.75rem + .6vmax + .2vmin);
-  font-family: var(--title-font);
-  /* font-weight: var(--bold); */
-  /* font-weight: 700; */
   color: var(--text1);
 }
 
@@ -500,7 +498,7 @@ body{
   transform-origin: 0% 50%;
 }
 @keyframes infoShow{
-  0%{translate: 3rem 0;opacity: .6;scale: .9}
+  0%{translate: 3rem 0;opacity: .75;scale: .9}
   100%{translate: none;opacity: 1;scale: 1}
 }
 
@@ -925,7 +923,7 @@ body{
 }
 
 @media (max-width: 1400px){
-  .logo span span{
+  .logo span > span{
     display: none;
   }
 }

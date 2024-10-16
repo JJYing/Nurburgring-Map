@@ -235,6 +235,7 @@ var d = new Vue({
         "h": "l",
         "v": "m",
         "ch": "Kottenborn",
+        "en": "Kottenborn",
         "de": "Kottenborn",
         "en": "Kottenborn",
         "more": "以附近的小镇命名，但最近也没人这么叫了，都直呼「飞机场和瑞典十字之间那个左弯」",
@@ -486,7 +487,7 @@ var d = new Vue({
         "h": "r",
         "v": "t",
         "ch": "水磨坊",
-        "en": "Water mill",
+        "en": "Water Mill",
         "de": "Ex Mühle",
         "more": "又是一个顾名思义的弯道，相传以前这里就有一个磨坊，而赛道本来也打算把起点设置在这里，但磨坊主人拒绝把他的这块地用来建造赛道主看台所以作罢",
         "imgs": [
@@ -1098,7 +1099,7 @@ updatePageHeight()
 
 window.addEventListener("keyup",function(e){
   if(e.key === "Escape") {
-      d.showModal = false
+    d.showModal = false
   }
 })
 
