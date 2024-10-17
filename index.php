@@ -141,7 +141,7 @@ echo
             <p class="title-font msg-title" v-if="lang == 'cn'">纽北赛道地图</p>
             <p class="title-font msg-title" v-if="lang == 'en'">Nürburgring Map</p>
             <p v-if="lang == 'cn'"><a href="https://zh.wikipedia.org/zh-hans/%E7%BA%BD%E5%8D%9A%E6%A0%BC%E6%9E%97%E8%B5%9B%E9%81%93" target="_blank">纽博格林赛道</a>（德语：Nürburgring）修筑于 1920 年代，由于跑道非常长、地形复杂充满挑战性，被认为是世界上最严苛的竞速赛道，其中的北环俗称为“纽北”，又叫“绿色地狱”。这里很多弯道都有独特的名字和故事，通过本地图可以方便爱好者学习。</p>
-            <p v-if="lang == 'en'"><a href="https://en.wikipedia.org/wiki/N%C3%BCrburgring" target="_blank">Nürburgring</a> is a German race track built in 1920s, and the North Loop(Nordschleife) of it is very famouse and challenging for racers around the world, through this interactive map you can learn the names of the corners in Nürburgring</p>
+            <p v-if="lang == 'en'"><a href="https://en.wikipedia.org/wiki/N%C3%BCrburgring" target="_blank">Nürburgring</a> is a German race track built in 1920s, and the North Loop(Nordschleife) of it is very famous and challenging for racers around the world, through this interactive map you can learn the names of the corners in Nürburgring</p>
             <div class="indicator">
               <div v-if="lang == 'cn'">向下滚动或点击弯道名查看地图</div>
               <div v-if="lang == 'en'">Scroll or click the corner to start</div>
