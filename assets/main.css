@@ -272,6 +272,7 @@ body{
   top: calc(var(--y) * 100%);
   transition: var(--transition-out);  
   translate: var(--tX) var(--tY);
+  z-index: 3;
 
   & > div{
     line-height: 1;
@@ -300,12 +301,17 @@ body{
 .corner-name.show{
   color: var(--text1);  
   transition: var(--transition);
+  z-index: 4;
 }
 .corner-name:hover,
 .corner-name.show:hover{
   color: var(--main);
   cursor: pointer;
-  transition: var(--transition);  
+  transition: var(--transition);
+  z-index: 8;
+}
+.corner-name.highlighted{
+  z-index: 6;
 }
 .corner-name.highlighted > div{
   font-weight: var(--bold);
