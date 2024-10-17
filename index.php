@@ -18,22 +18,28 @@ if(isset($_GET['lang']) && $_GET['lang'] == "en") $lang = "en";
 
 if($lang == "cn"){
   $extraHead = "";
+  $pageTitle="纽北赛道地图";
+  $pageDesc="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片";
+  $pageLang="zh-Hans";
   $jsLang = "cn";
 }
 else{
   $extraHead = "";
+  $pageTitle="Nürburgring Map";
+  $pageDesc="An interactive map of Nürburgring race track";
+  $pageLang="en-US";
   $jsLang = "en";
 }
 
 echo
 <<<HTML
-<html lang="zh-Hans">
+<html lang="{$pageLang}">
 	<head>
     <meta charset="UTF-8">
-    <title>纽北赛道地图</title>
+    <title>{$pageTitle}</title>
     <meta name="robots" content="noodp"/>
     <meta name="author" content="JJ Ying" />
-    <meta name="description" content="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片"/>
+    <meta name="description" content="{$pageDesc}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="format-detection" content="telephone=no">
 
@@ -59,6 +65,7 @@ echo
     <style>[v-cloak],.hidden-area{display: none;}</style>
 
     <script>
+      var lang = '{$jsLang}'
       var _paq = window._paq = window._paq || [];
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
@@ -73,7 +80,6 @@ echo
 
 	</head>
 <body>
-<!-- <div id="app" :class="showAllCornerNames ? 'show-all-corners' : '' "> -->
 <div id="app" :class="[showAllCornerNames ? 'show-all-corners' : '', lang ]">
   <!-- <div class="debug">P: {{p.toFixed(3)}}<br/>X: {{mX.toFixed(3)}}<br/>Y: {{mY.toFixed(3)}}</div> -->
   <div class="track-map">
@@ -214,6 +220,11 @@ echo
 
       <div class="inner skew-n">
 
+        <div @click="openModal('text')" role="button" class="link">
+          <template v-if="lang == 'cn'">关于本站</template>
+          <template v-if="lang == 'en'">About</template>
+        </div>
+
         <div class="toggle-group" :class=" showAllCornerNames ? 'on' : 'off' " @click="showAllCornerNames = !showAllCornerNames">
           <span v-if="lang == 'cn'">显示所有弯道</span>
           <span v-if="lang == 'en'">All Corners</span>
@@ -230,11 +241,6 @@ echo
           <span v-if="lang == 'cn'">中文</span>
           <span v-if="lang == 'en'">Chinese</span>
           <div class="toggle"></div>
-        </div>
-
-        <div @click="openModal('text')" role="button" class="link">
-          <template v-if="lang == 'cn'">关于本站</template>
-          <template v-if="lang == 'en'">About</template>
         </div>
 
       </div>
@@ -267,10 +273,6 @@ echo
 
   <div class="all-names title-font"><template v-for="c in corners" >{{c.ch}} <template v-if="c.nk && c.ch != c.nk">{{c.nk}} </template></template> </div>
 </div>
-
-<script>
-  var lang = '{$jsLang}'
-</script>
 <script src='{$assetsDir}/vue-2.6.11.min.js'></script>
 <script src="{$assetsDir}/main.js?v={$lastEditTime}"></script>
 </body>
