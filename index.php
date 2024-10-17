@@ -106,7 +106,6 @@ echo
           <use href="#track" class="path"></use>
         </g>
 
-        
         <use href="#track" class="progress"/>
       </svg>
       <div v-for="c in bridges" class="corner-name bridge-name" :class="[ (c.pt < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.pt - 0.001 < p && p < c.pt + 0.001 ? 'highlighted' : '']" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP(c.pt)">

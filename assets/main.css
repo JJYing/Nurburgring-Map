@@ -227,6 +227,17 @@ body{
   fill: none;
   stroke-width: 4px;
   stroke: var(--text1);
+  stroke-dasharray: var(--full) 10000;
+  stroke-dashoffset:  calc(  var(--st) * var(--full) * -1);
+  animation: svgDraw 1.1s var(--curve) both;
+}
+@keyframes svgDraw{
+  0%{
+    stroke-dashoffset: var(--full);
+  }
+  100%{
+    stroke-dashoffset: 0;
+  }
 }
 .base2{
   stroke-width: 6px;
@@ -245,7 +256,7 @@ body{
 .path{
   fill: none;
   stroke: var(--main);
-  stroke-dasharray: calc((var(--ed) - var(--st)) * var(--full)) calc(10000);
+  stroke-dasharray: calc((var(--ed) - var(--st)) * var(--full)) 10000;
   stroke-dashoffset:  calc(  var(--st) * var(--full) * -1);
   stroke-width: 6.5px;
 }
@@ -258,7 +269,6 @@ body{
   opacity: 1;
   transition: opacity .2s var(--curve);
 }
-
 .section .path{
   opacity: 0;
   transition: opacity .2s var(--curve-out);
@@ -274,7 +284,14 @@ body{
   position: fixed;
   left: 10px; top: 10px;
 }
-
+@keyframes slowShow{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
 .corner-name{
   font-size: calc(.3vmin + .4rem + .2vmax);
   color: var(--bg2);
@@ -284,6 +301,7 @@ body{
   transition: var(--transition-out);  
   translate: var(--tX) var(--tY);
   z-index: 3;
+  animation: slowShow .3s var(--curve) .5s both;
 
   & > div{
     line-height: 1;
@@ -350,6 +368,9 @@ body{
   font-weight: var(--bold);
   font-size: calc(.3vmin + .5rem + .2vmax);
   border-radius: .1em;
+}
+.extras{
+  animation: slowShow .3s var(--curve) 1.1s both;
 }
 .bridge{
   stroke: var(--text3);
