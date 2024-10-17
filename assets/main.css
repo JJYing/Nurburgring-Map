@@ -193,6 +193,17 @@ body{
   translate: 20vw 0;
   scale: .9;
   transition: var(--transition-out);
+  animation: mapShow .5s var(--curve) both;
+}
+@keyframes mapShow{
+  0%{
+    opacity: .5;
+    scale: .9;
+  }
+  100%{
+    opacity: 1;
+    scale: none;
+  }
 }
 .scrolled .track-map{
   transition: var(--transition);
@@ -362,9 +373,18 @@ body{
   border-radius: 1em;
   border: 2px solid var(--bg1);
   translate: -4vw 0;
+  animation: msgShow .25s var(--curve) .3s both;
 
   #app.en &{
     line-height: 1.52;
+  }
+}
+@keyframes msgShow{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
   }
 }
 .msg-title{
