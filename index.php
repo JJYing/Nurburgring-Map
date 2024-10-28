@@ -18,28 +18,28 @@ if(isset($_GET['lang']) && $_GET['lang'] == "en") $lang = "en";
 
 if($lang == "cn"){
   $extraHead = "";
-  $pageTitle="纽北赛道地图";
-  $pageDesc="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片";
-  $pageLang="zh-Hans";
+  // $pageTitle="纽北赛道地图";
+  // $pageDesc="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片";
+  // $pageLang="zh-Hans";
   $jsLang = "cn";
 }
 else{
   $extraHead = "";
-  $pageTitle="Nürburgring Map";
-  $pageDesc="An interactive map of Nürburgring race track";
-  $pageLang="en-US";
+  // $pageTitle="Nürburgring Map";
+  // $pageDesc="An interactive map of Nürburgring race track";
+  // $pageLang="en-US";
   $jsLang = "en";
 }
 
 echo
 <<<HTML
-<html lang="{$pageLang}">
+<html lang="zh-Hans">
 	<head>
     <meta charset="UTF-8">
-    <title>{$pageTitle}</title>
+    <title>纽北赛道地图 Nürburgring Map</title>
     <meta name="robots" content="noodp"/>
     <meta name="author" content="JJ Ying" />
-    <meta name="description" content="{$pageDesc}"/>
+    <meta name="description" content="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片 An interactive map of Nürburgring race track"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="format-detection" content="telephone=no">
 
