@@ -1,5 +1,10 @@
 let rootURL = document.baseURI
+var root = document.querySelector(':root')
 const body = document.querySelector('body');
+if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+  root.classList.add('dark')
+}
+
 
 var d = new Vue({
   el: '#app',
@@ -12,7 +17,7 @@ var d = new Vue({
     lang: lang,
     showModal: false,
     showAllCornerNames: false,
-    darkMode: false,
+    darkMode: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
     showCorner: false,
     showSection: false,
     currentCorner: null,
@@ -1011,13 +1016,12 @@ var d = new Vue({
       }
     },
     toggleDarkMode(){
-      var root = document.querySelector(':root')
       this.darkMode =!this.darkMode
-      if(root.classList == ""){
-        root.classList = "dark"
+      if(this.darkMode == true){
+        root.classList.add("dark")
       }
       else{
-        root.classList = ""
+        root.classList.remove("dark")
       }
     },
     setP: function(percentage){
