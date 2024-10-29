@@ -384,6 +384,7 @@ body{
   position: absolute;
   left: 50%; top: 50%;
   translate: -50% -50%;
+  z-index: 99999;
 }
 .msg{
   color: var(--text1);
@@ -416,13 +417,13 @@ body{
   /* font-weight: 700; */
 }
 .indicator{
-  font-weight: 700;
+  /* font-weight: 700; */
   margin-top: 1em;
   padding-top: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center; align-items: center;
-  /* gap: .2em; */
+  color: var(--text2);
   text-align: center;
   border-top: 1px dotted var(--bg3);
 }
@@ -439,7 +440,7 @@ body{
 }
 .scroll-arrow path{
   fill: none;
-  stroke: var(--text1);
+  stroke: var(--text2);
   stroke-width: 15px;
 }
 @keyframes shaking{
