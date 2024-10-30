@@ -18,14 +18,12 @@ if(isset($_GET['lang']) && $_GET['lang'] == "en") $lang = "en";
 
 if($lang == "cn"){
   $extraHead = "";
-  // $pageTitle="纽北赛道地图";
   // $pageDesc="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片";
   // $pageLang="zh-Hans";
   $jsLang = "cn";
 }
 else{
   $extraHead = "";
-  // $pageTitle="Nürburgring Map";
   // $pageDesc="An interactive map of Nürburgring race track";
   // $pageLang="en-US";
   $jsLang = "en";
