@@ -779,7 +779,7 @@ var d = new Vue({
         "v": "m",
         "ch": "植物园 1",
         "de": "Pflanzgarten 1",
-        "en": "Plant garden 1",
+        "en": "Plant Garden 1",
         "imgs": [
           {
             "src": "pflanzgarten-1-2.jpg",
@@ -802,7 +802,7 @@ var d = new Vue({
         "v": "b",
         "ch": "植物园 2",
         "de": "Pflanzgarten 2",
-        "en": "Plant garden 2",
+        "en": "Plant Garden 2",
         "imgs": [
           {
             "src": "pflanzgarten-2-1.jpg",
