@@ -196,7 +196,7 @@ var d = new Vue({
         "y": .78,
         "h": "l",
         "v": "t",
-        "ch": "Quiddelbacher Höhe",
+        "ch": "奎德巴赫高地",
         "de": "Quiddelbacher Höhe",
         "en": "Quiddelbach Height",
         "more": "很多人会把这一段和接下来的飞机场搞混，但事实上当年 GTR 起飞所在的这个右弯和之前的大直道都是以边上村庄 Quiddelbacher 命名的",
@@ -392,7 +392,7 @@ var d = new Vue({
         "y": .210,
         "h": "r",
         "v": "t",
-        "ch": "Kallenhard",
+        "ch": "卡伦哈特",
         "en": "Kallen Hard",
         "de": "Kallenhard"
       }, 
@@ -908,10 +908,10 @@ var d = new Vue({
         "y": .719,
         "h": "l",
         "v": "t",
-        "ch": "Döttinger Höhe",
+        "ch": "多廷根高地",
         "en": "Dottingen Height",
         "de": "Döttinger Höhe",
-        "more": "名字来自附近的多庭哥小镇，严格来说不是弯道，是一段整整两公里长的直线。当然，大部分普通业余驾驶员能开的赛道布局「BTG」里并不包含这段，BTG 全称「Bridge to Gantry」，Bridge 指的是 Döttinger Höhe 尽头的桥，Gantry 就是出了断头台的一个桁架",
+        "more": "名字来自附近的多廷根小镇，严格来说不是弯道，是一段整整两公里长的直线。当然，大部分普通业余驾驶员能开的赛道布局「BTG」里并不包含这段，BTG 全称「Bridge to Gantry」，Bridge 指的是 Döttinger Höhe 尽头的桥，Gantry 就是出了断头台的一个桁架",
         "imgs": [
           {
             "src": "dottinger-1.jpg",
