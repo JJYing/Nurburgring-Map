@@ -19,7 +19,7 @@
   --bg1: #fff;
   --bg2: #ddd;
   --bg3: #bbb;
-  --bgt: rgba(255,255,255,.4);
+  --bgt: rgba(255,255,255,.8);
 
   --angle: 9deg;
 
@@ -57,7 +57,7 @@
   --bg1: #000;
   --bg2: #333;
   --bg3: #777;
-  --bgt: rgba(0,0,0,.4);
+  --bgt: rgba(0,0,0,.8);
 }
 
 
@@ -391,8 +391,8 @@ body{
   font-size: 1rem;
   width: min(23em, 80vw);
   background: var(--bgt);
-  -webkit-backdrop-filter: blur(.5rem);
-  backdrop-filter: blur(.5rem);
+  /* -webkit-backdrop-filter: blur(.5rem); */
+  /* backdrop-filter: blur(.5rem); */
   padding: 1em;
   border-radius: 1em;
   border: 2px solid var(--bg1);
@@ -730,18 +730,17 @@ body{
 
 /* ~Controls */
 .controls{
-  font-size: calc(.75rem + .1vmax + .2vmin);
+  font-size: calc(.75rem + .05vmax + .1vmin);
   border-top: 1px solid var(--bg2);
   width: 100%;
-  padding: var(--margin) calc(var(--margin) * 2);
+  padding: var(--margin) 0 var(--margin) calc(var(--margin) * 2);
   user-select: none;
   color: var(--text2);
 }
 .controls > .inner{
   display: flex;
   justify-content: center; align-items: center;
-  gap: 2.5em;
-  gap: 1em 2.5em;
+  gap: 1em 1.5em;
   flex-wrap: wrap;
 }
 .toggle-group{

@@ -223,7 +223,7 @@ echo
         </div>
 
         <div class="toggle-group" :class=" showAllCornerNames ? 'on' : 'off' " @click="showAllCornerNames = !showAllCornerNames">
-          <span v-if="lang == 'cn'">显示所有弯道</span>
+          <span v-if="lang == 'cn'">所有弯道</span>
           <span v-if="lang == 'en'">All Corners</span>
           <div class="toggle"></div>
         </div>
