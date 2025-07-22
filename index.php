@@ -34,10 +34,10 @@ echo
 <html lang="zh-Hans">
 	<head>
     <meta charset="UTF-8">
-    <title>纽北赛道地图 Nürburgring Map</title>
+    <title>An Interactive Map of Nürburgring  纽北赛道地图</title>
     <meta name="robots" content="noodp"/>
     <meta name="author" content="JJ Ying" />
-    <meta name="description" content="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片 An interactive map of Nürburgring race track"/>
+    <meta name="description" content="Learn the name of every corner in the famous race track: Nürburgring 可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="format-detection" content="telephone=no">
 
