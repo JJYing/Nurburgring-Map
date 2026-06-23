@@ -97,7 +97,7 @@ var d = new Vue({
         "h": "r",
         "v": "m",
         "ch": "小水井",
-        "en": "Small Water",
+        "en": "Small Well",
         "de": "Brünnchen",
       }
     ],
@@ -556,7 +556,7 @@ var d = new Vue({
         "h": "l",
         "v": "t",
         "ch": "矿山",
-        "en": "Mountain Factory",
+        "en": "Mine",
         "de": "Bergwerk",
         "more": "其实从这些直白的地标名字里也能感受到纽北赛道的巨大规模，周围从机场到矿场，啥都有……",
         "moreEn": "These plain landmark-based names also hint at the sheer scale of the Nordschleife. Around it you can find everything from airfields to mines...",
