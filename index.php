@@ -246,8 +246,8 @@ echo
   </div>
 
   <div class="modal text" :class="[showModal && modalType == 'text' ? 'show' : '']" @click="showModal = false">
-    <div class="inner" @click="innerModal(event)">
-      <div class="modal-content skew-n" v-html="modalContent" @click="showModal = false"></div>
+    <div class="inner" @click.stop>
+      <div class="modal-content skew-n" v-html="modalContent"></div>
       <div class="modal-close skew-n" @click="showModal = false">
         <svg viewBox="0 0 30 30">
           <circle cx="15" cy="15" r="12"/>
@@ -258,7 +258,7 @@ echo
   </div>
 
   <div class="modal image" :class="[showModal && modalType == 'image' ? 'show' : '']" @click="showModal = false">
-    <div class="inner" @click="innerModal(event)">
+    <div class="inner" @click.stop>
       <div class="modal-content skew-n" v-html="modalContent"></div>
       <div class="modal-close skew-n" @click="showModal = false">
         <svg viewBox="0 0 30 30">

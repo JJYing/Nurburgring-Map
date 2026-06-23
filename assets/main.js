@@ -51,6 +51,7 @@ var d = new Vue({
         "h": "r",
         "v": "m",
         "ch": "BTG 终点桁架",
+        "en": "BTG Gantry", 
       },
       {
         "stx":.47,
@@ -1032,6 +1033,7 @@ var d = new Vue({
       }, 
     ],
     aboutContent: "网页设计 & 开发：<a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>参考信息:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· <a target='_blank' href='https://nring.info/nurburgring-nordschleife-corners/'>NRing.info</a><br/>· <a target='_blank' href='https://www.youtube.com/watch?v=-lCR1_cDqTg'>Nürburgring Corner Names Explained</a><br/>· 键盘车神教教主视频：<a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>纽北每一个弯的名字？</a><br/><br/><strong>页面源码:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
+    aboutContentEn: "Web design & development: <a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>References:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· <a target='_blank' href='https://nring.info/nurburgring-nordschleife-corners/'>NRing.info</a><br/>· <a target='_blank' href='https://www.youtube.com/watch?v=-lCR1_cDqTg'>Nürburgring Corner Names Explained</a><br/>· Video by 键盘车神教教主: <a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>What is the name of every Nürburgring corner?</a><br/><br/><strong>Source code:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
     modalContent: "",
     modalType: "text"
   },
@@ -1045,6 +1047,9 @@ var d = new Vue({
       }
       else{
         this.lang = "en"
+      }
+      if(this.showModal && this.modalType == 'text'){
+        this.modalContent = this.lang == "cn" ? this.aboutContent : this.aboutContentEn
       }
     },
     toggleDarkMode(){
@@ -1063,7 +1068,7 @@ var d = new Vue({
     },
     openModal: function(type, img=null){
       this.modalType = type
-      if(type == 'text') this.modalContent = this.aboutContent
+      if(type == 'text') this.modalContent = this.lang == "cn" ? this.aboutContent : this.aboutContentEn
       if(type == 'image'){
         this.modalContent = "<img src='" + 'https://s.anyway.red/nurburgring/' + img.src + '!/quality/80/progressive/true/ignore-error/true' + "'/>"
         if(img.url) this.modalContent += "<div class='source-in-modal'>@<a href='" + img.url + "' target='_blank'>" + img.author + "</a></div>"

@@ -833,7 +833,7 @@ body{
   transform: none;
   opacity: 1;
   pointer-events: auto;
-  transition: var(--transition);  
+  transition: var(--transition-in);
 }
 
 .modal > .inner{
