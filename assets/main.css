@@ -50,7 +50,7 @@
   text-wrap: pretty;
 }
 :root.dark{
-  --main: #a51313;
+  --main: #a51312;
   --text1: #ddd;
   --text2: #999;
   --text3: #444;
