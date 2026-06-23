@@ -91,7 +91,7 @@ jobs:
           FTP_HOST: ${{ vars.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_REMOTE_PATH: ${{ vars.FTP_REMOTE_PATH }}
+          FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH }}
         run: |
           test -n "$FTP_HOST" || { echo "::error::Missing FTP_HOST var"; exit 1; }
           test -n "$FTP_USERNAME" || { echo "::error::Missing FTP_USERNAME secret"; exit 1; }
@@ -104,7 +104,7 @@ jobs:
           FTP_HOST: ${{ vars.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_REMOTE_PATH: ${{ vars.FTP_REMOTE_PATH }}
+          FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH }}
           DEPLOY_FILES: ${{ steps.changes.outputs.php_files }}
         run: |
           FAILED=0
@@ -138,7 +138,7 @@ jobs:
         if: steps.changes.outputs.has_assets == 'true'
         env:
           UPYUN_HOST: ${{ vars.UPYUN_HOST }}
-          UPYUN_USERNAME: ${{ vars.UPYUN_USERNAME }}
+          UPYUN_USERNAME: ${{ secrets.UPYUN_USERNAME }}
           UPYUN_PASSWORD: ${{ secrets.UPYUN_PASSWORD }}
           UPYUN_PATH: ${{ vars.UPYUN_PATH }}
           DEPLOY_FILES: ${{ steps.changes.outputs.asset_files }}
