@@ -196,6 +196,7 @@ echo
           </span>
         </div>
         <div class="more skew-n" v-if="lang == 'cn' && currentCorner.more" v-html="currentCorner.more"></div>
+        <div class="more more-en skew-n" v-if="lang == 'en' && currentCorner.moreEn" v-html="currentCorner.moreEn"></div>
       </div>
       <div class="inner desc-msg" v-if="p == 1" v-cloak>
         <div class="ending skew-n" v-if="p > 0.999">

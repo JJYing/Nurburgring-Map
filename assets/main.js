@@ -112,6 +112,7 @@ var d = new Vue({
         "en": "Sabine Schmitz Curve",
         "de": "Sabine-Schmitz-Kurve",
         "more": "为了纪念在此开了至少 33,000 圈的纽北女王 <a href='https://zh.wikipedia.org/zh-cn/%E8%96%A9%E8%B3%93%C2%B7%E6%96%BD%E5%AF%86%E8%8C%A8' target='blank'>Sabine Schmitz</a>，她曾两次赢得纽博格林 24 小时耐力赛，也是第一位赢得这项传奇赛事的女性。",
+        "moreEn": "Named in memory of the Queen of the Nürburgring, <a href='https://en.wikipedia.org/wiki/Sabine_Schmitz' target='blank'>Sabine Schmitz</a>, who drove at least 33,000 laps here. She won the Nürburgring 24 Hours twice and was the first woman to win the legendary race.",
         "imgs": [
           {
             "src": "sabine-3.jpg",
@@ -148,6 +149,7 @@ var d = new Vue({
         "en": "Hunt Stream",
         "de": "Hatzenbach",
         "more": "其实是一个挺长的组合弯，包含了两快五慢总共七个弯道",
+        "moreEn": "This is actually a fairly long complex, made up of seven corners: two quick ones and five slower ones.",
         "imgs": [
           {
             "src": "hatzenbach-1.jpg",
@@ -200,6 +202,7 @@ var d = new Vue({
         "de": "Quiddelbacher Höhe",
         "en": "Quiddelbach Height",
         "more": "很多人会把这一段和接下来的飞机场搞混，但事实上当年 GTR 起飞所在的这个右弯和之前的大直道都是以边上村庄 Quiddelbacher 命名的",
+        "moreEn": "Many people mix this section up with the following Flugplatz, but the right-hander where the GTR took flight and the straight before it are both named after the nearby village of Quiddelbach.",
         "imgs": [
           {
             "src": "quiddelbacher-2.jpg",
@@ -224,6 +227,7 @@ var d = new Vue({
         "de": "Flugplatz",
         "en": "Airfield",
         "more": "2015 年改造之前这里有个坡，的确容易让车腾空，但事实上这里叫「飞机场」的原因是在这个弯道边上以前有个飞机场",
+        "moreEn": "Before the 2015 rebuild there was a crest here, and cars really could get airborne. The name, however, comes from an airfield that once stood beside this corner.",
         "imgs": [
           {
             "src": "flugplatz-1.jpg",
@@ -244,6 +248,7 @@ var d = new Vue({
         "de": "Kottenborn",
         "en": "Kottenborn",
         "more": "以附近的小镇命名，但最近也没人这么叫了，都直呼「飞机场和瑞典十字之间那个左弯」",
+        "moreEn": "Named after a nearby village, though few people seem to use the name now. Most simply call it the left-hander between Flugplatz and Schwedenkreuz.",
         "imgs": [
           {
             "src": "kottenborn-1.jpg",
@@ -272,6 +277,7 @@ var d = new Vue({
         "de": "Schwedenkreuz",
         "en": "Swedish Cross",
         "more": "在这里的护栏右侧有一个石制十字纪念碑，用来纪念在 17 世纪被瑞典军队杀死的阿德瑙当地市长",
+        "moreEn": "To the right of the guardrail stands a stone cross memorial, commemorating a local Adenau mayor who was killed by Swedish troops in the 17th century.",
         "imgs": [
           {
             "src": "swedish-1.jpg",
@@ -296,6 +302,7 @@ var d = new Vue({
         "de": "Aremberg",
         "en": "Arem Mountain",
         "more": "附近有座山就叫 Aremberg，但我查了一下地图，西北偏西的这座山离本弯直线距离也有十公里……",
+        "moreEn": "There is a nearby mountain called Aremberg, but according to the map it sits west-northwest of here, roughly ten kilometers away in a straight line...",
         "imgs": [
           {
             "src": "aremberg-1.jpg",
@@ -325,6 +332,7 @@ var d = new Vue({
         "en": "Foxhole",
         "de": "Fuchsröhre",
         "more": "这是纽北众多著名弯道里少数的英文名传颂更广的，传闻在赛道初建时,有只受惊的狐狸躲进了附近的下水道，一直到大家从它躲藏的洞里把它拉出来之后工程才得以继续，所以有了这个名字",
+        "moreEn": "This is one of the few famous Nordschleife corners whose English name is more widely known. Legend says that during construction, a frightened fox hid in a nearby drain, and work could only continue after it was pulled out of the hole.",
         "imgs": [
           {
             "src": "fox-1.jpg",
@@ -344,6 +352,7 @@ var d = new Vue({
         "de": "Adenauer Forst",
         "en": "Adenau Forest",
         "more": "阿德瑙小镇其实横穿了整个赛道，所以跟阿德瑙相关的名字其实很多",
+        "moreEn": "The town of Adenau effectively cuts across the circuit, so there are quite a few names around the Nordschleife connected to Adenau.",
         "imgs": [
           {
             "src": "adenau-f-2.jpg",
@@ -408,6 +417,7 @@ var d = new Vue({
         "en": "Mirror Curve",
         "de": "Spiegelkurve",
         "more": "这是一个很有意思的名字，虽然根据单词的意思以及这个 Chicane 的布局，Mirror 被翻译成了「镜像」，但其实这是纽北众多民间名字之一，它被大家叫「Mirror Curve」的时候赛道布局和现如今很不一样，当时此处左侧的树丛离赛道非常贴近，以至于很多赛车都会在这次蹭坏左侧反光镜，所以得名",
+        "moreEn": "This is an interesting name. Although Mirror can be read literally from the chicane layout, it was originally one of the Nordschleife's informal names. When people started calling it Mirror Curve, the layout was very different, and the bushes on the left sat so close to the track that many race cars scraped off their left mirrors here.",
         "imgs": [
           {
             "src": "spiegelkurve-1.jpg",
@@ -427,6 +437,7 @@ var d = new Vue({
         "en": "Miss-Hit-Miss",
         "de": "Dreifach-Rechts",
         "more": "比起前面这些地点或者相关特征的取名方式，这里直接把过弯的方式写了出来，因为这个连续弯道有三个非常醒目的路肩，一般认为的通过方式是 1、3 走中线或者外线，第 2 个压路肩",
+        "moreEn": "Unlike names based on places or landmarks, this one describes the driving line directly. The sequence has three very obvious curbs; the usual approach is to miss the first and third by staying middle or outside, then hit the second curb.",
         "imgs": [
           {
             "src": "miss-1.jpg",
@@ -446,6 +457,7 @@ var d = new Vue({
         "en": "Defend Valley",
         "de": "Wehrseifen",
         "more": "这里以前正好穿过了 Adenau 和 Breidscheid 两个小镇的分界线，所在的峡谷也是一个重要的战略防御点。此处也基本上是纽北全程弯速最慢的地方了",
+        "moreEn": "This section once crossed the boundary between Adenau and Breidscheid, and the valley itself was an important defensive position. It is also roughly the slowest cornering point on the whole Nordschleife.",
         "imgs": [
           {
             "src": "defend-1.jpg",
@@ -471,6 +483,7 @@ var d = new Vue({
         "en": "Wide Part",
         "de": "Breidscheid",
         "more": "整个赛道海拔最低的地方差不多就在这里，大概 320 米左右，事实上，纽北海拔最高点到最低点的落差超过 300 米",
+        "moreEn": "The circuit's lowest point is roughly here, at about 320 meters above sea level. In fact, the elevation difference between the highest and lowest points of the Nordschleife is over 300 meters.",
         "imgs": [
           {
             "src": "breidscheid-1.jpg",
@@ -495,6 +508,7 @@ var d = new Vue({
         "en": "Water Mill",
         "de": "Ex Mühle",
         "more": "又是一个顾名思义的弯道，相传以前这里就有一个磨坊，而赛道本来也打算把起点设置在这里，但磨坊主人拒绝把他的这块地用来建造赛道主看台所以作罢",
+        "moreEn": "Another name that means almost exactly what it says. There was reportedly a mill here, and the circuit originally planned to place the start in this area, but the mill owner refused to give up his land for the main grandstand.",
         "imgs": [
           {
             "src": "mill-1.jpg",
@@ -514,6 +528,7 @@ var d = new Vue({
         "en": "Lauda Links",
         "de": " Lauda-Links",
         "more": "一个名场面诞生地，著名车手<a href='https://zh.wikipedia.org/wiki/%E5%B0%BC%E5%9F%BA%C2%B7%E5%8A%B3%E8%BE%BE' target='_blank'>尼基·劳达</a> (Niki Lauda) 参加 1976 年的 F1 大奖赛过程中在此处发生车祸并燃起大火，虽然烧伤了头部但 6 周后即复出并拿下隔年的年度冠军。后来这个弯道就以他的名字来命名了",
+        "moreEn": "The site of a famous moment in racing history. During the 1976 F1 Grand Prix, <a href='https://en.wikipedia.org/wiki/Niki_Lauda' target='_blank'>Niki Lauda</a> crashed here and his car caught fire. Although he suffered severe burns to his head, he returned just six weeks later and won the championship the following year. The corner was later named after him.",
         "imgs": [
           {
             "src": "lauda-2.jpg",
@@ -543,6 +558,7 @@ var d = new Vue({
         "en": "Mountain Factory",
         "de": "Bergwerk",
         "more": "其实从这些直白的地标名字里也能感受到纽北赛道的巨大规模，周围从机场到矿场，啥都有……",
+        "moreEn": "These plain landmark-based names also hint at the sheer scale of the Nordschleife. Around it you can find everything from airfields to mines...",
         "imgs": [
           {
             "src": "bergwerk-1.jpg",
@@ -567,6 +583,7 @@ var d = new Vue({
         "en": "Little Valley",
         "de": "Kesselchen",
         "more": "出了矿山弯之后是一段长长的上坡路，所以这里很多弯道的名字都跟「谷」有关",
+        "moreEn": "After Bergwerk, the track climbs for a long stretch, so many of the corner names in this area are connected to valleys.",
         "imgs": [
           {
             "src": "kesselchen-1.jpg",
@@ -585,7 +602,8 @@ var d = new Vue({
         "ch": "勇气弯",
         "en": "Courage Curve",
         "de": "Mutkurve",
-        "more": "这个著名弯角的恐怖之处在于很高的速度和极小的容错空间，只有当你拥有足够的勇气才能全速通过"
+        "more": "这个著名弯角的恐怖之处在于很高的速度和极小的容错空间，只有当你拥有足够的勇气才能全速通过",
+        "moreEn": "What makes this famous corner intimidating is its very high speed and tiny margin for error. You can only take it flat if you have enough courage."
       }, 
       {
         "st": .531,
@@ -616,6 +634,7 @@ var d = new Vue({
         "en": "Steep Section",
         "de": "Steilstrecke",
         "more": "这个弯道是一个半径很大的回头弯，一点儿都不陡，「陡坡」这个直译名字会觉得很奇怪，其实是因为以前这里有个测试用的陡坡可以作为岔路跳过旋转木马直接去到高八那段，后来因为太陡很多车溜坡产生安全问题就封闭了",
+        "moreEn": "This corner is a large-radius hairpin and is not steep at all, so the literal name can feel odd. It comes from a former steep test section that branched off here, bypassing the Karussell and leading straight toward Hohe Acht. It was later closed because its grade caused cars to roll back and created safety issues.",
         "imgs": [
           {
             "src": "steilstrecke-1.jpg",
@@ -640,6 +659,7 @@ var d = new Vue({
         "en": "Carousel",
         "de": "Caracciola-Karussell",
         "more": "这也许是纽北最著名的弯道了，而它的德文原名里的 Caracciola 是为了纪念著名车手 <a href='https://en.wikipedia.org/wiki/Rudolf_Caracciola'>Rudolf Caracciola</a>，他在上世纪 30 年代的比赛中，在这里发明了「水渠过弯法」",
+        "moreEn": "This may be the most famous corner on the Nordschleife. The Caracciola in its German name honors the racing driver <a href='https://en.wikipedia.org/wiki/Rudolf_Caracciola'>Rudolf Caracciola</a>, who pioneered the drainage-ditch line here during races in the 1930s.",
         "imgs": [
           {
             "src": "carousel-2.jpg",
@@ -665,6 +685,7 @@ var d = new Vue({
         "en": "High Attention",
         "de": "Hohe Acht",
         "more": "「高八」是这里附近的一座山，本身高 700 多米但其实离这个弯道有点儿距离，这里也并不是赛道最高的地方，「高八」这名字是个直译，但其实并不准确，虽然 Acht 在德语里是「8」的意思，但其实更准确的翻译是 Attention",
+        "moreEn": "Hohe Acht is a nearby mountain over 700 meters high, though it is not right beside this corner, and this is not the highest point of the track. High Eight is a literal translation, but not a very accurate one: while Acht means eight in German, here the better sense is closer to attention.",
         "imgs": [
           {
             "src": "hohe-acht-1.jpg",
@@ -688,7 +709,8 @@ var d = new Vue({
         "ch": "海德薇高地",
         "en": "Hedgwig Height",
         "de": "Hedgwigshöhe",
-        "more": "纽博格林赛道能建成多亏了当时 Eifel 地区的议员 Otto Creuz 博士，而他也用自己妻子的名字 Hedgwig 命名了这个弯道"
+        "more": "纽博格林赛道能建成多亏了当时 Eifel 地区的议员 Otto Creuz 博士，而他也用自己妻子的名字 Hedgwig 命名了这个弯道",
+        "moreEn": "The Nürburgring owes much of its creation to Dr. Otto Creuz, a representative of the Eifel region at the time. He named this corner after his wife, Hedgwig."
       }, 
       {
         "st": .65,
@@ -701,6 +723,7 @@ var d = new Vue({
         "en": "Seesaw Man",
         "de": "Wippermann",
         "more": "这一段曾经非常颠簸，而且水平方向上也有剧烈的运动",
+        "moreEn": "This section used to be extremely bumpy, with strong lateral movement as well.",
         "imgs": [
           {
             "src": "wippermann-1.jpg",
@@ -738,6 +761,7 @@ var d = new Vue({
         "de": "",
         "en": "YouTube Corner",
         "more": "这一段两个连续的右弯一般被叫做小水井（Brünnchen），但更被世人熟知的是其中第二个弯道，因为这里经常聚集着很多观众拍照录像，而各类车辆在这里出丑的视频在 YouTube 上已经成了一种赛博咸菜",
+        "moreEn": "These two consecutive right-handers are usually known as Brünnchen, but the second one is better known worldwide. Spectators often gather here to take photos and videos, and clips of all kinds of cars embarrassing themselves here have become a kind of YouTube staple.",
         "imgs": [
           {
             "src": "youtube-1.jpg",
@@ -762,6 +786,7 @@ var d = new Vue({
         "en": "Ice Curve",
         "de": "Eiskurve",
         "more": "这个弯附近的高大树木很多，所以有一种说法是当雨天过后这里经常是整个赛道最后变干的，大家就说这里「和冰面一样滑」，而另一种说法是这些树木遮蔽了阳光，当冬天结冰的时候这里是最后解冻的",
+        "moreEn": "There are many tall trees around this corner. One explanation says it is often the last part of the track to dry after rain, making it as slippery as ice. Another says the trees block the sun, so in winter this area is among the last to thaw.",
         "imgs": [
           {
             "src": "eiskurve-1.jpg",
@@ -822,6 +847,7 @@ var d = new Vue({
         "en": "Stefan Bellof S",
         "de": "Stefan-Bellof-S",
         "more": "传奇车手 <a href='https://en.wikipedia.org/wiki/Stefan_Bellof' target='_blank'>Stefan Bellof</a> 在 1983 年驾驶 C 组保时捷 956 在纽北创造了 6:11.13 的圈速记录（保持了整整 35 年才被保时捷 919 打破），后来他在这里发生了车祸，所以这个赛段以他命名",
+        "moreEn": "The legendary driver <a href='https://en.wikipedia.org/wiki/Stefan_Bellof' target='_blank'>Stefan Bellof</a> set a 6:11.13 lap record at the Nordschleife in a Group C Porsche 956 in 1983, a record that stood for 35 years until Porsche broke it with the 919. He later crashed here, and this section was named after him.",
         "imgs": [
           {
             "src": "bellof-1.jpg",
@@ -874,6 +900,7 @@ var d = new Vue({
         "en": "Mini Carousel",
         "de": "Kleine Karussell",
         "more": "虽然看名字就知道是一个小号的旋转木马弯，但因为转弯角度更小，斜坡形式不一样，进弯速度也不一样，所以其实是两种完全不同的开法",
+        "moreEn": "The name makes it sound like a smaller Karussell, but the turn angle, banking shape, and entry speed are all different, so it actually requires a completely different approach.",
         "imgs": [
           {
             "src": "kleines-1.jpg",
@@ -893,6 +920,7 @@ var d = new Vue({
         "en": "Gallows Head",
         "de": "Galgenkopf",
         "more": "中世纪时，这里是执行公开处决的绞刑架旧址",
+        "moreEn": "In the Middle Ages, this was the site of a gallows used for public executions.",
         "imgs": [
           {
             "src": "galgenkopf-1.jpg",
@@ -912,6 +940,7 @@ var d = new Vue({
         "en": "Dottingen Height",
         "de": "Döttinger Höhe",
         "more": "名字来自附近的多廷根小镇，严格来说不是弯道，是一段整整两公里长的直线。当然，大部分普通业余驾驶员能开的赛道布局「BTG」里并不包含这段，BTG 全称「Bridge to Gantry」，Bridge 指的是 Döttinger Höhe 尽头的桥，Gantry 就是出了断头台的一个桁架",
+        "moreEn": "The name comes from the nearby town of Döttingen. Strictly speaking, this is not a corner but a full two-kilometer straight. The BTG layout that most amateur drivers use does not include it. BTG stands for Bridge to Gantry: the bridge is at the end of Döttinger Höhe, and the gantry is just after Galgenkopf.",
         "imgs": [
           {
             "src": "dottinger-1.jpg",
@@ -936,6 +965,7 @@ var d = new Vue({
         "en": "Anthony’s Beech",
         "de": "Antoniusbuche",
         "more": "这里曾经有一颗高大的榉树，很有可能是属于 Anthony 这个人了，当然，为了建造赛道，这棵树被砍了",
+        "moreEn": "A tall beech tree once stood here, most likely belonging to someone named Anthony. It was cut down to make way for the circuit.",
         "imgs": [
           {
             "src": "antoniusbuche-1.jpg",
@@ -955,6 +985,7 @@ var d = new Vue({
         "en": "Animal Garden",
         "de": "Tiergarten",
         "more": "对于跑 BTG 布局的大部分人来说，这里是赛道开始的第一个开始有挑战性的弯道，其实并不难，但如果是走整个北环布局经历了大直道加速之后来到这里的话就非常考验走线了",
+        "moreEn": "For most people driving the BTG layout, this is the first genuinely challenging corner after the start. It is not especially difficult, but on the full Nordschleife layout, arriving here after accelerating down the long straight makes the racing line much more demanding.",
         "imgs": [
           {
             "src": "tiergarten-1.jpg",
@@ -985,6 +1016,7 @@ var d = new Vue({
         "en": "T13",
         "de": "T13",
         "more": "这里作为整个赛道的起点，有个 Pit 区和大看台，看台的名字就叫 T13，同时这里也差不多是整个赛道海拔最高的地方",
+        "moreEn": "As the start of the full circuit, this area has the pit lane and a large grandstand named T13. It is also close to the highest point of the entire track.",
         "imgs": [
           {
             "src": "t13-1.jpg",

@@ -50,7 +50,7 @@
   text-wrap: pretty;
 }
 :root.dark{
-  --main: #a51312;
+  --main: #a51313;
   --text1: #ddd;
   --text2: #999;
   --text3: #444;
@@ -623,6 +623,11 @@ body{
   padding-left: .3em;
   animation-delay: calc(var(--duration) / 7 * 4);
 }
+.desc .more-en{
+  font-size: calc(.58rem + .25vmin + .18vmax);
+  line-height: 1.55;
+  max-width: 36em;
+}
 .desc-msg{
   align-self: stretch;
 }
@@ -656,11 +661,6 @@ body{
   transition-delay: .2s;
   transition-behavior: allow-discrete;
   translate: none;
-
-  #app.en &{
-    height: calc(4vmin + 8vmax);
-    flex: 0 1 calc(4vmin + 8vmax);
-  }
 
   @starting-style{
     opacity: 0;
