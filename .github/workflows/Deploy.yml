@@ -1,0 +1,259 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**/*.php'
+      - 'assets/**/*.css'
+      - 'assets/**/*.js'
+      - 'assets/**/*.png'
+      - 'assets/**/*.jpg'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: 'jjying'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          clean: true
+          lfs: true          
+
+      - name: Detect changed files
+        id: changes
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "has_php=false" >> "$GITHUB_OUTPUT"
+            echo "has_assets=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+
+          if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            CHANGED=$(git diff-tree --no-commit-id --name-only -r "$AFTER")
+          else
+            CHANGED=$(git diff --name-only "$BEFORE" "$AFTER")
+          fi
+
+          echo "All changed files:"
+          echo "$CHANGED"
+          echo "---"
+
+          PHP_FILES=$(echo "$CHANGED" | grep '\.php$' \
+            | grep -v '^env\.php$' \
+            | grep -v '^tests/' \
+            | grep -v '^doc/' \
+            | grep -v '^dev/' \
+            | grep -v '^bak/' \
+            | grep -v '^skills/' \
+            | grep -v '^archive/' \
+            || true)
+
+          ASSET_FILES=$(echo "$CHANGED" | grep -E '^assets/.*\.(css|js|png|jpg)$' || true)
+
+
+          {
+            echo "php_files<<GHADELIM"
+            echo "$PHP_FILES"
+            echo "GHADELIM"
+
+            echo "asset_files<<GHADELIM"
+            echo "$ASSET_FILES"
+            echo "GHADELIM"
+
+            echo "has_php=$( [ -n "$PHP_FILES" ] && echo true || echo false )"
+            echo "has_assets=$( [ -n "$ASSET_FILES" ] && echo true || echo false )"
+          } >> "$GITHUB_OUTPUT"
+
+          if [ -n "$PHP_FILES" ]; then
+            echo "PHP files to deploy:"
+            echo "$PHP_FILES"
+          fi
+          if [ -n "$ASSET_FILES" ]; then
+            echo "Asset files to deploy:"
+            echo "$ASSET_FILES"
+          fi
+
+      - name: Validate FTP secrets
+        env:
+          FTP_HOST: ${{ vars.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_PATH: ${{ vars.FTP_REMOTE_PATH }}
+        run: |
+          test -n "$FTP_HOST" || { echo "::error::Missing FTP_HOST var"; exit 1; }
+          test -n "$FTP_USERNAME" || { echo "::error::Missing FTP_USERNAME secret"; exit 1; }
+          test -n "$FTP_PASSWORD" || { echo "::error::Missing FTP_PASSWORD secret"; exit 1; }
+          test -n "$FTP_REMOTE_PATH" || { echo "::error::Missing FTP_REMOTE_PATH var"; exit 1; }
+
+      - name: Deploy PHP files
+        if: steps.changes.outputs.has_php == 'true'
+        env:
+          FTP_HOST: ${{ vars.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_PATH: ${{ vars.FTP_REMOTE_PATH }}
+          DEPLOY_FILES: ${{ steps.changes.outputs.php_files }}
+        run: |
+          FAILED=0
+          COUNT=0
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            if [ ! -f "$file" ]; then
+              echo "Skipped (deleted): $file"
+              continue
+            fi
+            REMOTE=$(python3 -c "import urllib.parse,sys;print(urllib.parse.quote(sys.argv[1],safe='/'))" "$file")
+            echo "Uploading: $file"
+            if curl --fail --silent --show-error --ftp-create-dirs \
+              --user "$FTP_USERNAME:$FTP_PASSWORD" \
+              --upload-file "$file" \
+              "ftp://$FTP_HOST/${FTP_REMOTE_PATH}/${REMOTE}"; then
+              COUNT=$((COUNT + 1))
+            else
+              echo "::warning::Failed to upload: $file"
+              FAILED=1
+            fi
+          done <<< "$DEPLOY_FILES"
+          echo "Deployed $COUNT PHP file(s)"
+          [ "$FAILED" -eq 0 ] || exit 1
+
+      - name: Install minification tools
+        if: steps.changes.outputs.has_assets == 'true'
+        run: npm install -g lightningcss-cli terser
+
+      - name: Minify and deploy asset files to Upyun
+        if: steps.changes.outputs.has_assets == 'true'
+        env:
+          UPYUN_HOST: ${{ vars.UPYUN_HOST }}
+          UPYUN_USERNAME: ${{ vars.UPYUN_USERNAME }}
+          UPYUN_PASSWORD: ${{ secrets.UPYUN_PASSWORD }}
+          UPYUN_PATH: ${{ vars.UPYUN_PATH }}
+          DEPLOY_FILES: ${{ steps.changes.outputs.asset_files }}
+        run: |
+          FAILED=0
+          COUNT=0
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            if [ ! -f "$file" ]; then
+              echo "Skipped (deleted): $file"
+              continue
+            fi
+
+            STRIPPED="${file#assets/}"
+            REMOTE=$(python3 -c "import urllib.parse,sys;print(urllib.parse.quote(sys.argv[1],safe='/'))" "$STRIPPED")
+
+            TMPFILE=$(mktemp)
+            case "$file" in
+              *.css)
+                if lightningcss --minify --bundle "$file" -o "$TMPFILE"; then
+                  ORIG=$(wc -c < "$file")
+                  MINI=$(wc -c < "$TMPFILE")
+                  echo "Minified CSS: $file ($ORIG -> $MINI bytes)"
+                else
+                  echo "::warning::lightningcss failed for $file, uploading original"
+                  cp "$file" "$TMPFILE"
+                fi
+                ;;
+              *.js)
+                if terser "$file" --compress --mangle --output "$TMPFILE"; then
+                  ORIG=$(wc -c < "$file")
+                  MINI=$(wc -c < "$TMPFILE")
+                  echo "Minified JS: $file ($ORIG -> $MINI bytes)"
+                else
+                  echo "::warning::terser failed for $file, uploading original"
+                  cp "$file" "$TMPFILE"
+                fi
+                ;;
+              *)
+                cp "$file" "$TMPFILE"
+                echo "Image (no processing): $file ($(wc -c < "$file") bytes)"
+                ;;
+            esac
+
+            if curl --fail --silent --show-error --ftp-create-dirs \
+              --user "$UPYUN_USERNAME:$UPYUN_PASSWORD" \
+              --upload-file "$TMPFILE" \
+              "ftp://$UPYUN_HOST/${UPYUN_PATH}/${REMOTE}"; then
+              COUNT=$((COUNT + 1))
+            else
+              echo "::warning::Failed to upload: $file"
+              FAILED=1
+            fi
+            rm -f "$TMPFILE"
+          done <<< "$DEPLOY_FILES"
+          echo "Deployed $COUNT asset file(s) to Upyun"
+          [ "$FAILED" -eq 0 ] || exit 1
+
+      - name: Webhook notify
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          COMMIT_TITLE=$(git log -1 --pretty=%s "$GITHUB_SHA")
+
+          if [ "$JOB_STATUS" = "success" ]; then
+            MESSAGE="部署成功：$COMMIT_TITLE"
+            IMAGE_URL="https://s.anyway.red/momoyu/gh-checkmark.png"
+          else
+            MESSAGE="部署失败：$COMMIT_TITLE"
+            IMAGE_URL="https://s.anyway.red/momoyu/gh-x.png"
+          fi
+
+          export MESSAGE IMAGE_URL
+
+          python3 - <<'PY' > /tmp/ifttt_payload.json
+          import json
+          import os
+
+          print(json.dumps({
+            "value1": os.environ["MESSAGE"],
+            "value2": os.environ["IMAGE_URL"],
+            "value3": "",
+          }, ensure_ascii=False))
+          PY
+
+          curl --fail --silent --show-error --location \
+            'https://maker.ifttt.com/trigger/gh_actions/with/key/IwN_U1zcYUaftLHTL8JnX' \
+            --header 'Content-Type: application/json' \
+            --data @/tmp/ifttt_payload.json
+
+      - name: Deployment summary
+        if: always()
+        env:
+          HAS_PHP: ${{ steps.changes.outputs.has_php }}
+          HAS_ASSETS: ${{ steps.changes.outputs.has_assets }}
+          PHP_LIST: ${{ steps.changes.outputs.php_files }}
+          ASSET_LIST: ${{ steps.changes.outputs.asset_files }}
+        run: |
+          {
+            echo "## Deployment Summary"
+            echo ""
+            if [ "$HAS_PHP" = "true" ]; then
+              echo "### PHP files"
+              echo '```'
+              echo "$PHP_LIST"
+              echo '```'
+            fi
+            if [ "$HAS_ASSETS" = "true" ]; then
+              echo "### Asset files"
+              echo '```'
+              echo "$ASSET_LIST"
+              echo '```'
+            fi
+            if [ "$HAS_PHP" != "true" ] && [ "$HAS_ASSETS" != "true" ]; then
+              echo "No deployable changes detected."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
