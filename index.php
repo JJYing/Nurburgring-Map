@@ -3,53 +3,72 @@ header("Cache-Control: no-cache");
 require_once ("env.php");
 $lastEditTime = date ("jhi", filemtime(__FILE__));
 
-$acceptLanguage = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+$acceptLanguage = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '';
 $languages = explode(',', $acceptLanguage);
-$zhLanguages = [];
 $lang = "en";
-foreach($languages as $lang){
-  if(strpos(trim($lang), 'zh-') === 0){
-    $zhLanguages[] = $lang;
+foreach($languages as $acceptedLang){
+  $acceptedLang = strtolower(trim(explode(';', $acceptedLang)[0]));
+  if(strpos($acceptedLang, 'zh') === 0){
+    $lang = "cn";
+    break;
+  }
+  if(strpos($acceptedLang, 'de') === 0){
+    $lang = "de";
+    break;
+  }
+  if(strpos($acceptedLang, 'en') === 0){
+    $lang = "en";
+    break;
   }
 }
-if(!empty($zhLanguages)) $lang = "cn";
+if(isset($_GET['lang']) && $_GET['lang'] == "zh") $lang = "cn";
 if(isset($_GET['lang']) && $_GET['lang'] == "cn") $lang = "cn";
+if(isset($_GET['lang']) && $_GET['lang'] == "de") $lang = "de";
 if(isset($_GET['lang']) && $_GET['lang'] == "en") $lang = "en";
 
 if($lang == "cn"){
   $extraHead = "";
-  // $pageDesc="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片";
-  // $pageLang="zh-Hans";
+  $pageTitle="纽北赛道地图";
+  $pageDesc="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片";
+  $pageLang="zh-Hans";
   $jsLang = "cn";
+}
+else if($lang == "de"){
+  $extraHead = "";
+  $pageTitle="Nordschleife";
+  $pageDesc="Eine interaktive Karte der Nürburgring-Nordschleife mit Kurvennamen, Beschreibungen und Bildern.";
+  $pageLang="de-DE";
+  $jsLang = "de";
 }
 else{
   $extraHead = "";
-  // $pageDesc="An interactive map of Nürburgring race track";
-  // $pageLang="en-US";
+  $pageTitle="Nürburgring Map";
+  $pageDesc="An interactive map of the Nürburgring Nordschleife with corner names, notes, and photos.";
+  $pageLang="en-US";
   $jsLang = "en";
 }
 
 echo
 <<<HTML
-<html lang="zh-Hans">
+<html lang="{$pageLang}">
 	<head>
     <meta charset="UTF-8">
-    <title>An Interactive Map of Nürburgring  纽北赛道地图</title>
+    <title>{$pageTitle}</title>
     <meta name="robots" content="noodp"/>
     <meta name="author" content="JJ Ying" />
-    <meta name="description" content="Learn the name of every corner in the famous race track: Nürburgring 可交互的纽博格林北环赛道地图，展示了其中各个弯道的介绍和图片"/>
+    <meta name="description" content="{$pageDesc}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="format-detection" content="telephone=no">
 
     <meta property="og:url" content="https://jjying.com/nurburgring">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="纽北赛道地图">
-    <meta property="og:description" content="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片">
+    <meta property="og:title" content="{$pageTitle}">
+    <meta property="og:description" content="{$pageDesc}">
     <meta property="og:image" content="https://s.anyway.red/nurburgring/og.png">
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="纽北赛道地图" />
-    <meta name="twitter:description" content="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片" />
+    <meta name="twitter:title" content="{$pageTitle}" />
+    <meta name="twitter:description" content="{$pageDesc}" />
     <meta name="twitter:site" content="@JJYing" />
     <meta name="twitter:image" content="https://s.anyway.red/nurburgring/og.png" />
 
@@ -109,24 +128,21 @@ echo
       <div v-for="c in bridges" class="corner-name bridge-name" :class="[ (c.pt < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.pt - 0.001 < p && p < c.pt + 0.001 ? 'highlighted' : '']" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP(c.pt)">
         <div>
             <div>
-              <template v-if="lang == 'cn'">{{c.ch}}</template>
-              <template v-if="lang == 'en'">{{c.en}}</template>
+              {{getName(c, lang)}}
             </div>
         </div>
       </div>
       <div v-for="c in sections" class="corner-name section-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '']" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP((c.st + c.ed) / 2)">
         <div>
             <div>
-              <template v-if="lang == 'cn'">{{c.ch}}</template>
-              <template v-if="lang == 'en'">{{c.en}}</template>
+              {{getName(c, lang)}}
             </div>
         </div>
       </div>
       <div v-for="c in corners" class="corner-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '' ]" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP( (c.st + c.ed) / 2)">
         <div>
             <div>
-              <template v-if="lang == 'cn'">{{c.ch}}</template>
-              <template v-if="lang == 'en'">{{c.en}}</template>
+              {{getName(c, lang)}}
             </div>
         </div>
       </div>
@@ -135,13 +151,10 @@ echo
 
         <div class="msg" v-if="p == 0">
           <div class="inner" v-if="p == 0" v-cloak>
-            <p class="title-font msg-title" v-if="lang == 'cn'">纽北赛道地图</p>
-            <p class="title-font msg-title" v-if="lang == 'en'">Nürburgring Map</p>
-            <p v-if="lang == 'cn'"><a href="https://zh.wikipedia.org/zh-hans/%E7%BA%BD%E5%8D%9A%E6%A0%BC%E6%9E%97%E8%B5%9B%E9%81%93" target="_blank">纽博格林赛道</a>（德语：Nürburgring）修筑于 1920 年代，由于跑道非常长、地形复杂充满挑战性，被认为是世界上最严苛的竞速赛道，其中的北环俗称为“纽北”，又叫“绿色地狱”。这里很多弯道都有独特的名字和故事，通过本地图可以方便爱好者学习。</p>
-            <p v-if="lang == 'en'"><a href="https://en.wikipedia.org/wiki/N%C3%BCrburgring" target="_blank">Nürburgring</a> is a German race track built in 1920s, and the North Loop(Nordschleife) of it is very famous and challenging for racers around the world, through this interactive map you can learn the names of the corners in Nürburgring</p>
+            <p class="title-font msg-title">{{uiText('mainTitle')}}</p>
+            <p v-html="uiText('intro')"></p>
             <div class="indicator">
-              <div v-if="lang == 'cn'">向下滚动或点击弯道名查看地图</div>
-              <div v-if="lang == 'en'">Scroll or click the corner to start</div>
+              <div>{{uiText('startHint')}}</div>
               <svg viewBox="0 0 100 100" class="scroll-arrow">
                 <path d="M10 20l40 30l40 -30"/>
                 <path d="M10 60l40 30l40 -30"/>
@@ -159,58 +172,34 @@ echo
   <div class="desc skew-p">
     <div class="logo">
       <div class="inner skew-n">
-        <span class="title-font" v-if="lang == 'cn'">纽<span>博格林</span>北<span>环</span>赛道地图</span>
-        <span class="title-font" v-if="lang == 'en'">Nürburgring Map</span>
-        <img src="{$assetsDir}/logo.svg" alt="纽北赛道地图"/>
+        <span class="title-font">{{uiText('logoTitle')}}</span>
+        <img src="{$assetsDir}/logo.svg" :alt="uiText('logoTitle')"/>
       </div>
     </div>
     <div class="corner-info">
       <div class="inner" v-if="currentCorner && p > 0" v-cloak>
-        <div class="primary skew-n title-font" v-if="lang == 'cn' && currentCorner.ch" :class="currentCorner.ch == currentCorner.nk ? 'qt' : '' " v-cloak>{{currentCorner.ch}}</div>
-        <div class="primary skew-n" v-if="lang == 'en' && currentCorner.en" v-cloak>{{currentCorner.en}}</div>
+        <div class="primary skew-n title-font" v-cloak>{{getName(currentCorner, lang)}}</div>
         <div class="nickname qt skew-n title-font" v-if="lang == 'cn' && currentCorner.nk && currentCorner.ch != currentCorner.nk" v-cloak>{{currentCorner.nk}}</div>
-        <div class="secondary skew-n" v-if="currentCorner.en" v-cloak>
-          <span class="extra" v-if="currentCorner.de">
-            <svg viewBox="0 0 5 3" class="skew-p">
-              <rect id="black_stripe" width="5" height="3" y="0" x="0" fill="#000"/>
-              <rect id="red_stripe" width="5" height="2" y="1" x="0" fill="#6C6C6C"/>
-              <rect id="gold_stripe" width="5" height="1" y="2" x="0" fill="#DADADA"/>
-            </svg> {{currentCorner.de}}
-          </span>
-          <span class="extra" v-if="lang == 'cn' && currentCorner.en">
-            <svg viewBox="0 0 60 30" class="skew-p">
-              <clipPath id="s">
-                <path d="M0,0 v30 h60 v-30 z"/>
-              </clipPath>
-              <clipPath id="t">
-                <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
-              </clipPath>
-              <g clip-path="url(#s)">
-                <path d="M0,0 v30 h60 v-30 z" fill="#292929"/>
-                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
-                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#646464" stroke-width="4"/>
-                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-                <path d="M30,0 v30 M0,15 h60" stroke="#646464" stroke-width="6"/>
-              </g>
-            </svg> {{currentCorner.en}}
+        <div class="secondary skew-n" v-if="otherNames(currentCorner).length" v-cloak>
+          <span class="extra localized-name" v-for="name in otherNames(currentCorner)">
+            <span class="lang-flag skew-p" :class="'flag-' + name.lang" :data-code="name.lang == 'cn' ? '中' : ''"></span>
+            {{name.value}}
           </span>
         </div>
-        <div class="more skew-n" v-if="lang == 'cn' && currentCorner.more" v-html="currentCorner.more"></div>
-        <div class="more more-en skew-n" v-if="lang == 'en' && currentCorner.moreEn" v-html="currentCorner.moreEn"></div>
+        <div class="more skew-n" :class="'more-' + lang" v-if="getMore(currentCorner)" v-html="getMore(currentCorner)"></div>
       </div>
       <div class="inner desc-msg" v-if="p == 1" v-cloak>
         <div class="ending skew-n" v-if="p > 0.999">
-          The End
+          {{uiText('endLabel')}}
           <div class='btn skew-p' @click="setP(0.001)">
-            <div class='skew-n title-font' v-if="lang == 'cn'">回到起点</div>
-            <div class='skew-n' v-if="lang == 'en'">Start Over</div>
+            <div class='skew-n title-font'>{{uiText('startOver')}}</div>
           </div>
         </div>
       </div>
       <div class="thumbs" v-if="currentCorner && currentCorner.imgs" v-cloak>
         <div class="thumb" v-for="img in currentCorner.imgs" :class="img.url ? 'has-author' : '' ">
           <img class="skew-n" :src=" 'https://s.anyway.red/nurburgring/' + img.src + '!/fh/300/quality/68/progressive/true/ignore-error/true' " loading="lazy" @click="openModal('image', img)"/>
-          <a class="thumb-source" v-if="img.url" :href="img.url" target="_blank" title="查看照片来源"><span class="skew-n">{{img.author}}</span></a>
+          <a class="thumb-source" v-if="img.url" :href="img.url" target="_blank" :title="uiText('photoSource')"><span class="skew-n">{{img.author}}</span></a>
         </div>
       </div>
     </div>
@@ -219,26 +208,23 @@ echo
       <div class="inner skew-n">
 
         <div @click="openModal('text')" role="button" class="link">
-          <template v-if="lang == 'cn'">关于本站</template>
-          <template v-if="lang == 'en'">About</template>
+          {{uiText('about')}}
         </div>
 
         <div class="toggle-group" :class=" showAllCornerNames ? 'on' : 'off' " @click="showAllCornerNames = !showAllCornerNames">
-          <span v-if="lang == 'cn'">所有弯道</span>
-          <span v-if="lang == 'en'">All Corners</span>
+          <span>{{uiText('allCorners')}}</span>
           <div class="toggle"></div>
         </div>
 
         <div class="toggle-group" :class=" darkMode ? 'on' : 'off' " @click="toggleDarkMode()">
-          <span v-if="lang == 'cn'">深色模式</span>
-          <span v-if="lang == 'en'">Dark Mode</span>
+          <span>{{uiText('darkMode')}}</span>
           <div class="toggle"></div>
         </div>
 
-        <div class="toggle-group" :class=" lang == 'cn' ? 'on' : 'off' " @click="toggleLang()">
-          <span v-if="lang == 'cn'">中文</span>
-          <span v-if="lang == 'en'">Chinese</span>
-          <div class="toggle"></div>
+        <div class="language-switch" role="group" :aria-label="uiText('language')">
+          <div v-for="language in languages" class="language-option" :class="lang == language.code ? 'on' : ''" @click="setLang(language.code)">
+            <span class="skew-n">{{language.short}}</span>
+        </div>
         </div>
 
       </div>

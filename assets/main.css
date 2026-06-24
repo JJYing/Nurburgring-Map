@@ -61,7 +61,8 @@
 }
 
 
-#app.en{
+#app.en,
+#app.de{
   font-style: italic;
 }
 em{font-style: normal;}
@@ -70,7 +71,8 @@ em{font-style: normal;}
   font-style: italic;
   font-weight: 700;
 
-  #app.en &{
+  #app.en &,
+  #app.de &{
     font-family: var(--body-font);
     font-weight: 900;
   }
@@ -319,11 +321,13 @@ body{
       0 -.1em 0 var(--shadow);
   }
 
-  #app.en & > div{
+  #app.en & > div,
+  #app.de & > div{
     transform: skewX(calc(-1 * var(--angle)));
     transition: var(--transition);
   }
-  #app.en & > div > div{
+  #app.en & > div > div,
+  #app.de & > div > div{
     transform: skewX(var(--angle));
     transition: var(--transition);
   }
@@ -399,7 +403,8 @@ body{
   translate: -4vw 0;
   animation: msgShow .25s var(--curve) .3s both;
 
-  #app.en &{
+  #app.en &,
+  #app.de &{
     line-height: 1.52;
   }
 }
@@ -560,7 +565,8 @@ body{
   position: relative;
   align-self: flex-start;
 
-  #app.en &{
+  #app.en &,
+  #app.de &{
     font-weight: 700;
   }
 }
@@ -598,21 +604,49 @@ body{
   animation-delay: calc(var(--duration) / 7 * 2);
   font-style: italic;
 }
-.desc .secondary > span:first-of-type{
+.desc .secondary .extra{
+  display: inline-flex;
+  justify-content: flex-start; align-items: center;
   margin-right: 1em;
 }
-.desc .secondary .extra{
-  /* display: inline-flex; */
-  justify-content: flex-start; align-items: center;
-}
-.desc .secondary svg{
+.lang-flag{
+  width: 1.4em;
   height: .7em;
   display: inline-block;
-  /* filter: grayscale(1); */
   opacity: .35;
   margin-right: .4em;
   border: 1px solid var(--bg3);
   border-radius: .1em .05em .1em .05em;
+  overflow: hidden;
+  position: relative;
+  flex: 0 0 auto;
+}
+.flag-de{
+  background: linear-gradient(to bottom, #000 0 33.33%, #666 33.33% 66.66%, #dadada 66.66% 100%);
+}
+.flag-en{
+  background:
+    linear-gradient(33deg, transparent 42%, #fff 42% 48%, #666 48% 54%, #fff 54% 60%, transparent 60%),
+    linear-gradient(-33deg, transparent 42%, #fff 42% 48%, #666 48% 54%, #fff 54% 60%, transparent 60%),
+    linear-gradient(to bottom, transparent 38%, #fff 38% 62%, transparent 62%),
+    linear-gradient(to right, transparent 42%, #fff 42% 58%, transparent 58%),
+    linear-gradient(to bottom, transparent 43%, #666 43% 57%, transparent 57%),
+    linear-gradient(to right, transparent 46%, #666 46% 54%, transparent 54%),
+    #292929;
+}
+.flag-cn{
+  border-style: dashed;
+  background: var(--bg1);
+}
+.flag-cn::after{
+  content: attr(data-code);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center; align-items: center;
+  color: var(--text2);
+  font-size: .55em;
+  font-style: normal;
 }
 .desc .more{
   font-weight: 400;
@@ -623,7 +657,8 @@ body{
   padding-left: .3em;
   animation-delay: calc(var(--duration) / 7 * 4);
 }
-.desc .more-en{
+.desc .more-en,
+.desc .more-de{
   font-size: calc(.58rem + .25vmin + .18vmax);
   line-height: 1.55;
   max-width: 36em;
@@ -646,7 +681,8 @@ body{
   font-size: .5em;
   margin-top: .3em;
 
-  #app.en &{
+  #app.en &,
+  #app.de &{
     font-weight: 400;
   }  
 }
@@ -811,6 +847,48 @@ body{
 .controls .link:hover{
   color: var(--text1);
   transition: var(--transition);
+}
+.language-switch{
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--text2);
+  border-radius: .35em .15em .35em .15em;
+  overflow: hidden;
+  transform: skewX(calc(var(--angle) * -1));
+}
+.language-option{
+  min-width: 2.6em;
+  height: 1.6em;
+  padding: 0 .55em;
+  border: none;
+  border-right: 1px solid var(--text2);
+  background: var(--bg1);
+  color: var(--text2);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-out);
+  display: flex;
+  justify-content: center; align-items: center;
+  /* transform: skewX(var(--angle)); */
+
+  & > span{
+    display: inline-block;
+  }
+}
+.language-option:last-child{
+  border-right: none;
+}
+.language-option:hover{
+  color: var(--text1);
+  background: var(--bg2);
+  transition: var(--transition);
+}
+.language-option.on{
+  color: var(--bg1);
+  background: var(--main);
+  border-color: var(--main);
+  box-shadow: 0 0 0 1px var(--main);
 }
 /* ~Modal */
 .modal{
