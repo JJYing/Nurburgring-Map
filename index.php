@@ -182,7 +182,9 @@ echo
         <div class="nickname qt skew-n title-font" v-if="lang == 'cn' && currentCorner.nk && currentCorner.ch != currentCorner.nk" v-cloak>{{currentCorner.nk}}</div>
         <div class="secondary skew-n" v-if="otherNames(currentCorner).length" v-cloak>
           <span class="extra localized-name" v-for="name in otherNames(currentCorner)">
-            <span class="lang-flag skew-p" :class="'flag-' + name.lang" :data-code="name.lang == 'cn' ? '中' : ''"></span>
+            <span class="lang-flag skew-p" :class="'flag-' + name.lang">
+              <img :src="'{$assetsDir}/' + name.lang + '.svg'" :alt="name.lang" />
+            </span>
             {{name.value}}
           </span>
         </div>
