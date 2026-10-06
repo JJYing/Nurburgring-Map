@@ -119,3 +119,13 @@ test('barriers anchor to the rendered bank surface instead of road-center elevat
     assert.ok(Math.abs(position.y - posts.geometry.parameters.height / 2 - 42 + .08) < .00001);
   }
 });
+
+test('global fence height is 4.9 meters and remains grounded', () => {
+  const data = { profiles: [], barriers: [], fences: [{ start: 0, end: 20, side: 'left', offset: 15 }],
+    bridges: [], guardrailStyle: scenery.guardrailStyle, barrierHeightScale: scenery.barrierHeightScale };
+  const { root } = createScenery(track, data, { heightAt: () => 42 });
+  const fence = root.children.find(object => object.isLineSegments);
+  fence.geometry.computeBoundingBox();
+  assert.equal(fence.geometry.boundingBox.min.y, 42);
+  assert.ok(Math.abs(fence.geometry.boundingBox.max.y - 42 - 4.9) < .00001);
+});

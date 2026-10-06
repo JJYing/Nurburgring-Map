@@ -4,11 +4,14 @@ import { createTrack } from './track.js?v=elevation-smooth';
 import { createSpeedProfile } from './speed.js';
 import { createAnnotations } from './annotations.js?v=main-ui';
 import { createCurbs } from './curbs.js';
-import { createScenery } from './scenery.js?v=grounded-rails';
-import { createAtmosphere, addSurfaceGrain } from './rendering.js?v=free-no-fog';
-import { createTerrain } from './terrain.js?v=verge-terrain';
+import { createScenery } from './scenery.js?v=taller-barriers';
+import { createAtmosphere, addSurfaceGrain } from './rendering.js?v=woodland-tone';
+import { createTerrain } from './terrain.js?v=darker-hills';
+import { createElevationGrid } from './elevation-grid.js';
 import { createRoadBanks } from './road-banks.js?v=ground-sampling';
 import { createFreeCamera } from './free-camera.js';
+import { createRacingLine } from './racing-line.js?v=camera-only';
+import { createDistantWoodland } from './distant-woodland.js?v=tiered-hills';
 
 const $ = selector => document.querySelector(selector);
 const loading = $('#loading');
@@ -22,7 +25,7 @@ try {
   if (!cornerResponse.ok) throw new Error('弯道数据加载失败');
   const curbResponse = await fetch('./curbs.json');
   if (!curbResponse.ok) throw new Error('路肩数据加载失败');
-  const sceneryResponse = await fetch('./scenery.json?v=three-rails');
+  const sceneryResponse = await fetch('./scenery.json?v=taller-barriers');
   if (!sceneryResponse.ok) throw new Error('环境数据加载失败');
   let treeTexture = null;
   try {
@@ -30,17 +33,28 @@ try {
   } catch (error) {
     console.warn('Tree atlas unavailable; using procedural trees.', error);
   }
-  start(route, await cornerResponse.json(), await curbResponse.json(), await sceneryResponse.json(), treeTexture);
+  let elevation = null;
+  try {
+    const metadata = await fetch('./assets/terrain-cop30.json');
+    const data = await fetch('./assets/terrain-cop30.bin');
+    if (!metadata.ok || !data.ok) throw new Error('Elevation data unavailable');
+    elevation = createElevationGrid(await metadata.json(), await data.arrayBuffer());
+  } catch (error) {
+    console.warn('DEM unavailable; using approximate terrain.', error);
+  }
+  $('#terrain-credit').hidden = !elevation;
+  start(route, await cornerResponse.json(), await curbResponse.json(), await sceneryResponse.json(), treeTexture, elevation);
   loading.hidden = true;
 } catch (error) {
   loading.textContent = '无法加载场景，请刷新后重试。';
   console.error(error);
 }
 
-function start(route, corners, curbData, sceneryData, treeTexture) {
+function start(route, corners, curbData, sceneryData, treeTexture, elevation) {
   const track = createTrack(route);
   const { length, points, at } = track;
   const pace = createSpeedProfile(track);
+  const racingLine = createRacingLine(track);
   const box = new THREE.Box3().setFromPoints(points);
   const center = box.getCenter(new THREE.Vector3());
   const size = box.getSize(new THREE.Vector3());
@@ -91,8 +105,8 @@ function start(route, corners, curbData, sceneryData, treeTexture) {
     world.add(mesh);
     return mesh;
   }
-  const terrain = createTerrain(track);
-  addSurfaceGrain(terrain.mesh.material, .45, .3);
+  const terrain = createTerrain(track, elevation);
+  addSurfaceGrain(terrain.mesh.material, .45, .3, .25);
   const banks = createRoadBanks(track, terrain);
   addSurfaceGrain(banks.material, .45, .3);
   terrain.mesh.add(banks);
@@ -115,6 +129,7 @@ function start(route, corners, curbData, sceneryData, treeTexture) {
   scenery.traverse(object => {
     if (object.isMesh) { object.castShadow = true; object.receiveShadow = true; }
   });
+  trees.add(createDistantWoodland(track, terrain));
   curbs.traverse(object => { if (object.isMesh) object.receiveShadow = true; });
   const marker = new THREE.Mesh(new THREE.SphereGeometry(16, 16, 12), new THREE.MeshBasicMaterial({ color: 0xdf423c }));
   world.add(marker);
@@ -131,6 +146,7 @@ function start(route, corners, curbData, sceneryData, treeTexture) {
   grid.material.opacity = .65;
   scene.add(grid);
   let mode = 'orbit', progress = 0, playing = false, playbackRate = 1, treeVisible = true;
+  let racingEnabled = false, racingBlend = 0;
   const freeCamera = createFreeCamera(perspective, orbit, () => mode === 'free');
   let scrollTarget = null;
   let showLabels = true;
@@ -234,6 +250,10 @@ function start(route, corners, curbData, sceneryData, treeTexture) {
   $('#trees').addEventListener('click', () => { treeVisible = !treeVisible; trees.visible = mode !== 'orbit' && treeVisible; $('#trees').setAttribute('aria-pressed', String(treeVisible)); });
   $('#tree-style').addEventListener('change', event => setTreeStyle(event.target.value));
   $('#labels').addEventListener('click', () => { showLabels = !showLabels; $('#labels').setAttribute('aria-pressed', String(showLabels)); });
+  $('#racing-line').addEventListener('click', () => {
+    racingEnabled = !racingEnabled;
+    $('#racing-line').setAttribute('aria-pressed', String(racingEnabled));
+  });
   addEventListener('resize', resize);
   renderer.domElement.addEventListener('webglcontextlost', event => { event.preventDefault(); loading.hidden = false; loading.textContent = '图形场景已中断，请刷新页面。'; });
   resize(); resetView(); setMode('orbit');
@@ -250,8 +270,12 @@ function start(route, corners, curbData, sceneryData, treeTexture) {
       if (Math.abs(scrollTarget - progress) * length < .02) setProgress(scrollTarget);
     }
     const current = at(progress * length);
+    racingBlend = THREE.MathUtils.lerp(racingBlend, racingEnabled ? 1 : 0, 1 - Math.exp(-6 * delta));
+    if (mode === 'first') current.position.lerp(racingLine.at(progress * length).position, racingBlend);
     const mapPosition = mapPoint(current.position);
-    const mapAhead = mapPoint(at((progress * length + 10) % length).position);
+    const mapAheadPosition = at((progress * length + 10) % length).position;
+    if (mode === 'first') mapAheadPosition.lerp(racingLine.at(progress * length + 10).position, racingBlend);
+    const mapAhead = mapPoint(mapAheadPosition);
     const heading = Math.atan2(mapAhead.x - mapPosition.x, mapPosition.y - mapAhead.y) * 180 / Math.PI;
     $('#minimap-marker').setAttribute('transform', `translate(${mapPosition.x} ${mapPosition.y}) rotate(${heading})`);
     $('#minimap-travelled').setAttribute('stroke-dasharray', `${progress} 1`);
@@ -259,6 +283,7 @@ function start(route, corners, curbData, sceneryData, treeTexture) {
     travelledLine.geometry.setDrawRange(0, Math.max(0, Math.floor(progress * (points.length - 1)) + 1));
     if (mode === 'first') {
       const ahead = at((progress * length + 25) % length);
+      ahead.position.lerp(racingLine.at(progress * length + 25).position, racingBlend);
       perspective.position.copy(current.position).add(new THREE.Vector3(0, 1.8, 0));
       perspective.lookAt(ahead.position.clone().add(new THREE.Vector3(0, 1.8, 0)));
       atmosphere.update(perspective);

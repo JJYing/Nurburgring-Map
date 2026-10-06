@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createGuardrail } from './guardrails.js?v=grounded-posts';
+import { createGuardrail } from './guardrails.js?v=taller-barriers';
 import { createRoadClearance } from './road-clearance.js';
 import { createTreeSprites, treeSpriteWidths } from './tree-sprites.js?v=clean-alpha';
 import { mergeGeometries, mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
@@ -151,16 +151,17 @@ export function createScenery(track, data, terrain = null, treeTexture = null) {
       root.add(new THREE.LineSegments(lines, new THREE.LineBasicMaterial({ color: 0x7e837f })));
     }
   }
+  const barrierHeightScale = data.barrierHeightScale ?? 1;
   for (const barrier of data.barriers) {
-    root.add(createGuardrail(groundSample, barrier, data.guardrailStyle));
+    root.add(createGuardrail(groundSample, barrier, data.guardrailStyle, barrierHeightScale));
   }
   for (const fence of data.fences) {
     const sign = fence.side === 'left' ? 1 : -1, vertices = [];
     for (let d = fence.start; d < fence.end; d += 8) {
       const a = groundSample(d, sign * fence.offset), b = groundSample(Math.min(d + 8, fence.end), sign * fence.offset);
-      for (const height of [1.5, 2.2, 3, 3.5]) vertices.push(a.x, a.y + height, a.z, b.x, b.y + height, b.z);
-      vertices.push(a.x, a.y, a.z, a.x, a.y + 3.5, a.z);
-      for (let h = 1.5; h < 3.5; h += .5) vertices.push(a.x, a.y + h, a.z, b.x, b.y + h + .5, b.z);
+      for (const height of [1.5, 2.2, 3, 3.5]) vertices.push(a.x, a.y + height * barrierHeightScale, a.z, b.x, b.y + height * barrierHeightScale, b.z);
+      vertices.push(a.x, a.y, a.z, a.x, a.y + 3.5 * barrierHeightScale, a.z);
+      for (let h = 1.5; h < 3.5; h += .5) vertices.push(a.x, a.y + h * barrierHeightScale, a.z, b.x, b.y + (h + .5) * barrierHeightScale, b.z);
     }
     const geometry = new THREE.BufferGeometry(); geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
     root.add(new THREE.LineSegments(geometry, new THREE.LineBasicMaterial({ color: 0x7f9189, transparent: true, opacity: .55 })));

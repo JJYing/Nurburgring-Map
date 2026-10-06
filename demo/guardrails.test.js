@@ -7,6 +7,27 @@ import { createGuardrail } from './guardrails.js';
 const style = JSON.parse(fs.readFileSync(new URL('scenery.json', import.meta.url))).guardrailStyle;
 const sample = (distance, offset, height = 0) => new THREE.Vector3(distance, height, offset);
 
+test('global height multiplier raises panels and walls by 40 percent without moving their footprint', () => {
+  for (const interval of [
+    { start: 0, end: 20, side: 'left', offset: 10 },
+    { type: 'wall', height: 2.8, start: 0, end: 20, side: 'right', offset: 10 }
+  ]) {
+    const before = createGuardrail(sample, interval, style);
+    const after = createGuardrail(sample, interval, style, 1.4);
+    const a = before.children[0].geometry.attributes.position;
+    const b = after.children[0].geometry.attributes.position;
+    for (let i = 0; i < a.count; i++) {
+      assert.equal(a.getX(i), b.getX(i)); assert.equal(a.getZ(i), b.getZ(i));
+      assert.ok(Math.abs(b.getY(i) - a.getY(i) * 1.4) < .000001);
+    }
+    if (after.children[1]) {
+      const posts = after.children[1], matrix = new THREE.Matrix4(), position = new THREE.Vector3();
+      posts.getMatrixAt(0, matrix); position.setFromMatrixPosition(matrix);
+      assert.ok(Math.abs(position.y - posts.geometry.parameters.height / 2 + .08) < .000001);
+    }
+  }
+});
+
 test('three close-spaced panels cover most of the height above short exposed feet', () => {
   const item = { start: 0, end: 20, side: 'left', offset: 10 };
   const group = createGuardrail(sample, item, style);

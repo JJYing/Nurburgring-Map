@@ -80,10 +80,15 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--bgt);border-top:1
 .tree-style-control{display:flex;align-items:center;gap:10px;max-width:1100px;margin:8px auto 0;font-size:12px;color:var(--text2)}
 .tree-style-control[hidden]{display:none}
 .tree-style-control select{border:0;border-bottom:1px solid var(--text2);border-radius:0;background:transparent;color:var(--text1);padding:3px 20px 3px 0;font-size:12px;font-style:italic}
+.credits details{position:relative}
+.credits summary{cursor:pointer;text-decoration:underline}
+.terrain-notice{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);width:300px;max-width:calc(100vw - 36px);padding:14px;background:#fff;border:1px solid var(--bg2);color:var(--text1);font-size:11px;line-height:1.5}
+.terrain-notice p{margin:0 0 10px}
+.terrain-notice a{margin-right:12px}
 .segment-navigation{display:flex;align-items:center;gap:12px;max-width:1100px;margin:0 auto 10px}
 .segment-navigation label{margin:0;flex-shrink:0}
 .segment-navigation select{min-width:0;width:300px;border:0;border-bottom:1px solid var(--text2);border-radius:0;background:transparent;padding:5px 24px 5px 0;font-size:13px;color:var(--text1);font-style:italic}
-.segment-navigation .icon{margin-left:auto}
+.segment-navigation #racing-line{margin-left:auto}
 .transport{display:flex;align-items:center;gap:20px;max-width:1100px;margin:auto}
 .position{flex:1;min-width:0}
 .speed{width:180px}
@@ -135,9 +140,10 @@ body:not(.first-person) .corner-label.current:hover{background:var(--main)}
   .velocity-reading em{font-size:10px}
   .minimap{top:237px;right:20px;width:118px}
   footer{padding:10px 18px 9px}
-  .segment-navigation{margin-bottom:9px;gap:10px;padding-right:46px}
+  .segment-navigation{margin-bottom:9px;gap:10px;padding-right:88px}
   .segment-navigation select{width:auto;flex:1;font-size:12px}
   .segment-navigation #labels{position:absolute;right:18px;top:10px}
+  .segment-navigation #racing-line{position:absolute;right:60px;top:10px}
   .transport{gap:12px;flex-wrap:wrap;padding-right:46px}
   .speed{width:100%;padding-left:46px;display:flex;align-items:center;gap:12px}
   .speed label{width:105px;flex-shrink:0;margin:0}

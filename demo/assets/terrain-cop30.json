@@ -1,0 +1,37 @@
+{
+  "dataset": "Copernicus GLO-30 Public, 2021 release (DSM)",
+  "catalog": "https://portal.opentopography.org/datasetMetadata.jsp?otCollectionID=OT.032021.4326.1",
+  "source": "https://registry.opendata.aws/copernicus-dem/",
+  "retrieved": "2026-10-06",
+  "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E006_00_DEM/Copernicus_DSM_COG_10_N50_00_E006_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E007_00_DEM/Copernicus_DSM_COG_10_N50_00_E007_00_DEM.tif"
+  ],
+  "minX": -13240,
+  "minZ": -12080,
+  "spacing": 40,
+  "nx": 653,
+  "nz": 623,
+  "encoding": "uint16-le",
+  "scale": 0.1,
+  "verticalDatum": "EGM2008, meters",
+  "bounds": {
+    "west": 6.778675562133947,
+    "east": 7.146903068479745,
+    "south": 50.247003917474636,
+    "north": 50.47111485923844
+  },
+  "projection": {
+    "eastMetersPerDegree": 70934.4075330185,
+    "southMetersPerDegree": -111194.92785079627,
+    "originLongitude": 6.965326870863594,
+    "originLatitude": 50.36247681042195,
+    "maxResidualM": 0.005053273008797987
+  },
+  "elevationRangeM": [
+    197.39657309399172,
+    738.3327042136898
+  ],
+  "sha256": "c27fa671ad9b3efc38d02353d313d3773a9d9e16b17a6fc1b266f7eb76f3a207",
+  "notice": "produced using Copernicus WorldDEM-30 \u00a9 DLR e.V. 2010-2014 and \u00a9 Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+}

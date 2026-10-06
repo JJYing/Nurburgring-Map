@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 export const renderStyle = {
   fogColor: 0xcbd7d5,
-  fogDensity: .0019,
+  fogDensity: .0006,
   skyColor: 0x8aaabd,
   exposure: 1.12,
   shadowRange: 160
@@ -67,7 +67,7 @@ export function createAtmosphere(renderer, scene) {
   };
 }
 
-export function addSurfaceGrain(material, scale, strength) {
+export function addSurfaceGrain(material, scale, strength, distantShade = 0) {
   material.onBeforeCompile = shader => {
     shader.vertexShader = `varying vec3 surfacePosition;\n${shader.vertexShader}`
       .replace('#include <begin_vertex>', '#include <begin_vertex>\nsurfacePosition = (modelMatrix * vec4(transformed, 1.0)).xyz;');
@@ -81,7 +81,9 @@ export function addSurfaceGrain(material, scale, strength) {
         vec2 grainUv = surfacePosition.xz * ${scale.toFixed(3)};
         float detailFade = 1.0 - smoothstep(0.2, 1.2, max(length(dFdx(grainUv)), length(dFdy(grainUv))));
         float grain = (grainNoise(grainUv) - 0.5) * detailFade;
-        diffuseColor.rgb *= 1.0 + grain * ${strength.toFixed(3)};`);
+        diffuseColor.rgb *= 1.0 + grain * ${strength.toFixed(3)};
+        float distantGround = smoothstep(180.0, 1000.0, distance(cameraPosition.xz, surfacePosition.xz));
+        diffuseColor.rgb *= 1.0 - distantGround * ${distantShade.toFixed(3)};`);
   };
-  material.customProgramCacheKey = () => `surface-grain-${scale}-${strength}`;
+  material.customProgramCacheKey = () => `surface-grain-${scale}-${strength}-${distantShade}`;
 }

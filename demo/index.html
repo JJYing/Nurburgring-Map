@@ -31,7 +31,7 @@
   <div id="loading" role="status">正在加载赛道</div>
   <div id="corner-labels" aria-label="赛道弯道标注"></div>
   <footer>
-    <div class="segment-navigation"><label for="segment">赛段</label><select id="segment"><option value="">选择弯道或赛段</option></select><button id="labels" class="icon" aria-label="显示弯道名称" aria-pressed="true" title="显示弯道名称"><i data-lucide="tags"></i></button></div>
+    <div class="segment-navigation"><label for="segment">赛段</label><select id="segment"><option value="">选择弯道或赛段</option></select><button id="racing-line" class="icon" aria-label="赛车线" aria-pressed="false" title="赛车线"><i data-lucide="route"></i></button><button id="labels" class="icon" aria-label="显示弯道名称" aria-pressed="true" title="显示弯道名称"><i data-lucide="tags"></i></button></div>
     <div class="transport">
       <button id="play" class="icon play" title="播放" aria-label="播放"><i data-lucide="play"></i></button>
       <div class="position"><label for="progress">赛道进度 <span id="percent">0%</span></label><input id="progress" aria-label="赛道进度" type="range" min="0" max="10000" value="0"></div>
@@ -39,9 +39,9 @@
       <button id="trees" class="icon" aria-label="显示树木" aria-pressed="true" title="显示树木"><i data-lucide="trees"></i></button>
     </div>
     <div class="tree-style-control" id="tree-style-control" hidden><label for="tree-style">树木样式</label><select id="tree-style"><option value="sprite">切片树</option><option value="solid">立体树</option></select></div>
-    <div class="credits"><span>海拔、路肩与环境均为近似</span><a href="https://www.youtube.com/watch?v=Fxw6mf_5j-U" target="_blank" rel="noopener">视频参考 <i data-lucide="arrow-up-right"></i></a><a href="https://veloviewer.com/segment/5539685" target="_blank" rel="noopener">VeloViewer <i data-lucide="arrow-up-right"></i></a></div>
+    <div class="credits"><span>海拔、路肩与环境均为近似</span><details id="terrain-credit" hidden><summary>Copernicus GLO-30</summary><div class="terrain-notice"><p>地形采用 2021 版 DSM，包含植被与建筑高度；赛道附近已做衔接调整。</p><p>produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved</p><a href="https://registry.opendata.aws/copernicus-dem/" target="_blank" rel="noopener">数据来源</a><a href="https://portal.opentopography.org/datasetMetadata.jsp?otCollectionID=OT.032021.4326.1" target="_blank" rel="noopener">OpenTopography 目录</a></div></details><a href="https://www.youtube.com/watch?v=Fxw6mf_5j-U" target="_blank" rel="noopener">视频参考 <i data-lucide="arrow-up-right"></i></a><a href="https://veloviewer.com/segment/5539685" target="_blank" rel="noopener">VeloViewer <i data-lucide="arrow-up-right"></i></a></div>
   </footer>
   <script src="node_modules/lucide/dist/umd/lucide.js"></script>
-  <script type="module" src="main.js?v=grounded-rails"></script>
+  <script type="module" src="main.js?v=taller-barriers"></script>
 </body>
 </html>

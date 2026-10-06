@@ -2,6 +2,7 @@
   "source": "https://www.youtube.com/watch?v=Fxw6mf_5j-U",
   "status": "full-lap-approximation",
   "note": "Full-lap simplified scenery informed by sampled onboard frames. Placement is approximate, not surveyed or a frame-by-frame reconstruction. Tree heights, setbacks, buildings and terrain openings are artistic estimates. The final 184 m closes the source route seam.",
+  "barrierHeightScale": 1.4,
   "guardrailStyle": { "color": "#c4cccb", "metalness": 0.1, "roughness": 0.65, "base": 0.12, "height": 1.05, "railCount": 3, "railGap": 0.025, "corrugation": 0.06, "postSpacing": 4, "postWidth": 0.12, "wallColor": "#bfc3be" },
   "profiles": [
     { "name": "T13 to Sabine open approach", "start": 0, "end": 650, "left": { "spacing": 45, "setback": 38, "height": 12 }, "right": { "spacing": 32, "setback": 32, "height": 13 }, "referenceTime": "00:08" },

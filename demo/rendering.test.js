@@ -6,8 +6,9 @@ import { renderStyle, createAtmosphere, addSurfaceGrain } from './rendering.js';
 test('fog keeps nearby curbs clear while softening distant scenery', () => {
   const fogAmount = distance => 1 - Math.exp(-((distance * renderStyle.fogDensity) ** 2));
   assert.ok(fogAmount(50) < .02);
-  assert.ok(fogAmount(500) > .5);
-  assert.ok(fogAmount(1000) > .95);
+  assert.ok(fogAmount(500) < .15);
+  assert.ok(fogAmount(1000) > .2 && fogAmount(1000) < .4);
+  assert.ok(fogAmount(3000) > .95);
 });
 
 test('mode changes restore the overview and keep the sky around the camera', () => {

@@ -47,6 +47,11 @@ bounds, finite geometry, deterministic vegetation, and shared guardrail styling.
 
 ## Shared Barrier Appearance
 
+`barrierHeightScale` in `scenery.json` is 1.4: all metal guardrails, walls and
+wire fences are 40 percent taller. It scales only above-ground vertical
+dimensions, keeping lateral placement, post spacing and 8 cm root burial.
+Metal guardrails now reach 1.638 m and wire fences 4.9 m above local ground.
+
 Change `guardrailStyle` in `scenery.json` to update all metal barriers: color,
 metalness, roughness, base, height, corrugation depth, post spacing, and post width.
 `wallColor` controls the simplified concrete/sound walls. Barrier placement
@@ -118,7 +123,21 @@ that route point. Reset restores this inspection view without resetting progress
 Run `node --test demo/free-camera.test.js` for movement checks.
 Run `node --test demo/road-clearance.test.js demo/scenery.test.js` for vegetation clearance checks.
 
-## Tree Sprites
+## Real Terrain
+
+`assets/TERRAIN.md` documents Copernicus GLO-30 source, license and reproducible
+import. Real DEM data replaces synthetic far-field relief when available;
+near-road mesh refinement, road clearance, bank sampling and grounded barriers
+remain enabled. First-person fog density is .0006 so nearby hills remain visible
+while distant ridges fade. Free camera still has no distance fog.
+The DEM mesh uses 160 m distant cells, 80 m middle cells and 16 m road-adjacent
+cells (153,072 triangles). Road-height correction fades over 12-160 m. Only
+edges bordering a coarser cell are stitched; equal-resolution tile boundaries
+retain DEM heights. All tiles share height-gradient normals to avoid lighting
+seams. The synthetic terrain described above remains an offline fallback.
+Run `node --test demo/elevation-grid.test.js demo/terrain.test.js` for QA.
+
+## Grounded Barriers and Track Smoothing
 
 Metal guardrails share three corrugated horizontal panels with 0.025 m gaps.
 Their combined span is 1.05 m above a short 0.12 m exposed post base; total
@@ -143,6 +162,8 @@ sampling up to 135 m each way with wraparound at the lap seam. The horizontal
 curve is kept separate and unchanged. Dottinger's linear grade is applied after
 the elevation filter so its central section remains straight in all axes.
 
+## Tree Sprites
+
 The generated transparent six-tree atlas is saved in
 `assets/trees-summer-atlas-v1.png`; prompt and provenance are in `assets/TREES.md`.
 The tree style selector keeps both original 3D trees and two-plane cutout trees
@@ -150,3 +171,35 @@ available. Both representations share positions and use the larger of their
 footprints for road clearance. Each cutout tree has four triangles; six instanced
 batches share one image. Alpha testing avoids transparent sorting errors.
 Run `node --test demo/tree-sprites.test.js` for atlas UVs and switching checks.
+
+## Racing Line
+
+`racing-line.js` builds a separate, optional geometric driving line. Signed
+curvature groups identify bends; their curvature-weighted apex, 70 m entry/exit
+ramps and overlapping plans approximate outside-inside-outside and central
+transitions through opposite bends. Horizontal relaxation and a 20 m Gaussian
+filter reduce steering noise. Smooth lateral saturation keeps the line within
+4.2 m of the 6 m half-width road; road elevation is unchanged. Long straight
+cores retain the centerline. No visible road marking is generated.
+
+The route-icon toggle defaults off. Enabling it moves the first-person camera
+onto the line with a gradual lateral transition;
+disabling restores centerline travel. Progress, corner annotations and the speed
+profile still use original route meters. This is not a measured or dynamically
+optimized fastest lap, and must not be used as a real driving reference.
+Run `node --test demo/racing-line.test.js` for clearance, lap closure, isolated
+bends, consecutive opposite bends, straightness and horizontal smoothing.
+
+## Distant Woodland
+
+Terrain colors retain the roadside grass palette and gradually darken toward
+woodland green between 100 and 550 m from the road. Terrain shading also fades
+to 25 percent darker between 180 and 1000 m from the camera, before fog is
+applied; asphalt and road banks keep their original shading. `distant-woodland.js` adds
+deterministic sparse clusters of simplified broadleaf and conifer trees, with
+110 m grid spacing, jittered positions, at most 2,400 trees and two instanced
+draw calls. Roots follow rendered terrain; all road legs have at least 110 m
+clearance plus crown radius. Distant trees do not cast shadows and share the
+existing tree visibility toggle. They remain independent of the nearby tree
+style selector and use the scene's normal distance fog. These are decorative,
+not surveyed forest locations. Run `node --test demo/distant-woodland.test.js`.
