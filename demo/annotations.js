@@ -23,8 +23,8 @@ export function createAnnotations(corners, track, scene, camera, onSelect) {
   const items = corners.map((corner, i) => {
     const start = distanceAt(corner.start), end = distanceAt(corner.end);
     const distance = distanceAt((corner.start + corner.end) / 2);
-    const groundPosition = track.at(distance).position.add(new THREE.Vector3(0, .3, 0));
-    const position = groundPosition.clone().add(new THREE.Vector3(0, 24.7, 0));
+    const groundPosition = track.at(distance).position.add(new THREE.Vector3(0, .03, 0));
+    const position = groundPosition.clone().add(new THREE.Vector3(0, 24.97, 0));
     const vertices = [], indices = [];
     const shoulderVertices = [], shoulderIndices = [];
     const divisions = Math.max(2, Math.ceil((end - start) / 3));
@@ -36,8 +36,8 @@ export function createAnnotations(corners, track, scene, camera, onSelect) {
       const side = new THREE.Vector3(after.z - before.z, 0, before.x - after.x).normalize().multiplyScalar(12);
       vertices.push(p.x + side.x, p.y + 1.1, p.z + side.z, p.x - side.x, p.y + 1.1, p.z - side.z);
       if (step < divisions) { const n = step * 2; indices.push(n, n + 2, n + 1, n + 1, n + 2, n + 3); }
-      for (const offset of [6, 8, -6, -8]) {
-        shoulderVertices.push(p.x + side.x * offset / 12, p.y + .4, p.z + side.z * offset / 12);
+      for (const offset of [7.4, 8, -7.4, -8]) {
+        shoulderVertices.push(p.x + side.x * offset / 12, p.y + .04, p.z + side.z * offset / 12);
       }
       if (step < divisions) {
         const n = step * 4;
@@ -165,17 +165,26 @@ export function createAnnotations(corners, track, scene, camera, onSelect) {
             item.button.querySelector('small').textContent = caption;
             const width = item.button.offsetWidth, height = item.button.offsetHeight;
             const floating = item.groundPosition.clone().add(new THREE.Vector3(0, 8, 0)).project(camera);
-            const left = THREE.MathUtils.clamp(x - width / 2, 8, innerWidth - width - 8);
+            const preferredLeft = THREE.MathUtils.clamp(x - width / 2, 8, innerWidth - width - 8);
             let labelY = Math.min((1 - floating.y) * innerHeight / 2 - height, y - height - 24);
             labelY = THREE.MathUtils.clamp(labelY, header.bottom + 8, bottom - height);
-            for (let attempt = 0; attempt < 3; attempt++) {
-              const overlaps = placed.some(rect => left < rect.right + 6 && left + width > rect.left - 6
-                && labelY < rect.bottom + 6 && labelY + height > rect.top - 6);
-              if (!overlaps || labelY - height - 8 < header.bottom + 8) break;
-              labelY -= height + 8;
+            let best;
+            const candidateY = [labelY, labelY - height - 8, labelY + height + 8,
+              labelY - 2 * (height + 8), labelY + 2 * (height + 8),
+              ...placed.map(rect => rect.bottom + 12)];
+            for (const dx of [0, -24, 24, -48, 48]) {
+              for (const candidate of candidateY) {
+                const left = THREE.MathUtils.clamp(preferredLeft + dx, 8, innerWidth - width - 8);
+                const t = THREE.MathUtils.clamp(candidate, header.bottom + 8, bottom - height);
+                const overlap = placed.reduce((total, rect) => total
+                  + Math.max(0, Math.min(left + width, rect.right + 10) - Math.max(left, rect.left - 10))
+                  * Math.max(0, Math.min(t + height, rect.bottom + 10) - Math.max(t, rect.top - 10)), 0);
+                const score = overlap * 100 + (left - preferredLeft) ** 2 + (t - labelY) ** 2;
+                if (!best || score < best.score) best = { left, top: t, score };
+              }
             }
-            place(entry, left, labelY, caption);
-            placed.push({ left, right: left + width, top: labelY, bottom: labelY + height });
+            place(entry, best.left, best.top, caption);
+            placed.push({ left: best.left, right: best.left + width, top: best.top, bottom: best.top + height });
           });
       }
     }

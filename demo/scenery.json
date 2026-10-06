@@ -1,0 +1,74 @@
+{
+  "source": "https://www.youtube.com/watch?v=Fxw6mf_5j-U",
+  "status": "full-lap-approximation",
+  "note": "Full-lap simplified scenery informed by sampled onboard frames. Placement is approximate, not surveyed or a frame-by-frame reconstruction. Tree heights, setbacks, buildings and terrain openings are artistic estimates. The final 184 m closes the source route seam.",
+  "guardrailStyle": { "color": "#c4cccb", "metalness": 0.1, "roughness": 0.65, "base": 0.12, "height": 1.05, "railCount": 3, "railGap": 0.025, "corrugation": 0.06, "postSpacing": 4, "postWidth": 0.12, "wallColor": "#bfc3be" },
+  "profiles": [
+    { "name": "T13 to Sabine open approach", "start": 0, "end": 650, "left": { "spacing": 45, "setback": 38, "height": 12 }, "right": { "spacing": 32, "setback": 32, "height": 13 }, "referenceTime": "00:08" },
+    { "name": "Hatzenbach woodland", "start": 650, "end": 1550, "left": { "spacing": 12, "setback": 18, "height": 15 }, "right": { "spacing": 16, "setback": 23, "height": 14 }, "referenceTime": "00:25-00:40" },
+    { "name": "Quiddelbacher open slope", "start": 1550, "end": 2200, "left": { "spacing": 28, "setback": 30, "height": 13 }, "right": { "spacing": 42, "setback": 40, "height": 12 }, "referenceTime": "00:45" },
+    { "name": "Flugplatz forest edge", "start": 2200, "end": 2650, "left": { "spacing": 15, "setback": 20, "height": 15 }, "right": { "spacing": 10, "setback": 17, "height": 18 }, "referenceTime": "00:50-00:55" },
+    { "name": "Kottenborn corridor", "start": 2650, "end": 3300, "left": { "spacing": 16, "setback": 22, "height": 15 }, "right": { "spacing": 20, "setback": 25, "height": 14 }, "referenceTime": "01:00" },
+    { "name": "Schwedenkreuz clearing", "start": 3300, "end": 3700, "left": { "spacing": 32, "setback": 35, "height": 12 }, "right": { "spacing": 12, "setback": 20, "height": 17 }, "referenceTime": "01:10" },
+    { "name": "Aremberg approach", "start": 3700, "end": 4010, "left": { "spacing": 26, "setback": 26, "height": 13 }, "right": { "spacing": 14, "setback": 22, "height": 16 }, "referenceTime": "01:15-01:20" },
+    { "name": "Fuchsröhre woodland", "start": 4010, "end": 5000, "left": { "spacing": 10, "setback": 18, "height": 18 }, "right": { "spacing": 12, "setback": 19, "height": 17 }, "referenceTime": "01:30-01:35" },
+    { "name": "Adenauer Forst clearing", "start": 5000, "end": 5600, "left": { "spacing": 34, "setback": 35, "height": 13 }, "right": { "spacing": 20, "setback": 25, "height": 14 }, "referenceTime": "01:40-01:45" },
+    { "name": "Metzgesfeld meadow edge", "start": 5600, "end": 6500, "left": { "spacing": 30, "setback": 32, "height": 13 }, "right": { "spacing": 18, "setback": 23, "height": 15 }, "referenceTime": "01:55-02:05" },
+    { "name": "Kallenhard to Wehrseifen woodland", "start": 6500, "end": 7550, "left": { "spacing": 12, "setback": 19, "height": 16 }, "right": { "spacing": 14, "setback": 22, "height": 17 }, "referenceTime": "02:15-02:30" },
+    { "name": "Breidscheid valley opening", "start": 7550, "end": 8150, "left": { "spacing": 35, "setback": 40, "height": 13 }, "right": { "spacing": 28, "setback": 32, "height": 14 }, "referenceTime": "02:35-02:45" },
+    { "name": "Ex Muhle uphill opening", "start": 8150, "end": 8600, "left": { "spacing": 38, "setback": 35, "height": 13 }, "right": { "spacing": 14, "setback": 20, "height": 17 }, "referenceTime": "02:55" },
+    { "name": "Lauda to Bergwerk woodland", "start": 8600, "end": 9250, "left": { "spacing": 24, "setback": 26, "height": 16 }, "right": { "spacing": 11, "setback": 18, "height": 18 }, "referenceTime": "03:05" },
+    { "name": "Kesselchen forest corridor", "start": 9250, "end": 10600, "left": { "spacing": 11, "setback": 20, "height": 19 }, "right": { "spacing": 10, "setback": 18, "height": 20 }, "referenceTime": "03:25" },
+    { "name": "Mutkurve to Klostertal", "start": 10600, "end": 11400, "left": { "spacing": 15, "setback": 23, "height": 17 }, "right": { "spacing": 12, "setback": 21, "height": 18 }, "referenceTime": "03:25-03:50" },
+    { "name": "Steilstrecke clearing", "start": 11400, "end": 11800, "left": { "spacing": 48, "setback": 44, "height": 14 }, "right": { "spacing": 17, "setback": 23, "height": 16 }, "referenceTime": "03:50" },
+    { "name": "Karussell open infield", "start": 11800, "end": 12300, "left": { "spacing": 50, "setback": 42, "height": 13 }, "right": { "spacing": 12, "setback": 19, "height": 18 }, "referenceTime": "04:00-04:05" },
+    { "name": "Hohe Acht forest edge", "start": 12300, "end": 13450, "left": { "spacing": 22, "setback": 27, "height": 16 }, "right": { "spacing": 11, "setback": 19, "height": 19 }, "referenceTime": "04:25" },
+    { "name": "Wippermann to Eschbach", "start": 13450, "end": 14100, "left": { "spacing": 17, "setback": 25, "height": 16 }, "right": { "spacing": 13, "setback": 21, "height": 17 }, "referenceTime": "04:25-04:55" },
+    { "name": "Brunnchen spectator opening", "start": 14100, "end": 14650, "left": { "spacing": 65, "setback": 60, "height": 13 }, "right": { "spacing": 22, "setback": 28, "height": 15 }, "referenceTime": "04:55", "confidence": "provisional" },
+    { "name": "Eiskurve to Pflanzgarten", "start": 14650, "end": 15500, "left": { "spacing": 16, "setback": 26, "height": 16 }, "right": { "spacing": 12, "setback": 22, "height": 18 }, "referenceTime": "04:55-05:20" },
+    { "name": "Bellof woodland", "start": 15500, "end": 16400, "left": { "spacing": 13, "setback": 23, "height": 17 }, "right": { "spacing": 14, "setback": 24, "height": 18 }, "referenceTime": "05:20-05:40" },
+    { "name": "Schwalbenschwanz forest edge", "start": 16400, "end": 17150, "left": { "spacing": 28, "setback": 32, "height": 14 }, "right": { "spacing": 13, "setback": 22, "height": 17 }, "referenceTime": "05:40-05:48" },
+    { "name": "Galgenkopf woodland exit", "start": 17150, "end": 17700, "left": { "spacing": 22, "setback": 29, "height": 15 }, "right": { "spacing": 12, "setback": 21, "height": 18 }, "referenceTime": "05:48-06:06" },
+    { "name": "Dottinger long straight", "start": 17700, "end": 19600, "left": { "spacing": 24, "setback": 31, "height": 17 }, "right": { "spacing": 17, "setback": 27, "height": 19 }, "referenceTime": "06:06-06:30" },
+    { "name": "Antonius to Tiergarten opening", "start": 19600, "end": 20300, "left": { "spacing": 32, "setback": 35, "height": 14 }, "right": { "spacing": 36, "setback": 37, "height": 13 }, "referenceTime": "06:33" },
+    { "name": "Hohenrain and T13", "start": 20300, "end": 20655.5, "left": { "spacing": 45, "setback": 38, "height": 12 }, "right": { "spacing": 32, "setback": 32, "height": 13 }, "referenceTime": "06:47" },
+    { "name": "Source seam to start", "start": 20655.5, "end": 20839.722029355882, "left": { "spacing": 45, "setback": 38, "height": 12 }, "right": { "spacing": 32, "setback": 32, "height": 13 }, "confidence": "artistic-seam" }
+  ],
+  "barriers": [
+    { "start": 0, "end": 7800, "side": "left", "offset": 10 },
+    { "start": 0, "end": 7800, "side": "right", "offset": 10 },
+    { "start": 7800, "end": 8150, "side": "left", "offset": 10, "type": "wall", "height": 2.8, "referenceTime": "02:45" },
+    { "start": 7800, "end": 8150, "side": "right", "offset": 10, "type": "wall", "height": 1.4, "referenceTime": "02:45" },
+    { "start": 8150, "end": 20839.722029355882, "side": "left", "offset": 10 },
+    { "start": 8150, "end": 20839.722029355882, "side": "right", "offset": 10 }
+  ],
+  "fences": [
+    { "start": 1550, "end": 2200, "side": "right", "offset": 12 },
+    { "start": 3300, "end": 7800, "side": "right", "offset": 12 },
+    { "start": 6400, "end": 7800, "side": "left", "offset": 12 },
+    { "start": 0, "end": 650, "side": "right", "offset": 12 },
+    { "start": 8150, "end": 11800, "side": "left", "offset": 12 },
+    { "start": 8150, "end": 14100, "side": "right", "offset": 12 },
+    { "start": 14100, "end": 14650, "side": "left", "offset": 12 },
+    { "start": 16400, "end": 17700, "side": "right", "offset": 12 },
+    { "start": 17700, "end": 20839.722029355882, "side": "left", "offset": 12 },
+    { "start": 20300, "end": 20839.722029355882, "side": "right", "offset": 12 }
+  ],
+  "bridges": [
+    { "name": "Aremberg exit bridge", "distance": 3980, "referenceTime": "01:20" },
+    { "name": "Dottinger overpass", "distance": 18100, "referenceTime": "06:09", "confidence": "provisional" },
+    { "name": "Antonius bridge", "distance": 19750, "referenceTime": "06:30", "confidence": "provisional" }
+  ],
+  "surfaces": [
+    { "name": "Karussell concrete inside", "start": 11855, "end": 12145, "inner": 2.4, "outer": 5.95, "side": "left", "color": "#a8aaa4", "seams": 4, "referenceTime": "04:00-04:05" },
+    { "name": "Kleine Karussell concrete inside", "start": 16895, "end": 17070, "inner": 2.8, "outer": 5.95, "side": "left", "color": "#a8aaa4", "seams": 4, "confidence": "provisional" },
+    { "name": "Brunnchen gravel opening", "start": 14160, "end": 14520, "inner": 13, "outer": 38, "side": "left", "color": "#a8afa3", "confidence": "artistic" },
+    { "name": "Steilstrecke open verge", "start": 11410, "end": 11750, "inner": 12, "outer": 30, "side": "left", "color": "#9eb57e", "referenceTime": "03:50" }
+  ],
+  "buildings": [
+    { "name": "T13 simplified trackside building", "distance": 20610, "side": "left", "offset": 28, "width": 16, "depth": 10, "height": 7, "confidence": "artistic" }
+  ],
+  "gantries": [
+    { "name": "T13 finish gantry", "distance": 20600, "referenceTime": "06:47" }
+  ]
+}

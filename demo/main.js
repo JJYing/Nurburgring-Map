@@ -1,8 +1,14 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { createTrack } from './track.js';
+import { createTrack } from './track.js?v=elevation-smooth';
 import { createSpeedProfile } from './speed.js';
-import { createAnnotations } from './annotations.js';
+import { createAnnotations } from './annotations.js?v=main-ui';
+import { createCurbs } from './curbs.js';
+import { createScenery } from './scenery.js?v=grounded-rails';
+import { createAtmosphere, addSurfaceGrain } from './rendering.js?v=free-no-fog';
+import { createTerrain } from './terrain.js?v=verge-terrain';
+import { createRoadBanks } from './road-banks.js?v=ground-sampling';
+import { createFreeCamera } from './free-camera.js';
 
 const $ = selector => document.querySelector(selector);
 const loading = $('#loading');
@@ -14,16 +20,26 @@ try {
   const route = await response.json();
   const cornerResponse = await fetch('./corners.json');
   if (!cornerResponse.ok) throw new Error('弯道数据加载失败');
-  start(route, await cornerResponse.json());
+  const curbResponse = await fetch('./curbs.json');
+  if (!curbResponse.ok) throw new Error('路肩数据加载失败');
+  const sceneryResponse = await fetch('./scenery.json?v=three-rails');
+  if (!sceneryResponse.ok) throw new Error('环境数据加载失败');
+  let treeTexture = null;
+  try {
+    treeTexture = await new THREE.TextureLoader().loadAsync('./assets/trees-summer-atlas-v1.png');
+  } catch (error) {
+    console.warn('Tree atlas unavailable; using procedural trees.', error);
+  }
+  start(route, await cornerResponse.json(), await curbResponse.json(), await sceneryResponse.json(), treeTexture);
   loading.hidden = true;
 } catch (error) {
   loading.textContent = '无法加载场景，请刷新后重试。';
   console.error(error);
 }
 
-function start(route, corners) {
+function start(route, corners, curbData, sceneryData, treeTexture) {
   const track = createTrack(route);
-  const { length, points, at, treeStride } = track;
+  const { length, points, at } = track;
   const pace = createSpeedProfile(track);
   const box = new THREE.Box3().setFromPoints(points);
   const center = box.getCenter(new THREE.Vector3());
@@ -43,10 +59,7 @@ function start(route, corners) {
   renderer.setClearColor(0xe7eeea);
   $('#scene').append(renderer.domElement);
   const scene = new THREE.Scene();
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x72906c, 2.3));
-  const sun = new THREE.DirectionalLight(0xffffff, 2.1);
-  sun.position.set(-1500, 4000, 1800);
-  scene.add(sun);
+  const atmosphere = createAtmosphere(renderer, scene);
   const perspective = new THREE.PerspectiveCamera(48, 1, .3, 35000);
   const orbit = new OrbitControls(perspective, renderer.domElement);
   orbit.enableDamping = true;
@@ -74,40 +87,35 @@ function start(route, corners) {
     geometry.setIndex(indices);
     geometry.computeVertexNormals();
     const mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color, roughness, side: THREE.DoubleSide }));
+    mesh.receiveShadow = true;
     world.add(mesh);
     return mesh;
   }
-  const grass = ribbon(160, -.5, 0x8daa78);
-  ribbon(16, .15, 0xe2e6dc);
-  ribbon(12, .3, 0x454e4b);
+  const terrain = createTerrain(track);
+  addSurfaceGrain(terrain.mesh.material, .45, .3);
+  const banks = createRoadBanks(track, terrain);
+  addSurfaceGrain(banks.material, .45, .3);
+  terrain.mesh.add(banks);
+  terrain.surfaceHeightAt = (x, z) => Math.max(terrain.heightAt(x, z), banks.userData.heightAt(x, z));
+  world.add(terrain.mesh);
+  ribbon(16, .02, 0x737e72);
+  const asphalt = ribbon(12, .03, 0x343b3c, .93);
+  addSurfaceGrain(asphalt.material, 8, .22);
+  const curbs = createCurbs(track, curbData);
+  world.add(curbs);
   const overviewLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints(points.map(p => p.clone().add(new THREE.Vector3(0, 1, 0)))), new THREE.LineBasicMaterial({ color: 0x343f39, depthTest: false }));
   overviewLine.renderOrder = 2;
   world.add(overviewLine);
   const travelledLine = new THREE.Line(overviewLine.geometry.clone(), new THREE.LineBasicMaterial({ color: 0xdf423c, depthTest: false }));
   travelledLine.renderOrder = 4;
   world.add(travelledLine);
-  const trees = new THREE.Group();
-  world.add(trees);
-  const treeCount = Math.ceil(points.length / treeStride) * 2;
-  const trunks = new THREE.InstancedMesh(new THREE.CylinderGeometry(.45, .7, 6, 5), new THREE.MeshStandardMaterial({ color: 0x777265 }), treeCount);
-  const crowns = new THREE.InstancedMesh(new THREE.ConeGeometry(4, 12, 7), new THREE.MeshStandardMaterial({ color: 0x315d43, flatShading: true }), treeCount);
-  const dummy = new THREE.Object3D();
-  let treeIndex = 0;
-  for (let i = 0; i < points.length; i += treeStride) {
-    const side = sideways(i), p = points[i];
-    for (const sign of [-1, 1]) {
-      const random = (Math.sin(i * 12.9898 + sign * 78.233) * 43758.5453) % 1;
-      const shift = sign * (22 + Math.abs(random) * 37);
-      const height = .8 + Math.abs(random) * .6;
-      dummy.position.set(p.x + side.x * shift, p.y + 3 * height, p.z + side.z * shift);
-      dummy.scale.set(height, height, height);
-      dummy.updateMatrix(); trunks.setMatrixAt(treeIndex, dummy.matrix);
-      dummy.position.y = p.y + 10 * height;
-      dummy.updateMatrix(); crowns.setMatrixAt(treeIndex, dummy.matrix);
-      treeIndex++;
-    }
-  }
-  trees.add(trunks, crowns);
+  const { root: scenery, trees, setTreeStyle } = createScenery(track, sceneryData, terrain, treeTexture);
+  if (!treeTexture) { $('#tree-style').value = 'solid'; $('#tree-style').disabled = true; }
+  world.add(scenery);
+  scenery.traverse(object => {
+    if (object.isMesh) { object.castShadow = true; object.receiveShadow = true; }
+  });
+  curbs.traverse(object => { if (object.isMesh) object.receiveShadow = true; });
   const marker = new THREE.Mesh(new THREE.SphereGeometry(16, 16, 12), new THREE.MeshBasicMaterial({ color: 0xdf423c }));
   world.add(marker);
   const startMarker = new THREE.Mesh(new THREE.CylinderGeometry(10, 10, 50, 12), new THREE.MeshBasicMaterial({ color: 0xf4c758 }));
@@ -123,6 +131,7 @@ function start(route, corners) {
   grid.material.opacity = .65;
   scene.add(grid);
   let mode = 'orbit', progress = 0, playing = false, playbackRate = 1, treeVisible = true;
+  const freeCamera = createFreeCamera(perspective, orbit, () => mode === 'free');
   let scrollTarget = null;
   let showLabels = true;
   const annotations = createAnnotations(corners, track, scene, perspective, setProgress);
@@ -130,6 +139,19 @@ function start(route, corners) {
   function setProgress(value) {
     progress = value;
     scrollTarget = null;
+    if (mode === 'free') resetFreeView();
+  }
+
+  function resetFreeView() {
+    freeCamera.reset();
+    const damping = orbit.enableDamping;
+    orbit.enableDamping = false; orbit.update(); orbit.enableDamping = damping;
+    const position = at(progress * length).position;
+    const ahead = at((progress * length + 25) % length).position;
+    const forward = ahead.clone().sub(position).normalize();
+    orbit.target.copy(position).add(new THREE.Vector3(0, 2, 0));
+    perspective.position.copy(position).addScaledVector(forward, -45).add(new THREE.Vector3(0, 28, 0));
+    perspective.up.set(0, 1, 0); perspective.lookAt(orbit.target); orbit.update();
   }
 
   function resetView() {
@@ -150,27 +172,44 @@ function start(route, corners) {
   }
   function setMode(next) {
     scrollTarget = null;
+    freeCamera.reset();
     mode = next;
-    document.body.classList.toggle('first-person', mode === 'first');
+    const detailed = mode !== 'orbit';
+    document.body.classList.toggle('first-person', detailed);
+    document.body.classList.toggle('freeform', mode === 'free');
     $('#minimap').hidden = mode !== 'first';
-    orbit.enabled = mode === 'orbit';
-    trees.visible = mode === 'first' && treeVisible;
-    grass.visible = mode === 'first';
-    $('#trees').hidden = mode !== 'first';
-    marker.visible = mode !== 'first'; startMarker.visible = mode !== 'first';
-    overviewLine.visible = mode !== 'first';
-    travelledLine.visible = mode !== 'first';
-    perspective.near = mode === 'first' ? .1 : 10;
+    orbit.enabled = mode !== 'first';
+    orbit.enableZoom = mode === 'free';
+    orbit.enablePan = mode === 'free';
+    orbit.minDistance = mode === 'free' ? 1 : 40;
+    orbit.maxDistance = extent * (mode === 'free' ? 8 : 4);
+    orbit.maxPolarAngle = mode === 'free' ? Math.PI : Math.PI * .48;
+    trees.visible = detailed && treeVisible;
+    scenery.visible = detailed;
+    terrain.mesh.visible = detailed;
+    curbs.visible = detailed;
+    $('#trees').hidden = !detailed;
+    $('#tree-style-control').hidden = !detailed;
+    marker.visible = !detailed; startMarker.visible = !detailed;
+    overviewLine.visible = !detailed;
+    travelledLine.visible = !detailed;
+    perspective.near = detailed ? .1 : 10;
     perspective.updateProjectionMatrix();
     grid.visible = mode === 'orbit';
-    horizon.visible = true;
-    scene.fog = mode === 'first' ? new THREE.Fog(0xc8dcde, 300, 1800) : null;
-    renderer.setClearColor(mode === 'first' ? 0xc8dcde : 0xe7eeea);
+    horizon.visible = mode === 'orbit';
+    atmosphere.setMode(detailed, mode === 'first');
     document.querySelectorAll('[data-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mode === mode)));
-    if (mode !== 'first') resetView();
+    if (mode === 'orbit') resetView();
+    if (mode === 'free') { setPlaying(false); resetFreeView(); }
+    $('#play').disabled = mode === 'free';
+    $('#speed').disabled = mode === 'free';
   }
   document.querySelectorAll('[data-mode]').forEach(button => button.addEventListener('click', () => setMode(button.dataset.mode)));
-  $('#reset').addEventListener('click', () => { if (mode === 'first') { setProgress(0); } else resetView(); });
+  $('#reset').addEventListener('click', () => {
+    if (mode === 'first') setProgress(0);
+    else if (mode === 'free') resetFreeView();
+    else resetView();
+  });
   $('#progress').addEventListener('input', event => { setProgress(Number(event.target.value) / 10000); });
   $('#speed').addEventListener('input', event => { playbackRate = Number(event.target.value); $('#speed-value').textContent = `${playbackRate.toFixed(2).replace(/\.?0+$/, '')}×`; });
   function setPlaying(value) {
@@ -182,7 +221,8 @@ function start(route, corners) {
     lucide.createIcons();
   }
   $('#play').addEventListener('click', () => setPlaying(!playing));
-  renderer.domElement.addEventListener('wheel', event => {
+  document.addEventListener('wheel', event => {
+    if (mode === 'free' || event.ctrlKey || !(event.target instanceof Element) || !event.target.closest('#scene, #corner-labels')) return;
     event.preventDefault();
     const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
     if (playing) setPlaying(false);
@@ -191,7 +231,8 @@ function start(route, corners) {
       scrollTarget = THREE.MathUtils.clamp((scrollTarget ?? progress) + delta / 90000, 0, 1);
     } else setProgress(THREE.MathUtils.clamp(progress + delta / 18000, 0, 1));
   }, { passive: false });
-  $('#trees').addEventListener('click', () => { treeVisible = !treeVisible; trees.visible = mode === 'first' && treeVisible; $('#trees').setAttribute('aria-pressed', String(treeVisible)); });
+  $('#trees').addEventListener('click', () => { treeVisible = !treeVisible; trees.visible = mode !== 'orbit' && treeVisible; $('#trees').setAttribute('aria-pressed', String(treeVisible)); });
+  $('#tree-style').addEventListener('change', event => setTreeStyle(event.target.value));
   $('#labels').addEventListener('click', () => { showLabels = !showLabels; $('#labels').setAttribute('aria-pressed', String(showLabels)); });
   addEventListener('resize', resize);
   renderer.domElement.addEventListener('webglcontextlost', event => { event.preventDefault(); loading.hidden = false; loading.textContent = '图形场景已中断，请刷新页面。'; });
@@ -220,10 +261,15 @@ function start(route, corners) {
       const ahead = at((progress * length + 25) % length);
       perspective.position.copy(current.position).add(new THREE.Vector3(0, 1.8, 0));
       perspective.lookAt(ahead.position.clone().add(new THREE.Vector3(0, 1.8, 0)));
-    } else orbit.update();
-    annotations.update(progress * length, mode, showLabels);
-    $('#distance').innerHTML = `${(progress * length / 1000).toFixed(2)} <em>km</em>`;
+      atmosphere.update(perspective);
+    } else {
+      if (mode === 'free') { freeCamera.update(delta); atmosphere.update(perspective); }
+      orbit.update();
+    }
+    annotations.update(progress * length, mode === 'free' ? 'first' : mode, showLabels);
+    $('#distance').innerHTML = `${(progress * length / 1000).toFixed(2)} <em>KM</em>`;
     $('#elevation').innerHTML = `${Math.round(current.elevation)} <em>m</em>`;
+    $('.elevation-meter').style.setProperty('--elevation', THREE.MathUtils.clamp((current.elevation - 330) / 300, 0, 1));
     $('#velocity').innerHTML = `${Math.round(pace.at(progress * length) * 3.6)} <em>km/h</em>`;
     $('#percent').textContent = `${Math.round(progress * 100)}%`;
     if (document.activeElement !== $('#progress')) $('#progress').value = Math.round(progress * 10000);

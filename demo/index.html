@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nordschleife · 视角实验</title>
+  <title>纽北赛道地图 · 3D</title>
+  <link rel="stylesheet" href="../assets/sm/result.css">
   <link rel="stylesheet" href="style.css">
   <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
 </head>
 <body>
   <main id="scene" aria-label="纽北赛道交互场景"></main>
   <header>
-    <div class="identity"><span class="mark">N</span><div><strong>Nordschleife</strong><small>视角实验 / 01</small></div></div>
+    <a class="identity" href="../?lang=cn" title="返回主站"><img src="../assets/logo.svg" alt="Nürburgring"><div><strong>纽博格林北环赛道地图</strong><small>Nordschleife · 3D</small></div></a>
     <nav aria-label="视角模式">
       <button data-mode="orbit" aria-pressed="true"><i data-lucide="box"></i><span>3D</span></button>
       <button data-mode="first" aria-pressed="false"><i data-lucide="eye"></i><span>第一视角</span></button>
+      <button data-mode="free" aria-pressed="false" title="调试自由视角"><i data-lucide="move-3d"></i><span>自由视角</span></button>
     </nav>
     <button id="reset" class="icon" title="复位视角" aria-label="复位视角"><i data-lucide="focus"></i></button>
   </header>
-  <aside class="readings"><div><small>行进距离</small><strong id="distance">0.00 <em>km</em></strong></div><div><small>海拔</small><strong id="elevation">— <em>m</em></strong></div><div><small>车速</small><strong id="velocity">— <em>km/h</em></strong></div></aside>
+  <aside class="readings" aria-label="行进数据"><div class="distance-reading"><small>行进距离</small><strong id="distance">0.00 <em>KM</em></strong></div><div class="elevation-reading"><span class="elevation-meter" aria-hidden="true"></span><small>海拔</small><strong id="elevation">— <em>m</em></strong></div><div class="velocity-reading"><small>车速</small><strong id="velocity">— <em>km/h</em></strong></div></aside>
   <aside id="minimap" class="minimap" aria-label="赛道定位小地图">
     <svg viewBox="0 0 240 200" role="img" aria-label="俯视赛道、当前位置及行进方向">
       <path id="minimap-route" class="minimap-route"/>
@@ -36,9 +38,10 @@
       <div class="speed"><label for="speed">播放倍率 <output id="speed-value">1×</output></label><input id="speed" type="range" min="0.25" max="4" step="0.25" value="1"></div>
       <button id="trees" class="icon" aria-label="显示树木" aria-pressed="true" title="显示树木"><i data-lucide="trees"></i></button>
     </div>
-    <div class="credits"><span>海拔为近似数据 · 首尾缺口经插值连接</span><a href="https://veloviewer.com/segment/5539685" target="_blank" rel="noopener">VeloViewer <i data-lucide="arrow-up-right"></i></a></div>
+    <div class="tree-style-control" id="tree-style-control" hidden><label for="tree-style">树木样式</label><select id="tree-style"><option value="sprite">切片树</option><option value="solid">立体树</option></select></div>
+    <div class="credits"><span>海拔、路肩与环境均为近似</span><a href="https://www.youtube.com/watch?v=Fxw6mf_5j-U" target="_blank" rel="noopener">视频参考 <i data-lucide="arrow-up-right"></i></a><a href="https://veloviewer.com/segment/5539685" target="_blank" rel="noopener">VeloViewer <i data-lucide="arrow-up-right"></i></a></div>
   </footer>
   <script src="node_modules/lucide/dist/umd/lucide.js"></script>
-  <script type="module" src="main.js"></script>
+  <script type="module" src="main.js?v=grounded-rails"></script>
 </body>
 </html>

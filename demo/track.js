@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 
-export function createTrack(route) {
+export const dottingerSmoothing = { start: .853, end: .945, transition: .012 };
+export const elevationSmoothing = { sigma: 45 };
+
+export function createTrack(route, { smoothDottinger = true, elevationSigma = elevationSmoothing.sigma } = {}) {
   const samples = route.points.map(([x, elevation, z, distance]) => ({ position: new THREE.Vector3(x, elevation - 300, z), elevation, distance }));
   const first = samples[0], last = samples.at(-1);
   const gap = first.position.distanceTo(last.position);
@@ -38,9 +41,41 @@ export function createTrack(route) {
     }
     return result.divideScalar(total);
   });
+  // Filter elevation independently so stronger vertical smoothing cannot move corners.
+  const heightRadius = Math.ceil(3 * elevationSigma / spacing);
+  const heights = knots.map((_, i) => {
+    let total = 0, height = 0;
+    for (let offset = -heightRadius; offset <= heightRadius; offset++) {
+      const weight = Math.exp(-.5 * (offset * spacing / elevationSigma) ** 2);
+      height += knots[(i + offset + knotCount) % knotCount].y * weight;
+      total += weight;
+    }
+    return height / total;
+  });
+  if (smoothDottinger) {
+    const { start, end, transition } = dottingerSmoothing;
+    const reference = new THREE.CatmullRomCurve3(filtered, true, 'centripetal');
+    const entry = reference.getPoint(start), exit = reference.getPoint(end);
+    const heightReference = new THREE.CatmullRomCurve3(filtered.map((point, i) => point.clone().setY(heights[i])), true, 'centripetal');
+    const entryHeight = heightReference.getPoint(start).y, exitHeight = heightReference.getPoint(end).y;
+    const smootherstep = t => t * t * t * (t * (t * 6 - 15) + 10);
+    filtered.forEach((point, i) => {
+      const progress = i / knotCount;
+      if (progress <= start || progress >= end) return;
+      const ramp = THREE.MathUtils.clamp(Math.min(progress - start, end - progress) / transition, 0, 1);
+      // Straighten the main section in all three axes, retaining the overall grade.
+      point.lerp(entry.clone().lerp(exit, (progress - start) / (end - start)), smootherstep(ramp));
+      heights[i] = THREE.MathUtils.lerp(heights[i], THREE.MathUtils.lerp(entryHeight, exitHeight,
+        (progress - start) / (end - start)), smootherstep(ramp));
+    });
+  }
   const curve = new THREE.CatmullRomCurve3(filtered, true, 'centripetal');
+  const heightCurve = new THREE.CatmullRomCurve3(filtered.map((point, i) => point.clone().setY(heights[i])), true, 'centripetal');
+  function positionAt(progress) {
+    return curve.getPoint(progress).setY(heightCurve.getPoint(progress).y);
+  }
   const divisions = Math.ceil(length / 2);
-  const points = curve.getPoints(divisions);
+  const points = Array.from({ length: divisions + 1 }, (_, i) => positionAt(i / divisions));
   return {
     length,
     points,
@@ -48,7 +83,8 @@ export function createTrack(route) {
     rawAt,
     at(distance) {
       distance = THREE.MathUtils.clamp(distance, 0, length);
-      return { position: curve.getPoint(distance / length), elevation: rawAt(distance).elevation };
+      const position = positionAt(distance / length);
+      return { position, elevation: position.y + 300 };
     }
   };
 }
