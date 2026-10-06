@@ -165,7 +165,12 @@ echo
         </div>
 
         <div class="title-font miles"  v-if="p != 0">
-          <span v-if="p > 0">{{ (p * 20.832).toFixed(2)}}</span><span v-else>0.00</span> <em>KM</em>
+          <div><span v-if="p > 0">{{ (p * 20.832).toFixed(2)}}</span><span v-else>0.00</span> <em>KM</em></div>
+          <div class="elevation">
+            <span class="elevation-meter skew-p" aria-hidden="true" :style=" '--elevation:' + elevationLevel "></span>
+            <span class="elevation-label">{{uiText('elevation')}}</span>
+            <span>{{ Math.round(elevationM) }} <span class="elevation-unit">m</span></span>
+          </div>
         </div>
       </div>
     </div>
@@ -261,6 +266,7 @@ echo
   <div class="all-names title-font"><template v-for="c in corners" >{{c.ch}} <template v-if="c.nk && c.ch != c.nk">{{c.nk}} </template></template> </div>
 </div>
 <script src='{$assetsDir}/vue-2.6.11.min.js'></script>
+<script src="{$assetsDir}/elevation.js?v={$lastEditTime}"></script>
 <script src="{$assetsDir}/main.js?v={$lastEditTime}"></script>
 </body>
 </html>

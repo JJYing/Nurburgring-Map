@@ -474,6 +474,48 @@ body{
     translate: calc(1rem - 45%) -.4em;
   }
 }
+.miles .elevation{
+  display: flex;
+  align-items: center;
+  gap: .4em;
+  margin-top: .25rem;
+  font-size: clamp(.85rem, .375em, 1.5rem);
+  line-height: 1.25;
+  color: var(--text1);
+  font-weight: 400;
+  font-style: italic;
+  white-space: nowrap;
+}
+.miles .elevation span{
+  letter-spacing: 0;
+  text-shadow: none;
+}
+.elevation-meter{
+  position: relative;
+  flex: 0 0 .2em;
+  width: .2em;
+  height: .85em;
+  background: var(--bg2);
+  overflow: hidden;
+}
+.elevation-meter::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--text1);
+  transform: scaleY(var(--elevation));
+  transform-origin: bottom;
+  transition: transform .12s linear;
+}
+.elevation-label,
+.elevation-unit{
+  font-size: .75em;
+}
+@media (prefers-reduced-motion: reduce){
+  .elevation-meter::after{
+    transition: none;
+  }
+}
 .mid span{
   letter-spacing: -.02em;
   text-shadow: 

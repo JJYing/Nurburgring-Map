@@ -32,6 +32,7 @@ var d = new Vue({
         language: "语言",
         photoSource: "查看照片来源",
         endLabel: "终点",
+        elevation: "海拔",
         startOver: "回到起点",
       },
       en: {
@@ -45,6 +46,7 @@ var d = new Vue({
         language: "Language",
         photoSource: "View photo source",
         endLabel: "The End",
+        elevation: "Elevation",
         startOver: "Start Over",
       },
       de: {
@@ -58,6 +60,7 @@ var d = new Vue({
         language: "Sprache",
         photoSource: "Bildquelle anzeigen",
         endLabel: "Ziel",
+        elevation: "Höhe",
         startOver: "Zurück zum Start",
       },
     },
@@ -1114,11 +1117,31 @@ var d = new Vue({
         ],
       }, 
     ],
-    aboutContent: "网页设计 & 开发：<a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>参考信息:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· <a target='_blank' href='https://nring.info/nurburgring-nordschleife-corners/'>NRing.info</a><br/>· <a target='_blank' href='https://www.youtube.com/watch?v=-lCR1_cDqTg'>Nürburgring Corner Names Explained</a><br/>· 键盘车神教教主视频：<a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>纽北每一个弯的名字？</a><br/><br/><strong>页面源码:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
-    aboutContentEn: "Web design & development: <a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>References:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· <a target='_blank' href='https://nring.info/nurburgring-nordschleife-corners/'>NRing.info</a><br/>· <a target='_blank' href='https://www.youtube.com/watch?v=-lCR1_cDqTg'>Nürburgring Corner Names Explained</a><br/>· Video by 键盘车神教教主: <a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>What is the name of every Nürburgring corner?</a><br/><br/><strong>Source code:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
-    aboutContentDe: "Webdesign & Entwicklung: <a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>Quellen:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· <a target='_blank' href='https://nring.info/nurburgring-nordschleife-corners/'>NRing.info</a><br/>· <a target='_blank' href='https://www.youtube.com/watch?v=-lCR1_cDqTg'>Nürburgring Corner Names Explained</a><br/>· Video von 键盘车神教教主: <a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>Wie heißen alle Kurven der Nordschleife?</a><br/><br/><strong>Quellcode:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
+    aboutContent: "网页设计 & 开发：<a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>参考信息:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· <a target='_blank' href='https://nring.info/nurburgring-nordschleife-corners/'>NRing.info</a><br/>· <a target='_blank' href='https://www.youtube.com/watch?v=-lCR1_cDqTg'>Nürburgring Corner Names Explained</a><br/>· 键盘车神教教主视频：<a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>纽北每一个弯的名字？</a><br/><br/><strong>海拔数据:</strong><br/>来源：<a target='_blank' href='https://veloviewer.com/segment/5539685'>VeloViewer · Nürburgring Nordschleife</a>。海拔为近似值，已按地图行进比例进行插值和校准，仅供参考，不代表精确测量。<br/><br/><strong>页面源码:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
+    aboutContentEn: "Web design & development: <a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>References:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· <a target='_blank' href='https://nring.info/nurburgring-nordschleife-corners/'>NRing.info</a><br/>· <a target='_blank' href='https://www.youtube.com/watch?v=-lCR1_cDqTg'>Nürburgring Corner Names Explained</a><br/>· Video by 键盘车神教教主: <a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>What is the name of every Nürburgring corner?</a><br/><br/><strong>Elevation data:</strong><br/>Source: <a target='_blank' href='https://veloviewer.com/segment/5539685'>VeloViewer · Nürburgring Nordschleife</a>. Elevations are approximate, interpolated and aligned to progress along this map. They are for reference and do not represent precise measurements.<br/><br/><strong>Source code:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
+    aboutContentDe: "Webdesign & Entwicklung: <a href='https://jjying.com/' target='_blank'>JJ Ying</a><br/><br/><strong>Quellen:</strong><br/>· <a target='_blank' href='https://oversteer48.com/nurburgring-corner-names/'>Corner Names, Numbers and circuit map</a><br/>· <a target='_blank' href='https://nring.info/nurburgring-nordschleife-corners/'>NRing.info</a><br/>· <a target='_blank' href='https://www.youtube.com/watch?v=-lCR1_cDqTg'>Nürburgring Corner Names Explained</a><br/>· Video von 键盘车神教教主: <a target='_blank' href='https://www.bilibili.com/video/BV1NntCe4ETM/'>Wie heißen alle Kurven der Nordschleife?</a><br/><br/><strong>Höhendaten:</strong><br/>Quelle: <a target='_blank' href='https://veloviewer.com/segment/5539685'>VeloViewer · Nürburgring Nordschleife</a>. Die Höhenangaben sind Näherungswerte, die interpoliert und an den Verlauf dieser Karte angepasst wurden. Sie dienen der Orientierung und stellen keine präzisen Messwerte dar.<br/><br/><strong>Quellcode:</strong><br/>· <a target='_blank' href='https://github.com/JJYing/Nurburgring-Map'>@GitHub</a>",
     modalContent: "",
     modalType: "text"
+  },
+  computed: {
+    elevationLevel(){
+      // A fixed 300-650 m scale keeps the indicator comparable along the lap.
+      return Math.max(0, Math.min(1, (this.elevationM - 300) / 350))
+    },
+    elevationM(){
+      const samples = window.TRACK_ELEVATION_PROFILE.samples
+      const progress = Math.max(0, Math.min(1, this.p))
+      let low = 0
+      let high = samples.length - 1
+      while(high - low > 1){
+        const middle = Math.floor((low + high) / 2)
+        if(samples[middle][0] <= progress) low = middle
+        else high = middle
+      }
+      const start = samples[low]
+      const end = samples[high]
+      return start[1] + (end[1] - start[1]) * (progress - start[0]) / (end[0] - start[0])
+    }
   },
   methods: {
     innerModal: function(e){
