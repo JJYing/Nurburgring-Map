@@ -82,6 +82,7 @@ echo
     <style>[v-cloak],.hidden-area{display: none;}</style>
 
     <script>
+      window.anyclicksQueue = window.anyclicksQueue || [];
       var lang = '{$jsLang}'
       var _paq = window._paq = window._paq || [];
       _paq.push(['trackPageView']);
@@ -94,7 +95,7 @@ echo
         g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
       })();
     </script>
-
+    <script async src="https://anyclicks.anyway.fm/js/tracker.js" data-site-id="1db3ac2c4a1cbcbaa7f774ed" data-site-domain="anyway.fm"></script>
 	</head>
 <body>
 <div id="app" :class="[showAllCornerNames ? 'show-all-corners' : '', lang ]">
