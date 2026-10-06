@@ -1,0 +1,6 @@
+{
+  "name": "nordschleife-view-demo",
+  "private": true,
+  "type": "module",
+  "dependencies": { "three": "0.186.1", "lucide": "^0.577.0" }
+}

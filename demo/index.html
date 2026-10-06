@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nordschleife · 视角实验</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+</head>
+<body>
+  <main id="scene" aria-label="纽北赛道交互场景"></main>
+  <header>
+    <div class="identity"><span class="mark">N</span><div><strong>Nordschleife</strong><small>视角实验 / 01</small></div></div>
+    <nav aria-label="视角模式">
+      <button data-mode="orbit" aria-pressed="true"><i data-lucide="box"></i><span>3D</span></button>
+      <button data-mode="first" aria-pressed="false"><i data-lucide="eye"></i><span>第一视角</span></button>
+    </nav>
+    <button id="reset" class="icon" title="复位视角" aria-label="复位视角"><i data-lucide="focus"></i></button>
+  </header>
+  <aside class="readings"><div><small>行进距离</small><strong id="distance">0.00 <em>km</em></strong></div><div><small>海拔</small><strong id="elevation">— <em>m</em></strong></div><div><small>车速</small><strong id="velocity">— <em>km/h</em></strong></div></aside>
+  <aside id="minimap" class="minimap" aria-label="赛道定位小地图">
+    <svg viewBox="0 0 240 200" role="img" aria-label="俯视赛道、当前位置及行进方向">
+      <path id="minimap-route" class="minimap-route"/>
+      <path id="minimap-travelled" class="minimap-travelled" pathLength="1"/>
+      <g id="minimap-marker"><path d="M0 -10 L6 5 L0 2 L-6 5 Z"/><circle r="2.5"/></g>
+      <text x="224" y="20" class="minimap-north">N</text>
+    </svg>
+  </aside>
+  <div id="loading" role="status">正在加载赛道</div>
+  <div id="corner-labels" aria-label="赛道弯道标注"></div>
+  <footer>
+    <div class="segment-navigation"><label for="segment">赛段</label><select id="segment"><option value="">选择弯道或赛段</option></select><button id="labels" class="icon" aria-label="显示弯道名称" aria-pressed="true" title="显示弯道名称"><i data-lucide="tags"></i></button></div>
+    <div class="transport">
+      <button id="play" class="icon play" title="播放" aria-label="播放"><i data-lucide="play"></i></button>
+      <div class="position"><label for="progress">赛道进度 <span id="percent">0%</span></label><input id="progress" aria-label="赛道进度" type="range" min="0" max="10000" value="0"></div>
+      <div class="speed"><label for="speed">播放倍率 <output id="speed-value">1×</output></label><input id="speed" type="range" min="0.25" max="4" step="0.25" value="1"></div>
+      <button id="trees" class="icon" aria-label="显示树木" aria-pressed="true" title="显示树木"><i data-lucide="trees"></i></button>
+    </div>
+    <div class="credits"><span>海拔为近似数据 · 首尾缺口经插值连接</span><a href="https://veloviewer.com/segment/5539685" target="_blank" rel="noopener">VeloViewer <i data-lucide="arrow-up-right"></i></a></div>
+  </footer>
+  <script src="node_modules/lucide/dist/umd/lucide.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

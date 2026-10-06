@@ -1,0 +1,267 @@
+[
+  {
+    "name": "Sabine-Schmitz-Kurve",
+    "label": "萨宾娜",
+    "start": 0.006,
+    "end": 0.014
+  },
+  {
+    "name": "Hatzenbach Bogen",
+    "label": "Hatzenbach Bogen",
+    "start": 0.019,
+    "end": 0.032
+  },
+  {
+    "name": "Hatzenbach",
+    "label": "Hatzenbach",
+    "start": 0.033,
+    "end": 0.063
+  },
+  {
+    "name": "Hoheichen",
+    "label": "大橡树",
+    "start": 0.065,
+    "end": 0.076
+  },
+  {
+    "name": "Quiddelbacher Höhe",
+    "label": "奎德巴赫高地",
+    "start": 0.08,
+    "end": 0.116
+  },
+  {
+    "name": "Flugplatz",
+    "label": "飞机场",
+    "start": 0.117,
+    "end": 0.127
+  },
+  {
+    "name": "Kottenborn",
+    "label": "Kottenborn",
+    "start": 0.129,
+    "end": 0.139
+  },
+  {
+    "name": "Schwedenkreuz",
+    "label": "瑞典十字",
+    "start": 0.163,
+    "end": 0.172
+  },
+  {
+    "name": "Aremberg",
+    "label": "阿伦山",
+    "start": 0.179,
+    "end": 0.188
+  },
+  {
+    "name": "Fuchsröhre",
+    "label": "狐狸洞",
+    "start": 0.205,
+    "end": 0.237
+  },
+  {
+    "name": "Adenauer Forst",
+    "label": "阿德瑙森林",
+    "start": 0.237,
+    "end": 0.256
+  },
+  {
+    "name": "Metzgesfeld 1",
+    "label": "屠宰场 1",
+    "start": 0.277,
+    "end": 0.285
+  },
+  {
+    "name": "Metzgesfeld 2",
+    "label": "屠宰场 2",
+    "start": 0.291,
+    "end": 0.296
+  },
+  {
+    "name": "Kallenhard",
+    "label": "卡伦哈特",
+    "start": 0.305,
+    "end": 0.313
+  },
+  {
+    "name": "Spiegelkurve",
+    "label": "镜像双子",
+    "start": 0.319,
+    "end": 0.328
+  },
+  {
+    "name": "Dreifach-Rechts",
+    "label": "Miss-Hit-Miss",
+    "start": 0.329,
+    "end": 0.343
+  },
+  {
+    "name": "Wehrseifen",
+    "label": "防御谷",
+    "start": 0.347,
+    "end": 0.359
+  },
+  {
+    "name": "Breidscheid",
+    "label": "Breidscheid",
+    "start": 0.372,
+    "end": 0.383
+  },
+  {
+    "name": "Ex Mühle",
+    "label": "水磨坊",
+    "start": 0.385,
+    "end": 0.392
+  },
+  {
+    "name": "Lauda-Links",
+    "label": "劳达",
+    "start": 0.408,
+    "end": 0.417
+  },
+  {
+    "name": "Bergwerk",
+    "label": "矿山",
+    "start": 0.42,
+    "end": 0.432
+  },
+  {
+    "name": "Kesselchen",
+    "label": "Kesselchen",
+    "start": 0.466,
+    "end": 0.48
+  },
+  {
+    "name": "Mutkurve",
+    "label": "勇气弯",
+    "start": 0.513,
+    "end": 0.526
+  },
+  {
+    "name": "Klostertal",
+    "label": "修道谷",
+    "start": 0.531,
+    "end": 0.544
+  },
+  {
+    "name": "Steilstrecke",
+    "label": "陡坡",
+    "start": 0.552,
+    "end": 0.56
+  },
+  {
+    "name": "Caracciola-Karussell",
+    "label": "旋转木马",
+    "start": 0.571,
+    "end": 0.586
+  },
+  {
+    "name": "Hohe Acht",
+    "label": "高八",
+    "start": 0.624,
+    "end": 0.633
+  },
+  {
+    "name": "Hedgwigshöhe",
+    "label": "海德薇高地",
+    "start": 0.636,
+    "end": 0.65
+  },
+  {
+    "name": "Wippermann",
+    "label": "弹跳人",
+    "start": 0.65,
+    "end": 0.66
+  },
+  {
+    "name": "Eschbach",
+    "label": "Eschbach",
+    "start": 0.662,
+    "end": 0.681
+  },
+  {
+    "name": "YouTube-Kurve",
+    "label": "网红弯",
+    "start": 0.692,
+    "end": 0.701
+  },
+  {
+    "name": "Eiskurve",
+    "label": "冰弯",
+    "start": 0.705,
+    "end": 0.715
+  },
+  {
+    "name": "Pflanzgarten 1",
+    "label": "植物园 1",
+    "start": 0.721,
+    "end": 0.745
+  },
+  {
+    "name": "Pflanzgarten 2",
+    "label": "植物园 2",
+    "start": 0.746,
+    "end": 0.762
+  },
+  {
+    "name": "Stefan-Bellof-S",
+    "label": "Stefan-Bellof-S",
+    "start": 0.763,
+    "end": 0.783
+  },
+  {
+    "name": "Schwalbenschwanz",
+    "label": "燕尾",
+    "start": 0.793,
+    "end": 0.81
+  },
+  {
+    "name": "Kleine Karussell",
+    "label": "小旋转木马",
+    "start": 0.815,
+    "end": 0.824
+  },
+  {
+    "name": "Galgenkopf",
+    "label": "断头台",
+    "start": 0.834,
+    "end": 0.85
+  },
+  {
+    "name": "Döttinger Höhe",
+    "label": "多廷根高地",
+    "start": 0.853,
+    "end": 0.945
+  },
+  {
+    "name": "Antoniusbuche",
+    "label": "安东尼榉木",
+    "start": 0.947,
+    "end": 0.959
+  },
+  {
+    "name": "Tiergarten",
+    "label": "动物园",
+    "start": 0.966,
+    "end": 0.979
+  },
+  {
+    "name": "Hohenrain Schikane",
+    "label": "高雨组合弯",
+    "start": 0.981,
+    "end": 0.994
+  },
+  {
+    "name": "T13",
+    "label": "T13",
+    "start": 0.994,
+    "end": 0.999
+  },
+  {
+    "name": "Brünnchen",
+    "label": "小水井",
+    "start": 0.681,
+    "end": 0.701,
+    "section": true
+  }
+]
