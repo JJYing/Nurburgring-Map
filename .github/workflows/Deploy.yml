@@ -6,11 +6,12 @@ on:
       - master
     paths:
       - '**/*.php'
+      - '**/*.html'
       - 'assets/**/*.css'
       - 'assets/**/*.js'
       - 'assets/**/*.png'
       - 'assets/**/*.jpg'
-      - '.github/workflows/deploy.yml'
+      - '.github/workflows/Deploy.yml'
   workflow_dispatch:
 
 permissions:
@@ -33,7 +34,7 @@ jobs:
         id: changes
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "has_php=false" >> "$GITHUB_OUTPUT"
+            echo "has_site=false" >> "$GITHUB_OUTPUT"
             echo "has_assets=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -51,7 +52,7 @@ jobs:
           echo "$CHANGED"
           echo "---"
 
-          PHP_FILES=$(echo "$CHANGED" | grep '\.php$' \
+          SITE_FILES=$(echo "$CHANGED" | grep -E '\.(php|html)$' \
             | grep -v '^env\.php$' \
             | grep -v '^tests/' \
             | grep -v '^doc/' \
@@ -65,21 +66,21 @@ jobs:
 
 
           {
-            echo "php_files<<GHADELIM"
-            echo "$PHP_FILES"
+            echo "site_files<<GHADELIM"
+            echo "$SITE_FILES"
             echo "GHADELIM"
 
             echo "asset_files<<GHADELIM"
             echo "$ASSET_FILES"
             echo "GHADELIM"
 
-            echo "has_php=$( [ -n "$PHP_FILES" ] && echo true || echo false )"
+            echo "has_site=$( [ -n "$SITE_FILES" ] && echo true || echo false )"
             echo "has_assets=$( [ -n "$ASSET_FILES" ] && echo true || echo false )"
           } >> "$GITHUB_OUTPUT"
 
-          if [ -n "$PHP_FILES" ]; then
-            echo "PHP files to deploy:"
-            echo "$PHP_FILES"
+          if [ -n "$SITE_FILES" ]; then
+            echo "PHP / HTML files to deploy:"
+            echo "$SITE_FILES"
           fi
           if [ -n "$ASSET_FILES" ]; then
             echo "Asset files to deploy:"
@@ -96,16 +97,16 @@ jobs:
           test -n "$FTP_HOST" || { echo "::error::Missing FTP_HOST var"; exit 1; }
           test -n "$FTP_USERNAME" || { echo "::error::Missing FTP_USERNAME secret"; exit 1; }
           test -n "$FTP_PASSWORD" || { echo "::error::Missing FTP_PASSWORD secret"; exit 1; }
-          test -n "$FTP_REMOTE_PATH" || { echo "::error::Missing FTP_REMOTE_PATH var"; exit 1; }
+          test -n "$FTP_REMOTE_PATH" || { echo "::error::Missing FTP_REMOTE_PATH secret"; exit 1; }
 
-      - name: Deploy PHP files
-        if: steps.changes.outputs.has_php == 'true'
+      - name: Deploy PHP / HTML files
+        if: steps.changes.outputs.has_site == 'true'
         env:
           FTP_HOST: ${{ vars.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH }}
-          DEPLOY_FILES: ${{ steps.changes.outputs.php_files }}
+          DEPLOY_FILES: ${{ steps.changes.outputs.site_files }}
         run: |
           FAILED=0
           COUNT=0
@@ -127,24 +128,29 @@ jobs:
               FAILED=1
             fi
           done <<< "$DEPLOY_FILES"
-          echo "Deployed $COUNT PHP file(s)"
+          echo "Deployed $COUNT PHP / HTML file(s)"
           [ "$FAILED" -eq 0 ] || exit 1
 
       - name: Install minification tools
         if: steps.changes.outputs.has_assets == 'true'
         run: npm install -g lightningcss-cli terser
 
-      - name: Minify and deploy asset files to Upyun
+      - name: Minify and deploy asset files to Upyun and FTP
         if: steps.changes.outputs.has_assets == 'true'
         env:
           UPYUN_HOST: ${{ vars.UPYUN_HOST }}
           UPYUN_USERNAME: ${{ secrets.UPYUN_USERNAME }}
           UPYUN_PASSWORD: ${{ secrets.UPYUN_PASSWORD }}
           UPYUN_PATH: ${{ vars.UPYUN_PATH }}
+          FTP_HOST: ${{ vars.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH }}
           DEPLOY_FILES: ${{ steps.changes.outputs.asset_files }}
         run: |
           FAILED=0
           COUNT=0
+          SERVER_COUNT=0
           while IFS= read -r file; do
             [ -z "$file" ] && continue
             if [ ! -f "$file" ]; then
@@ -189,12 +195,25 @@ jobs:
               "ftp://$UPYUN_HOST/${UPYUN_PATH}/${REMOTE}"; then
               COUNT=$((COUNT + 1))
             else
-              echo "::warning::Failed to upload: $file"
+              echo "::warning::Failed to upload to Upyun: $file"
+              FAILED=1
+            fi
+
+            # Reuse the same payload, preserving the repository directory on FTP.
+            SERVER_REMOTE=$(python3 -c "import urllib.parse,sys;print(urllib.parse.quote(sys.argv[1],safe='/'))" "$file")
+            if curl --fail --silent --show-error --ftp-create-dirs \
+              --user "$FTP_USERNAME:$FTP_PASSWORD" \
+              --upload-file "$TMPFILE" \
+              "ftp://$FTP_HOST/${FTP_REMOTE_PATH}/${SERVER_REMOTE}"; then
+              SERVER_COUNT=$((SERVER_COUNT + 1))
+            else
+              echo "::warning::Failed to upload asset to FTP: $file"
               FAILED=1
             fi
             rm -f "$TMPFILE"
           done <<< "$DEPLOY_FILES"
           echo "Deployed $COUNT asset file(s) to Upyun"
+          echo "Deployed $SERVER_COUNT asset file(s) to FTP"
           [ "$FAILED" -eq 0 ] || exit 1
 
       - name: Webhook notify
@@ -233,27 +252,27 @@ jobs:
       - name: Deployment summary
         if: always()
         env:
-          HAS_PHP: ${{ steps.changes.outputs.has_php }}
+          HAS_SITE: ${{ steps.changes.outputs.has_site }}
           HAS_ASSETS: ${{ steps.changes.outputs.has_assets }}
-          PHP_LIST: ${{ steps.changes.outputs.php_files }}
+          SITE_LIST: ${{ steps.changes.outputs.site_files }}
           ASSET_LIST: ${{ steps.changes.outputs.asset_files }}
         run: |
           {
             echo "## Deployment Summary"
             echo ""
-            if [ "$HAS_PHP" = "true" ]; then
-              echo "### PHP files"
+            if [ "$HAS_SITE" = "true" ]; then
+              echo "### PHP / HTML files"
               echo '```'
-              echo "$PHP_LIST"
+              echo "$SITE_LIST"
               echo '```'
             fi
             if [ "$HAS_ASSETS" = "true" ]; then
-              echo "### Asset files"
+              echo "### Asset files (Upyun + FTP)"
               echo '```'
               echo "$ASSET_LIST"
               echo '```'
             fi
-            if [ "$HAS_PHP" != "true" ] && [ "$HAS_ASSETS" != "true" ]; then
+            if [ "$HAS_SITE" != "true" ] && [ "$HAS_ASSETS" != "true" ]; then
               echo "No deployable changes detected."
             fi
           } >> "$GITHUB_STEP_SUMMARY"

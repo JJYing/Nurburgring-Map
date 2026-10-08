@@ -235,11 +235,10 @@ echo
 
       <div class="inner skew-n">
 
-        <a class="link" href="guide.php?lang={$lang}">{$guideLabel}</a>
-
-        <div @click="openModal('text')" role="button" class="link">
-          {{uiText('about')}}
-        </div>
+        <button type="button" @click="openModal('text')" class="toggle-group about-control" :aria-label="uiText('about')">
+          <span>{{uiText('about')}}</span>
+          <span class="control-icon" aria-hidden="true"><span class="skew-n">i</span></span>
+        </button>
 
         <div class="toggle-group" :class=" showAllCornerNames ? 'on' : 'off' " @click="showAllCornerNames = !showAllCornerNames">
           <span>{{uiText('allCorners')}}</span>
