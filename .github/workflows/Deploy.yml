@@ -9,6 +9,7 @@ on:
       - '**/*.html'
       - 'assets/**/*.css'
       - 'assets/**/*.js'
+      - 'assets/**/*.json'
       - 'assets/**/*.png'
       - 'assets/**/*.jpg'
       - '.github/workflows/Deploy.yml'
@@ -62,7 +63,7 @@ jobs:
             | grep -v '^archive/' \
             || true)
 
-          ASSET_FILES=$(echo "$CHANGED" | grep -E '^assets/.*\.(css|js|png|jpg)$' || true)
+          ASSET_FILES=$(echo "$CHANGED" | grep -E '^assets/.*\.(css|js|json|png|jpg)$' || true)
 
 
           {
@@ -180,6 +181,25 @@ jobs:
                   echo "Minified JS: $file ($ORIG -> $MINI bytes)"
                 else
                   echo "::warning::terser failed for $file, uploading original"
+                  cp "$file" "$TMPFILE"
+                fi
+                ;;
+              *.json)
+                if python3 - "$file" "$TMPFILE" <<'PYJSON'
+          import json
+          import sys
+
+          with open(sys.argv[1], encoding="utf-8") as source:
+              data = json.load(source)
+          with open(sys.argv[2], "w", encoding="utf-8") as target:
+              json.dump(data, target, ensure_ascii=False, separators=(",", ":"))
+          PYJSON
+                then
+                  ORIG=$(wc -c < "$file")
+                  MINI=$(wc -c < "$TMPFILE")
+                  echo "Minified JSON: $file ($ORIG -> $MINI bytes)"
+                else
+                  echo "::warning::JSON minification failed for $file, uploading original"
                   cp "$file" "$TMPFILE"
                 fi
                 ;;
