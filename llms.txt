@@ -1,0 +1,21 @@
+# Nürburgring Nordschleife Map
+
+> An independent interactive map and multilingual corner guide by JJ Ying. Covers 43 named corners and sections with Chinese, English and German names, stories, photographs and source attribution.
+
+## Readable guides
+
+- [English corner guide](https://jjying.com/nurburgring/guide.php?lang=en): Full server-rendered text, corner index and references; no JavaScript required.
+- [中文弯道指南](https://jjying.com/nurburgring/guide.php?lang=cn): Chinese names, descriptions and original German names.
+- [Deutscher Kurvenführer](https://jjying.com/nurburgring/guide.php?lang=de): German names and descriptions.
+
+## Map and data
+
+- [Interactive map](https://jjying.com/nurburgring/?lang=en): Scroll through the Nordschleife. Direct links use #corner-01 through #corner-43.
+- [Shared corner data](https://jjying.com/nurburgring/assets/track-content.json): JSON used by both map and guide. ch/en/de are localized names; more/moreEn/moreDe are descriptions containing HTML. imgs includes photo filenames, author and source URL. st/ed are normalized positions along the drawn map path, not surveyed coordinates or official distances. IDs are stable citation anchors; array order follows the map.
+- [Source code](https://github.com/JJYing/Nurburgring-Map): Project implementation and license.
+
+## Interpretation
+
+The map uses the full 20.832 km Nordschleife lap, not the Bridge to Gantry (BTG) timing layout. Map distances and interpolated elevation are approximate. Some corner-name explanations are legends or informal names. The guide lists the project's references and preserves photo source credits; these are not per-claim verification. This is an independent fan project, not an official Nürburgring publication.
+
+For citations, prefer the localized guide URL plus the relevant stable corner anchor, for example https://jjying.com/nurburgring/guide.php?lang=en#corner-01.
