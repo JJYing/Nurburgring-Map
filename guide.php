@@ -30,6 +30,10 @@ header('Content-Type: text/html; charset=UTF-8');
   <meta property="og:description" content="<?= escapeHtml($copy[1]) ?>">
   <meta property="og:image" content="https://s.anyway.red/nurburgring/og.png">
   <script type="application/ld+json"><?= structuredData($copy[0], $copy[1], $lang, true) ?></script>
+  <script>
+    window.anyclicksQueue = window.anyclicksQueue || [];
+  </script>
+  <script async src="https://anyclicks.anyway.fm/js/tracker.js" data-site-id="1db3ac2c4a1cbcbaa7f774ed" data-site-domain="anyway.fm"></script>  
 </head>
 <body>
   <header>
