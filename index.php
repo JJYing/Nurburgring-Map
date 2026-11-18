@@ -31,22 +31,22 @@ if(isset($_GET['lang']) && $_GET['lang'] == "en") $lang = "en";
 
 if($lang == "cn"){
   $extraHead = "";
-  $pageTitle="纽北赛道地图";
-  $pageDesc="可交互的纽博格林北环赛道地图，展示了众多弯道的介绍和图片";
+  $pageTitle="纽北赛道地图（纽博格林北环）- 交互式弯道指南";
+  $pageDesc="滚动探索 20.8 公里的纽博格林北环：43 个弯道的中英德名称、故事、照片和海拔，免费使用，无需注册。";
   $pageLang="zh-Hans";
   $jsLang = "cn";
 }
 else if($lang == "de"){
   $extraHead = "";
-  $pageTitle="Nürburgring Nordschleife-Karte";
-  $pageDesc="Eine interaktive Karte der Nürburgring-Nordschleife mit Kurvennamen, Beschreibungen und Bildern.";
+  $pageTitle="Nürburgring-Karte (Nordschleife) – Interaktiver Kurvenführer";
+  $pageDesc="Die 20,8 km lange Nordschleife Kurve für Kurve erkunden: Namen, Geschichten, Fotos und Höhenprofil aller 43 Kurven. Kostenlos, ohne Anmeldung.";
   $pageLang="de-DE";
   $jsLang = "de";
 }
 else{
   $extraHead = "";
-  $pageTitle="Nürburgring Nordschleife Map";
-  $pageDesc="An interactive map of the Nürburgring Nordschleife with corner names, notes, and photos.";
+  $pageTitle="Nürburgring Map (Nordschleife) – Interactive Corner Guide";
+  $pageDesc="Explore the 20.8 km Nordschleife corner by corner: names, stories, photos and elevation for all 43 corners. Free, no sign-up.";
   $pageLang="en-US";
   $jsLang = "en";
 }
