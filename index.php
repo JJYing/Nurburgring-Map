@@ -275,7 +275,7 @@ echo
   </div>
 
 </main>
-<noscript><aside class="no-script">{$introText} <a href="guide.php?lang={$lang}">{$guideLabel}</a></aside></noscript>
+<noscript><aside class="no-script">{$introText} <a href="guide.php?lang={$lang}" target="_blank" rel="noopener">{$guideLabel}</a></aside></noscript>
 <script>window.TRACK_CONTENT = {$trackJson};</script>
 <script src='{$assetsDir}/vue-2.6.11.min.js'></script>
 <script src="{$assetsDir}/elevation.js?v={$lastEditTime}"></script>

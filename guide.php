@@ -37,7 +37,7 @@ header('Content-Type: text/html; charset=UTF-8');
 </head>
 <body>
   <header>
-    <a href="./?lang=<?= $lang ?>"><?= escapeHtml($copy[2]) ?> ↗</a>
+    <a href="./?lang=<?= $lang ?>" target="_blank" rel="noopener"><?= escapeHtml($copy[2]) ?> ↗</a>
     <nav aria-label="Language"><a href="?lang=cn" lang="zh-Hans" hreflang="zh-Hans">中文</a> · <a href="?lang=en" lang="en" hreflang="en">English</a> · <a href="?lang=de" lang="de" hreflang="de">Deutsch</a></nav>
   </header>
   <main>
@@ -63,7 +63,7 @@ header('Content-Type: text/html; charset=UTF-8');
 <?php if (contentDescription($corner, $lang)): ?>
       <p><?= contentDescription($corner, $lang) ?></p>
 <?php endif; ?>
-      <a class="map-link" href="./?lang=<?= $lang ?>#<?= $corner['id'] ?>"><?= escapeHtml($copy[5]) ?> ↗</a>
+      <a class="map-link" href="./?lang=<?= $lang ?>#<?= $corner['id'] ?>" target="_blank" rel="noopener"><?= escapeHtml($copy[5]) ?> ↗</a>
 <?php if (!empty($corner['imgs'])): ?>
       <div class="photos">
 <?php foreach ($corner['imgs'] as $photo): ?>
